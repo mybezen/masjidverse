@@ -1,9 +1,19 @@
-import Dashboard from "./components/Dashboard"
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Dashboard from "./pages/Dashboard";
+import AdminDashboard from "./pages/admin/Dashboard";
+
 
 function App() {
+
   return (
-    <Dashboard/>
-  )
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Dashboard />} />
+        <Route path="/admin/" element={<AdminDashboard/>} />
+        
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
