@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class AsetMasjid extends Model
+class Asetmasjid extends Model
 {
     //
 }
