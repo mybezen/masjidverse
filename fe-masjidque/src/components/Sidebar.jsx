@@ -13,7 +13,7 @@ const Sidebar = () => {
 
   return (
     <div
-      className={`bg-gradient-to-b from-purple-700 to-purple-900 p-6 text-white flex flex-col shadow-lg 
+      className={`bg-[#3C552D] p-6 text-white flex flex-col shadow-lg 
         ${isHovered ? 'w-48' : 'w-20'} 
         rounded-r-[2rem] transition-[width] duration-500 ease-in-out`}
       onMouseEnter={() => setIsHovered(true)}
