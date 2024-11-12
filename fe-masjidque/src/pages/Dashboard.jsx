@@ -2,8 +2,10 @@ import React from "react";
 import { Typography, Card, CardContent } from "@mui/joy";
 import MasjidIcon from "../assets/Images/image.png"; // Replace with actual path to your image
 import ActionIcon from "../assets/Icon/run.svg";
+import IncomeIcon from "../assets/Icon/income.svg";
+import OutcomeIcon from "../assets/Icon/outcome.svg";
 
-const Dashboard = () => {
+function Dashboard  ()  {
   return (
     <div className="flex h-screen bg-white">
       {/* Main Content */}
@@ -60,7 +62,9 @@ const Dashboard = () => {
             {/* Income Section */}
             <div className="col-span-4">
               <div className="flex items-center mb-4">
-                <div className="bg-gray-300 rounded-full w-8 h-8 mr-2"></div>{" "}
+                <div className="flex items-center">
+                    <img className="w-8 h-8 mr-2" src={IncomeIcon} alt="IncomeIcon" />
+                    </div>
                 {/* Empty icon placeholder */}
                 <Typography level="h2" fontSize="lg" className="text-gray-700">
                   Pemasukan
@@ -77,7 +81,9 @@ const Dashboard = () => {
 
               {/* Expense Section */}
               <div className="flex items-center mb-4 mt-4">
-                <div className="bg-gray-300 rounded-full w-8 h-8 mr-2"></div>{" "}
+                <div className="flex items-center ">
+                    <img className="w-8 h-8 mr-2" src={OutcomeIcon} alt="OutcomeIcon" />
+                </div>
                 {/* Empty icon placeholder */}
                 <Typography level="h2" fontSize="lg" className="text-gray-700">
                   Pengeluaran
