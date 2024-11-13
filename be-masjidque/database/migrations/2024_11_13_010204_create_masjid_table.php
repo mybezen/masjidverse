@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('logo');
             $table->string('password');
             $table->string('no_rekening');
-            $table->string('status');
+            $table->enum('status' , ['disetujui','diajukan','ditolak'])->default('diajukan');
 
 
         });
