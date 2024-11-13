@@ -10,6 +10,20 @@ class Masjid extends Authenticatable
 {
     protected $table = 'masjid';
 
+    protected $fillable = [
+        'nama',
+        'alamat',
+        'no_telepon',
+        'website',
+        'email',
+        'alamat_map',
+        'foto',
+        'logo',
+        'password',
+        'no_rekening',
+        'status',
+    ];
+
     public function kegiatanMasjid(): HasMany
     {
         return $this->hasMany(KegiatanMasjid::class);

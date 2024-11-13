@@ -17,7 +17,6 @@ return new class extends Migration
             $table->date('tanggal');
             $table->string('keterangan');
             $table->integer('jumlah');
-            $table->string('status_transaksi');
             $table->unsignedBigInteger('masjid_id');
             $table->enum('status_transaksi', ['debit', 'kredit'])->default('debit');
 
