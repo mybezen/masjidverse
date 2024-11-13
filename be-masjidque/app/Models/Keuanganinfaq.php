@@ -9,6 +9,14 @@ class KeuanganInfaq extends Model
 {
     protected $table = 'keuangan_infaq';
 
+    protected $fillable = [
+        'tanggal',
+        'keterangan',
+        'jumlah',
+        'status_transaksi',
+        'masjid_id'
+    ];
+
     public function Masjid(): BelongsTo
     {
         return $this->belongsTo(Masjid::class);

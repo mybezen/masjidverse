@@ -34,7 +34,7 @@ class Masjid extends Authenticatable
         return $this->hasMany(AsetMasjid::class);
     }
 
-    public function KeuanganInfaq(): HasMany
+    public function keuanganInfaq(): HasMany
     {
         return $this->hasMany(KeuanganInfaq::class);
     }

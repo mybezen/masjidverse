@@ -9,6 +9,14 @@ class AsetMasjid extends Model
 {
     protected $table = 'aset_masjid';
 
+    protected $fillable = [
+        'nama_aset',
+        'foto',
+        'quantity',
+        'status_peminjaman',
+        'masjid_id'
+    ];
+
     public function Masjid(): BelongsTo
     {
         return $this->belongsTo(Masjid::class);
