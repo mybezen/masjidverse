@@ -14,6 +14,12 @@ return new class extends Migration
         Schema::create('keuangan_infaq', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            //
+            $table->string('masjid_id');
+            $table->date('tanggal');
+            $table->string('keterangan');
+            $table->integer('jumlah');
+            $table->string('status_transaksi');
         });
     }
 

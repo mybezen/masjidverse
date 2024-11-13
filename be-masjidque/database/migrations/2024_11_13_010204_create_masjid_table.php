@@ -14,6 +14,20 @@ return new class extends Migration
         Schema::create('masjid', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            //
+            $table->string('nama');
+            $table->string('alamat');
+            $table->string('no_telepon');
+            $table->string('website');
+            $table->string('email')->unique();
+            $table->text('alamat_map');
+            $table->string('foto');
+            $table->string('logo');
+            $table->string('password');
+            $table->string('no_rekening');
+            $table->string('status');
+
+
         });
     }
 

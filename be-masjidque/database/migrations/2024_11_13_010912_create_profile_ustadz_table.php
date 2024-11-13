@@ -14,6 +14,12 @@ return new class extends Migration
         Schema::create('profile_ustadz', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            //
+            $table->string('nama');
+            $table->string('alamat');
+            $table->string('no_telepon');
+            $table->string('foto');
+            $table->string('status_pendidikan');
         });
     }
 
