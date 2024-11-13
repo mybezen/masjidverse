@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('masjid', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            //
             $table->string('nama');
             $table->string('alamat');
             $table->string('no_telepon');
@@ -25,9 +24,7 @@ return new class extends Migration
             $table->string('logo');
             $table->string('password');
             $table->string('no_rekening');
-            $table->string('status');
-
-
+            $table->enum('status', ['diajukan', 'ditolak', 'diterima'])->default('diajukan');
         });
     }
 

@@ -14,12 +14,13 @@ return new class extends Migration
         Schema::create('aset_masjid', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            //
             $table->string('nama_aset');
-            $table->string('masjid_id');
             $table->string('foto');
             $table->Integer('quantity');
-            $table->enum('status_peminjaman', ['dipinjamkan','tersedia' ])->default('tersedia');
+            $table->enum('status_peminjaman', ['dipinjamkan', 'tersedia'])->default('tersedia');
+            $table->unsignedBigInteger('masjid_id');
+
+            $table->foreign('masjid_id')->references('id')->on('masjid')->onDelete('cascade');
         });
     }
 
