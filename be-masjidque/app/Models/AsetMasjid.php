@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Asetmasjid extends Model
+class AsetMasjid extends Model
 {
-    //
+    protected $table = 'aset_masjid';
 }
