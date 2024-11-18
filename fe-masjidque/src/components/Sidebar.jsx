@@ -51,7 +51,6 @@ const Sidebar = () => {
             {isHovered && (
               <span className="flex items-center space-x-1 text-lg poppins-semibold">
                 {item.label}
-                {/* Display dropdown icon with rotation */}
                 {item.subItems && (
                   <img
                     src={dropdownIcon}
@@ -66,7 +65,6 @@ const Sidebar = () => {
               </span>
             )}
           </div>
-          {/* Animated dropdown for subItems */}
           {isHovered && item.subItems && (
             <div
               className={`overflow-hidden transition-[max-height] duration-300 ease-in-out 
@@ -80,7 +78,7 @@ const Sidebar = () => {
               {item.subItems.map((subItem, idx) => (
                 <p
                   key={idx}
-                  className="active:bg-[#9EDF9C] transition-[width] duration-500 ease-in-out p-4 rounded-lg bg-opacity-20 cursor-pointer text-opacity-100 poppins-semibold hover:scale-95"
+                  className="active:bg-[#9EDF9C] transition-[width] duration-700 ease-in-out p-4 rounded-lg bg-opacity-20 cursor-pointer text-opacity-100 poppins-semibold hover:scale-95"
                 >
                   {subItem}
                 </p>
