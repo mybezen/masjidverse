@@ -41,8 +41,13 @@ return [
             'provider' => 'users',
         ],
 
+        'user' => [
+            'driver' => 'jwt',
+            'provider' => 'users'
+        ],
+
         'masjid' => [
-            'driver' => 'session',
+            'driver' => 'jwt',
             'provider' => 'masjids'
         ],
     ],
