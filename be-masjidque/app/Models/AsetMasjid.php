@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class AsetMasjid extends Model
 {
@@ -17,8 +18,13 @@ class AsetMasjid extends Model
         'masjid_id'
     ];
 
-    public function Masjid(): BelongsTo
+    public function masjid(): BelongsTo
     {
         return $this->belongsTo(Masjid::class);
+    }
+
+    public function peminjaman(): HasMany
+    {
+        return $this->hasMany(Peminjaman::class);
     }
 }

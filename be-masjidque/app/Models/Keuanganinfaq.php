@@ -17,7 +17,7 @@ class KeuanganInfaq extends Model
         'masjid_id'
     ];
 
-    public function Masjid(): BelongsTo
+    public function masjid(): BelongsTo
     {
         return $this->belongsTo(Masjid::class);
     }

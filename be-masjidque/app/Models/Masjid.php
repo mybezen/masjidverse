@@ -12,15 +12,28 @@ class Masjid extends Authenticatable
 
     protected $fillable = [
         'nama',
+        'password',
+        'deskripsi',
+        'provinsi',
+        'kota',
+        'kecamatan',
         'alamat',
+        'alamat_,map',
+        'kode_pos',
+        'tahun_berdiri',
+        'luas_tanah',
+        'luas_bangunan',
+        'bank',
+        'no_rekening',
+        'atas_nama',
         'no_telepon',
-        'website',
         'email',
-        'alamat_map',
+        'instagram',
+        'facebook',
+        'website',
+        'nama_yayasan',
         'foto',
         'logo',
-        'password',
-        'no_rekening',
         'status',
     ];
 
@@ -37,5 +50,10 @@ class Masjid extends Authenticatable
     public function keuanganInfaq(): HasMany
     {
         return $this->hasMany(KeuanganInfaq::class);
+    }
+
+    public function strukturOrganisasi(): HasMany
+    {
+        return $this->hasMany(strukturOrganisasi::class);
     }
 }

@@ -48,9 +48,9 @@ class UserAuthController extends Controller
         }
 
         $user = User::create([
-            'name' => $request->get('name'),
-            'email' => $request->get('email'),
-            'password' => Hash::make($request->get('password'))
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'password' => Hash::make($request->input('password'))
         ]);
 
         if (!$user) {
@@ -70,7 +70,7 @@ class UserAuthController extends Controller
     public function logout()
     {
         try {
-            JWTAuth::logout();
+            auth('user')->logout();
 
             return response()->json([
                 'success' => true,

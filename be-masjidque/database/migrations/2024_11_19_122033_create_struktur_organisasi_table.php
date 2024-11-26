@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('aset_masjid', function (Blueprint $table) {
+        Schema::create('struktur_organisasi', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('nama_barang');
-            $table->integer('jumlah');
-            $table->enum('status_peminjaman', ['dipinjamkan', 'tersedia'])->default('tersedia');
+            $table->string('nama');
+            $table->string('jabatan');
             $table->unsignedBigInteger('masjid_id');
 
             $table->foreign('masjid_id')->references('id')->on('masjid')->onDelete('cascade');
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('aset_masjid');
+        Schema::dropIfExists('struktur_organisasi');
     }
 };

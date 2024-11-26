@@ -15,7 +15,9 @@
                 $table->id();
                 $table->timestamps();
                 $table->date('tanggal');
+                $table->time('waktu');
                 $table->string('nama_kegiatan');
+                $table->string('penceramah');
                 $table->string('foto');
                 $table->text('deskripsi');
                 $table->string('lokasi');

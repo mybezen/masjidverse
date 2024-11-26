@@ -5,16 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class KegiatanMasjid extends Model
+class StrukturOrganisasi extends Model
 {
-    protected $table = 'kegiatan_masjid';
+    protected $table = 'struktur_organisasi';
 
     protected $fillable = [
-        'tanggal',
-        'nama_kegiatan',
-        'foto',
-        'deskripsi',
-        'lokasi',
+        'nama',
+        'jabatan',
         'masjid_id'
     ];
 
