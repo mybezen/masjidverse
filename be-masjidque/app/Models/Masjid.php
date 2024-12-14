@@ -18,7 +18,7 @@ class Masjid extends Authenticatable
         'kota',
         'kecamatan',
         'alamat',
-        'alamat_,map',
+        'alamat_map',
         'kode_pos',
         'tahun_berdiri',
         'luas_tanah',
