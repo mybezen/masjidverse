@@ -19,6 +19,9 @@ return new class extends Migration
             $table->string('no_telepon');
             $table->string('foto');
             $table->string('status_pendidikan');
+            $table->unsignedBigInteger('masjid_id');
+
+            $table->foreign('masjid_id')->references('id')->on('masjid');
         });
     }
 

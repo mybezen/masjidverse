@@ -56,4 +56,9 @@ class Masjid extends Authenticatable
     {
         return $this->hasMany(strukturOrganisasi::class);
     }
+
+    public function profileUstadz(): HasMany
+    {
+        return $this->hasMany(ProfileUstadz::class);
+    }
 }
