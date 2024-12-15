@@ -16,6 +16,8 @@ return new class extends Migration
             $table->timestamps();
             $table->string('nama');
             $table->string('jabatan');
+            $table->string('no_telepon');
+            $table->string('foto');
             $table->unsignedBigInteger('masjid_id');
 
             $table->foreign('masjid_id')->references('id')->on('masjid')->onDelete('cascade');

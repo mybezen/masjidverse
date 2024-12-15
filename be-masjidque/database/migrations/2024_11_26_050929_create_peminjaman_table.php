@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('nama');
-            $table->string('alamat');
+            $table->string('no_telepon');
             $table->integer('jumlah');
             $table->date('tanggal_peminjaman');
             $table->date('tanggal_pengembalian');
