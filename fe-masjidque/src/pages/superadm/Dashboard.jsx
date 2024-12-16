@@ -1,6 +1,6 @@
 
     
-    function Dashboard() {
+    function SuperDashboard() {
       return (
         <div>
           
@@ -8,5 +8,5 @@
       )
     }
     
-    export default Dashboard
+    export default SuperDashboard
     
