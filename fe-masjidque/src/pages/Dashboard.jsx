@@ -3,7 +3,6 @@ import MasjidIcon from "../assets/Images/image.png"; // Replace with actual path
 import ActionIcon from "../assets/Icon/run.svg";
 import IncomeIcon from "../assets/Icon/income.svg";
 import OutcomeIcon from "../assets/Icon/outcome.svg";
-import Navbar from "../components/Navbar";
 
 function Dashboard() {
   return (
@@ -11,11 +10,9 @@ function Dashboard() {
       {/* Main Content */}
       <main className="flex-1">
         {/* Header */}
-        <Navbar />
-
         <div className="p-8">
           {/* Grid Layout */}
-          <div className="grid grid-cols-12 gap-4 mt-6">
+          <div className="grid grid-cols-8 gap-6 mt-2">
             {/* Activities Section */}
             <div className="col-span-4">
               <div className="flex items-center mb-4">
@@ -58,7 +55,6 @@ function Dashboard() {
                     alt="IncomeIcon"
                   />
                 </div>
-                {/* Empty icon placeholder */}
                 <Typography level="h2" fontSize="lg" className="text-gray-700">
                   Pemasukan
                 </Typography>
@@ -81,7 +77,6 @@ function Dashboard() {
                     alt="OutcomeIcon"
                   />
                 </div>
-                {/* Empty icon placeholder */}
                 <Typography level="h2" fontSize="lg" className="text-gray-700">
                   Pengeluaran
                 </Typography>
@@ -97,8 +92,9 @@ function Dashboard() {
             </div>
 
             {/* Mosque Cards Section */}
+            <div className="h-12 bg-blue-400 rounded-xl "></div>
             <div className="grid grid-cols-3 col-span-12 gap-4 mt-6">
-              {[...Array(6)].map((_, index) => (
+              {[...Array(3)].map((_, index) => (
                 <Card key={index} variant="outlined" className="p-4">
                   <CardContent>
                     <img
