@@ -5,8 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class Masjid extends Authenticatable
+class Masjid extends Authenticatable implements JWTSubject
 {
     protected $table = 'masjid';
 
@@ -60,5 +61,15 @@ class Masjid extends Authenticatable
     public function profileUstadz(): HasMany
     {
         return $this->hasMany(ProfileUstadz::class);
+    }
+
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    public function getJWTCustomClaims()
+    {
+        return [];
     }
 }

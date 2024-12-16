@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\MasjidAuthController;
 use App\Http\Controllers\Auth\UserAuthController;
 use App\Http\Controllers\MasjidController;
 use Illuminate\Http\Request;
@@ -9,13 +10,13 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/register', [UserAuthController::class, 'register']);
-Route::post('/login', [UserAuthController::class, 'login']);
-Route::post('/logout', [UserAuthController::class, 'logout']);
+Route::post('/register', [MasjidAuthController::class, 'register']);
+Route::post('/login', [MasjidAuthController::class, 'login']);
+Route::get('/logout', [MasjidAuthController::class, 'logout']);
 
 // Masjid Controller
 Route::get('/', [MasjidController::class, 'home']);
 Route::get('/kegiatan', [MasjidController::class, 'kegiatan']);
-Route::get('/kegiatan/{query}', MasjidController::class, 'searchKegiatan');
+Route::get('/kegiatan/{query}', [MasjidController::class, 'searchKegiatan']);
 Route::get('/masjid', [MasjidController::class, 'masjid']);
-Route::get('/masjid/{query}', MasjidController::class, 'searchMasjid');
+Route::get('/masjid/{query}', [MasjidController::class, 'searchMasjid']);
