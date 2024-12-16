@@ -1,6 +1,14 @@
 import MosqueIcon from '../../assets/Images/LoginMosq.svg'
+import { useNavigate } from "react-router-dom";
 
 function LoginPage() {
+    let navigate = useNavigate(); 
+  const routeChange = () =>{ 
+    let path = `/`; 
+    
+    setTimeout( navigate(path), 5000)
+  }
+
     return (
         <div className="flex h-screen">
             {/* Bagian Kiri - Form */}
@@ -31,6 +39,7 @@ function LoginPage() {
                     </div>
 
                     <button
+                        onClick={routeChange}
                         type="submit"
                         className="w-full active:animate-ping bg-gradient-to-r from-[#070707] to-[#29845F] hover:from-[#070707] hover:to-[#29845F] text-white p-2 rounded-md hover:bg-gradient-to-l transition"
                     >
