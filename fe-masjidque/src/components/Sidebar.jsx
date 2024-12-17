@@ -1,84 +1,100 @@
 import { useState } from "react";
-import {
-  FaHome,
-  FaWallet,
-  FaClipboard,
-  FaFileAlt,
-  FaUserCircle,
-} from "react-icons/fa";
 import dropdownIcon from "../assets/Icon/dropdown.svg";
+import DashboardIcon from "../assets/Icon/dashboard.svg";
+import PlusIcon from "../assets/Icon/plus.svg";
+import MinusIcon from "../assets/Icon/minus.svg";
+import InventoryIcon from "../assets/Icon/inventory.svg";
+import ActivityIcon from "../assets/Icon/run.svg";
+import MosqueIcon from "../assets/Icon/mosque.svg";
+import Logo from "/mesjid.png";
 
 const Sidebar = () => {
   const [isHovered, setIsHovered] = useState(false);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [openDropdowns, setOpenDropdowns] = useState({}); // State untuk dropdown terbuka
+
+  const toggleDropdown = (index) => {
+    setOpenDropdowns((prev) => ({
+      ...prev,
+      [index]: !prev[index], // Toggle dropdown berdasarkan index
+    }));
+  };
 
   const menuItems = [
-    { icon: <FaHome />, label: "Dashboard" },
-    {
-      icon: <FaWallet />,
-      label: "Data Keuangan",
-      subItems: ["Pemasukan", "Pengeluaran"],
-    },
-    { icon: <FaClipboard />, label: "Pengaturan" },
-    { icon: <FaFileAlt />, label: "Laporan" },
-    { icon: <FaUserCircle />, label: "Profile" },
+    { icon: DashboardIcon, label: "Dasbor" },
+    { icon: PlusIcon, label: "Pemasukan", subItems: ["Data Pemasukan"] },
+    { icon: MinusIcon, label: "Pengeluaran", subItems: ["Data Pengeluaran"] },
+    { icon: InventoryIcon, label: "Inventaris" },
+    { icon: ActivityIcon, label: "Kegiatan" },
+    { icon: MosqueIcon, label: "Profil Masjid" },
   ];
 
   return (
     <div
-      className={`bg-[#3C552D] p-6 h-screen text-white flex flex-col shadow-lg 
-        ${isHovered ? "w-48" : "w-20"} 
-        rounded-r-[2rem] transition-[width] duration-500 ease-in-out`}
+      className={`bg-[#154431] p-6 h-screen text-white flex flex-col shadow-lg ${isHovered ? "w-48" : "w-20"
+        } rounded-r-[2rem] transition-[width] duration-500 ease-in-out`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <h2 className="mb-4 text-xl font-bold">
-        {isHovered ? "MasjidVerse" : "MV"}
-      </h2>
+      {/* Logo */}
+      <div className="flex flex-col items-center mb-6">
+        <img
+          src={Logo}
+          alt="Logo"
+          className={`transition-all duration-500 ${isHovered ? "w-20 h-20" : "w-12 h-12"
+            }`}
+        />
+        {isHovered && (
+          <span className="mt-2 text-lg font-semibold poppins-semibold">
+            MasjidVerse
+          </span>
+        )}
+      </div>
+
+      {/* Menu Items */}
       {menuItems.map((item, index) => (
         <div key={index} className="my-4">
           <div
-            className="flex items-center space-x-3 transition-transform transform cursor-pointer hover:scale-105 poppins-bold"
-            onClick={() => {
-              if (item.subItems) {
-                setIsDropdownOpen((prev) =>
-                  item.label === "Data Keuangan" ? !prev : prev
-                );
-              }
-            }}
+            className="flex items-center space-x-3 cursor-pointer hover:scale-105 poppins-bold"
+            onClick={() => item.subItems && toggleDropdown(index)}
           >
-            <span className="text-2xl">{item.icon}</span>
+            {/* Icon */}
+            <img
+              src={item.icon}
+              alt={`${item.label} Icon`}
+              className={`w-6 h-6 ${item.label === "Kegiatan" ? "filter invert brightness-0" : ""
+                }`}
+              style={{
+                filter: item.label === "Kegiatan" ? "invert(1) brightness(100%)" : "",
+              }}
+            />
+
+            {/* Menu Label */}
             {isHovered && (
-              <span className="flex items-center space-x-1 text-lg poppins-semibold">
+              <span className="flex items-center text-lg poppins-semibold">
                 {item.label}
                 {item.subItems && (
                   <img
                     src={dropdownIcon}
                     alt="Dropdown Icon"
-                    className={`w-4 h-4 transition-transform duration-300 ${
-                      isDropdownOpen && item.label === "Data Keuangan"
-                        ? "rotate-180"
-                        : "rotate-0"
-                    }`}
+                    className={`w-4 h-4 ml-2 transition-transform duration-500 ease-in-out ${openDropdowns[index] ? "rotate-180" : "rotate-0"
+                      }`}
+
                   />
                 )}
               </span>
             )}
           </div>
-          {isHovered && item.subItems && (
+
+          {/* Sub Items */}
+          {item.subItems && openDropdowns[index] && isHovered && (
             <div
-              className={`overflow-hidden transition-[max-height] duration-300 ease-in-out 
-                ${
-                  isDropdownOpen && item.label === "Data Keuangan"
-                    ? "max-h-40"
-                    : "max-h-0"
-                }
-                ml-8 mt-2 space-y-1 text-white`}
+              className={`ml-8 mt-2 space-y-1 text-white transition-all duration-500 ease-in-out overflow-hidden ${openDropdowns[index] ? "max-h-40 opacity-100" : "max-h-0 opacity-0"
+                }`}
             >
               {item.subItems.map((subItem, idx) => (
                 <p
                   key={idx}
-                  className="active:bg-[#9EDF9C] transition-[width] duration-700 ease-in-out p-4 rounded-lg bg-opacity-20 cursor-pointer text-opacity-100 poppins-semibold hover:scale-95"
+                  className="p-2 transition hover:bg-[#9EDF9C] rounded-lg cursor-pointer poppins-semibold"
                 >
                   {subItem}
                 </p>
