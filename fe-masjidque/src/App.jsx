@@ -8,6 +8,7 @@ import LoginPage from "./views/Authentication/SignIn";
 import FeatureBoard from "./pages/FeatureBoard";
 import MosqueProfile from "./pages/MosqueProfile";
 import EventUpcoming from "./pages/EventUpcoming";
+import NewEvent from "./pages/NewEvent";
 
 function App() {
 
@@ -22,7 +23,8 @@ function App() {
         <Route path='/register' element={<RegisterPage/>}/>
         <Route path='/feature' element={<FeatureBoard/>}/>
         <Route path='/mosqueprofile' element={<MosqueProfile/>}/>
-        <Route path='/event' element={<EventUpcoming/>}/>
+        <Route path='/eventupcoming' element={<EventUpcoming/>}/>
+        <Route path='/newevent' element={<NewEvent/>}/>
         
       
       </Routes>

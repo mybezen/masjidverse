@@ -11,7 +11,7 @@ function FeatureBoard() {
 
         <h1
           className="absolute top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-3xl 
-        md:text-6xl font-bold text-white z-20"
+        md:text-6xl font-bold text-white z-20 poppins-bold" 
         >
           Masjid Al Huda
         </h1>
@@ -23,7 +23,7 @@ function FeatureBoard() {
             className="w-full h-[700px] object-cover"
           />
           <div
-            className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-white to-transparent 
+            className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from- to-transparent 
       z-10"
           />
         </div>
@@ -37,3 +37,4 @@ function FeatureBoard() {
 }
 
 export default FeatureBoard;
+
