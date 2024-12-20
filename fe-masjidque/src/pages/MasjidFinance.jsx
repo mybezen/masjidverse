@@ -67,6 +67,10 @@ function MasjidFinance() {
       legend: {
         position: "top",
       },
+      labels: {
+        usePointStyle: true,
+        pointStyle: 'circle',
+      }
     },
   };
 
@@ -94,9 +98,11 @@ function MasjidFinance() {
       <Navbar />
 
       <div className="p-6 max-w-6xl mx-auto">
-        <h1 className="text-2xl font-bold mb-6 text-center">
+        <h1 className="text-2xl font-bold mb-2 text-center">
           Informasi Keuangan
         </h1>
+        <div className="w-28 h-0.5 bg-black justify-center mx-auto"></div>
+        <div className="w-44 h-0.5 bg-black justify-center mx-auto mt-2 mb-2"></div>
 
         {/* Chart */}
         <div className="grid grid-cols-3 gap-6 mb-6">
