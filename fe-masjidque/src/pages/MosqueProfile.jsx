@@ -79,7 +79,11 @@ function MosqueProfile() {
           </div>
         </div>
 
+        <div className="pl-10">
         <hr className="border-t-2 border-gray-300 my-4 w-[50%]" />
+        <h3 className="font-bold text-4xl mb-4">Informasi Layanan</h3>
+
+        </div>
         <div className="space-y-1 grid grid-cols-2 pl-10">
               {serviceInfo.map((item, index) => (
                 <div key={index} className="flex text-xl">

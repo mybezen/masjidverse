@@ -9,6 +9,7 @@ import FeatureBoard from "./pages/FeatureBoard";
 import MosqueProfile from "./pages/MosqueProfile";
 import EventUpcoming from "./pages/EventUpcoming";
 import NewEvent from "./pages/NewEvent";
+import MasjidFinance from "./pages/MasjidFinance";
 
 function App() {
 
@@ -25,6 +26,8 @@ function App() {
         <Route path='/mosqueprofile' element={<MosqueProfile/>}/>
         <Route path='/eventupcoming' element={<EventUpcoming/>}/>
         <Route path='/newevent' element={<NewEvent/>}/>
+        <Route path='/keuanganmasjid' element={<MasjidFinance/>}/>
+        
         
       
       </Routes>
