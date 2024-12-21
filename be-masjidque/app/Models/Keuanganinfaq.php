@@ -13,8 +13,10 @@ class KeuanganInfaq extends Model
         'tanggal',
         'keterangan',
         'jumlah',
+        'jenis_transaksi',
         'status_transaksi',
-        'masjid_id'
+        'masjid_id',
+        'bukti_transfer'
     ];
 
     public function masjid(): BelongsTo

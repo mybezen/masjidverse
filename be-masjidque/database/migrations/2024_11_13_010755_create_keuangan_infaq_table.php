@@ -18,7 +18,9 @@ return new class extends Migration
             $table->string('keterangan');
             $table->integer('nominal');
             $table->unsignedBigInteger('masjid_id');
-            $table->enum('status_transaksi', ['debit', 'kredit'])->default('debit');
+            $table->enum('jenis_transaksi', ['debit', 'kredit'])->default('debit');
+            $table->enum('status_transaksi', ['diajukan', 'disetujui', 'ditolak'])->default('diajukan');
+            $table->string('bukti_transfer');
 
             $table->foreign('masjid_id')->references('id')->on('masjid')->onDelete('cascade');
         });

@@ -25,6 +25,7 @@ class Masjid extends Authenticatable
         'luas_bangunan',
         'bank',
         'no_rekening',
+        'saldo_kas',
         'atas_nama',
         'no_telepon',
         'email',

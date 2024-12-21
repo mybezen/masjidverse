@@ -28,6 +28,7 @@ return new class extends Migration
             $table->string('luas_bangunan');
             $table->string('bank');
             $table->string('no_rekening');
+            $table->integer('saldo_kas')->default(0);
             $table->string('atas_nama');
             $table->string('no_telepon');
             $table->string('email')->unique();
