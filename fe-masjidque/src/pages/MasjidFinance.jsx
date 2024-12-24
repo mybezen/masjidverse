@@ -164,7 +164,7 @@ function MasjidFinance() {
 
         {/* kartu donasi */}
         <div className="bg-green-800 text-white p-6 rounded-lg shadow-md mb-6">
-          <div className="flex flex-col">
+          <div className="flex flex-col text-center">
             <span>Ahmad Justin Michael</span>
             <span className="text-xl font-semibold">34080381110220</span>
           </div>
