@@ -20,7 +20,7 @@ return new class extends Migration
             $table->unsignedBigInteger('masjid_id');
             $table->enum('jenis_transaksi', ['debit', 'kredit'])->default('debit');
             $table->enum('status_transaksi', ['diajukan', 'disetujui', 'ditolak'])->default('diajukan');
-            $table->string('bukti_transfer');
+            $table->string('bukti_transfer')->nullable();
 
             $table->foreign('masjid_id')->references('id')->on('masjid')->onDelete('cascade');
         });

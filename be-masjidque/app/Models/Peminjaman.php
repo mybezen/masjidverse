@@ -15,11 +15,13 @@ class Peminjaman extends Model
         'jumlah',
         'tanggal_peminjaman',
         'tanggal_pengembalian',
-        'aset_id'
+        'aset_id',
+        'masjid_id',
+        'status'
     ];
 
-    public function asetMasjid(): BelongsTo
+    public function masjid(): BelongsTo
     {
-        return $this->belongsTo(AsetMasjid::class);
+        return $this->belongsTo(Masjid::class);
     }
 }

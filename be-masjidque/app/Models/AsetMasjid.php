@@ -22,9 +22,4 @@ class AsetMasjid extends Model
     {
         return $this->belongsTo(Masjid::class);
     }
-
-    public function peminjaman(): HasMany
-    {
-        return $this->hasMany(Peminjaman::class);
-    }
 }

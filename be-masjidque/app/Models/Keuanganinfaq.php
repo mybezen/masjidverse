@@ -12,7 +12,7 @@ class KeuanganInfaq extends Model
     protected $fillable = [
         'tanggal',
         'keterangan',
-        'jumlah',
+        'nominal',
         'jenis_transaksi',
         'status_transaksi',
         'masjid_id',

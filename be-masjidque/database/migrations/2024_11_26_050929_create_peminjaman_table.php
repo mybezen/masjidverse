@@ -20,8 +20,10 @@ return new class extends Migration
             $table->date('tanggal_peminjaman');
             $table->date('tanggal_pengembalian');
             $table->unsignedBigInteger('aset_id');
+            $table->unsignedBigInteger('masjid_id');
+            $table->enum('status', ['diajukan', 'disetujui', 'ditolak'])->default('diajukan');
 
-            $table->foreign('aset_id')->references('id')->on('aset_masjid')->onDelete('cascade');
+            $table->foreign('masjid_id')->references('id')->on('masjid')->onDelete('cascade');
         });
     }
 

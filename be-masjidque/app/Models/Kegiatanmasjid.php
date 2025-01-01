@@ -11,10 +11,12 @@ class KegiatanMasjid extends Model
 
     protected $fillable = [
         'tanggal',
+        'waktu',
         'nama_kegiatan',
         'foto',
         'deskripsi',
         'lokasi',
+        'penceramah',
         'masjid_id'
     ];
 

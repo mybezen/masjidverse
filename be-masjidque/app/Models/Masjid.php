@@ -64,6 +64,11 @@ class Masjid extends Authenticatable implements JWTSubject
         return $this->hasMany(ProfileUstadz::class);
     }
 
+    public function peminjaman(): HasMany
+    {
+        return $this->hasMany(Peminjaman::class);
+    }
+
     public function getJWTIdentifier()
     {
         return $this->getKey();
