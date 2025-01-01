@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\KeuanganInfaq;
+use App\Models\Masjid;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -62,6 +63,17 @@ class PengeluaranController extends Controller
                 'message' => 'Gagal membuat pengeluaran baru.'
             ]);
         }
+
+        $masjid = Masjid::find($idMasjid);
+        $saldoMasjid = $masjid->saldo_kas;
+
+        $nominalPengeluaran = $request->input('nominal');
+
+        $saldoMasjid = $saldoMasjid - $nominalPengeluaran;
+
+        $masjid->update([
+            'saldo_kas' => $saldoMasjid
+        ]);
 
         return response()->json([
             'success' => true,

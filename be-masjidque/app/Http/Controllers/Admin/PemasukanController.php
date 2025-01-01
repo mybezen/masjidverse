@@ -44,6 +44,7 @@ class PemasukanController extends Controller
         // TODO: File handling
 
         return response()->json([
+            'success' => true,
             'pemasukan' => $pemasukan
         ]);
     }

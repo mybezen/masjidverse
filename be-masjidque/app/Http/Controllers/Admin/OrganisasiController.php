@@ -59,24 +59,29 @@ class OrganisasiController extends Controller
                 'message' => 'Gagal menambahkan anggota organisasi masjid baru.'
             ]);
         }
-    }
-
-    public function edit($id)
-    {
-        $organisasi = StrukturOrganisasi::find($id);
-
-        if (!$organisasi) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Anggota organisasi masjid tidak ditemukan.'
-            ]);
-        }
 
         return response()->json([
             'success' => true,
-            'organisasi' => $organisasi
+            'message' => 'Berhasil menambahkan anggota organisasi masjid baru.'
         ]);
     }
+
+    // public function edit($id)
+    // {
+    //     $organisasi = StrukturOrganisasi::find($id);
+
+    //     if (!$organisasi) {
+    //         return response()->json([
+    //             'success' => false,
+    //             'message' => 'Anggota organisasi masjid tidak ditemukan.'
+    //         ]);
+    //     }
+
+    //     return response()->json([
+    //         'success' => true,
+    //         'organisasi' => $organisasi
+    //     ]);
+    // }
 
     public function update($id, Request $request)
     {
