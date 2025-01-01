@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\KegiatanMasjid;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Validator;
 
 class KegiatanController extends Controller
@@ -99,22 +98,22 @@ class KegiatanController extends Controller
     }
 
     // ? Butuh method edit?
-    // public function edit($id)
-    // {
-    //     $kegiatan = KegiatanMasjid::find($id);
+    public function edit($id)
+    {
+        $kegiatan = KegiatanMasjid::find($id);
 
-    //     if (!$kegiatan) {
-    //         return response()->json([
-    //             'success' => false,
-    //             'message' => 'Kegiatan masjid tidak ditemukan.'
-    //         ]);
-    //     }
+        if (!$kegiatan) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Kegiatan masjid tidak ditemukan.'
+            ]);
+        }
 
-    //     return response()->json([
-    //         'success' => true,
-    //         'kegiatan' => $kegiatan
-    //     ]);
-    // }
+        return response()->json([
+            'success' => true,
+            'kegiatan' => $kegiatan
+        ]);
+    }
 
     public function update($id, Request $request)
     {
