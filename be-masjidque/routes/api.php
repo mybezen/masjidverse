@@ -54,6 +54,7 @@ Route::delete('/dashboard/inventaris/{id}', [InventarisController::class, 'destr
 Route::get('/dashboard/peminjaman', [InventarisController::class, 'pengajuanPeminjaman']);
 Route::patch('/dashboard/peminjaman/{id}/setujui', [InventarisController::class, 'setujuiPeminjaman']);
 Route::patch('/dashboard/peminjaman/{id}/tolak', [InventarisController::class, 'tolakPeminjaman']);
+Route::patch('/dashboard/peminjaman/{id}/pengembalian', [InventarisController::class, 'pengembalianPeminjaman']);
 
 Route::get('/dashboard/kegiatan', [KegiatanController::class, 'index']);
 Route::get('/dashboard/kegiatan/{id}', [KegiatanController::class, 'show']); // Perlu?

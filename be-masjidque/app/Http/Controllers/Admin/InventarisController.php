@@ -158,7 +158,8 @@ class InventarisController extends Controller
         $jumlahBarangSetelahDipinjam = $jumlahBarangTersedia - $peminjaman->jumlah;
 
         $barang->update([
-            'quantity' => $jumlahBarangSetelahDipinjam
+            'quantity' => $jumlahBarangSetelahDipinjam,
+            'status' => 'dipinjamkan'
         ]);
 
         $peminjaman->update([
@@ -189,6 +190,41 @@ class InventarisController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'Pengajuan peminjaman berhasil ditolak'
+        ]);
+    }
+
+    public function pengembalianPeminjaman($id)
+    {
+        $peminjaman = Peminjaman::find($id);
+
+        if (!$peminjaman) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Pengajuan peminjaman tidak ditemukan.'
+            ]);
+        }
+
+        $barang = AsetMasjid::find($peminjaman->aset_id);
+        $jumlahBarang = $barang->quantity;
+        $jumlahPeminjaman = $peminjaman->jumlah;
+
+        $jumlahBarangSetelahDikembalikan = $jumlahBarang + $jumlahPeminjaman;
+
+        if (Peminjaman::where('aset_id', $barang->id)->exist()) {
+            $barang->update([
+                'quantity' => $jumlahBarangSetelahDikembalikan,
+                'status' => 'dipinjamkan'
+            ]);
+        } else {
+            $barang->update([
+                'quantity' => $jumlahBarangSetelahDikembalikan,
+                'status' => 'tersedia'
+            ]);
+        }
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Pengembalian peminjaman berhasil dikonfirmasi.'
         ]);
     }
 }

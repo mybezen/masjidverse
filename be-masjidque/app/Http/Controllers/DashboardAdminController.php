@@ -2,66 +2,82 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\KegiatanMasjid;
 use App\Models\KeuanganInfaq;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
-/**
- * TODO:
- * - handle data tidak ditemukan.
- * TODO:
- * - verifikasi akun masjid yg akses data.
- */
+use function PHPUnit\Framework\isEmpty;
 
 class DashboardAdminController extends Controller
 {
     public function index(Request $request)
     {
         $akunMasjid = Auth::guard('masjid')->user();
+        $idMasjid = $akunMasjid->id;
 
-        $kegiatanAkanDatang = $akunMasjid->kegiatanMasjid()
+        $kegiatanAkanDatang = KegiatanMasjid::where('masjid_id', $idMasjid)
             ->whereDate('tanggal', '>', now())
             ->orderBy('tanggal', 'asc')
             ->limit(2)
             ->get();
 
-        $listPengeluaran = $akunMasjid->keuanganInfaq()
+        $listPengeluaran = KeuanganInfaq::where('masjid_id', $idMasjid)
             ->where('jenis_transaksi', 'kredit')
             ->pluck('nominal');
 
         $totalPengeluaran = $listPengeluaran->sum();
 
-        $listPemasukan = $akunMasjid->keuanganInfaq()
+        $listPemasukan = KeuanganInfaq::where('masjid_id', $idMasjid)
             ->where('jenis_transaksi', 'debit')
             ->pluck('nominal');
 
         $totalPemasukan = $listPemasukan->sum();
 
         // Data pengeluaran dan pemasukan
-        $periode = $request->query('periode', null);
+        $tahun = $request->query('tahun');
 
-        if ($periode == null) {
-            $periode = date('Y');
+        if (!$tahun) {
+            $tahun = date('Y');
         }
 
-        // TODO: recap pengeluaran/pemasukan per bulan.
-        $dataPengeluaran = $akunMasjid->keuanganInfaq()
+        $pengeluaranBulanan = KeuanganInfaq::selectRaw('MONTH(tanggal) as bulan, SUM(nominal) as total_pengeluaran')
+            ->whereYear('tanggal', $tahun)
+            ->where('masjid_id', $idMasjid)
             ->where('jenis_transaksi', 'kredit')
-            ->whereYear('tanggal', $periode)
-            ->pluck('nominal');
+            ->where('status_transaksi', 'disetujui')
+            ->groupByRaw('MONTH(tanggal)')
+            ->orderBy('bulan')
+            ->get()
+            ->pluck('total_pengeluaran', 'bulan');
 
-        $dataPemasukan = $akunMasjid->keuanganInfaq()
+        $listPengeluaranBulanan = [];
+        for ($bulan = 1; $bulan <= 12; $bulan++) {
+            $listPengeluaranBulanan[$bulan] = $pengeluaranBulanan->get($bulan, 0);
+        }
+
+        $pengeluaranBulanan = KeuanganInfaq::selectRaw('MONTH(tanggal) as bulan, SUM(nominal) as total_pengeluaran')
+            ->whereYear('tanggal', $tahun)
+            ->where('masjid_id', $idMasjid)
             ->where('jenis_transaksi', 'debit')
-            ->whereYear('tanggal', $periode)
-            ->pluck('nominal');
+            ->where('status_transaksi', 'disetujui')
+            ->groupByRaw('MONTH(tanggal)')
+            ->orderBy('bulan')
+            ->get()
+            ->pluck('total_pemasukan', 'bulan');
+
+        $listPemasukanBulanan = [];
+        for ($bulan = 1; $bulan <= 12; $bulan++) {
+            $listPemasukanBulanan[$bulan] = $pengeluaranBulanan->get($bulan, 0);
+        }
 
         return response()->json([
             'kegiatan' => $kegiatanAkanDatang,
             'totalPemasukan' => $totalPemasukan,
             'totalPengeluaran' => $totalPengeluaran,
-            'dataPemasukan' => $dataPemasukan->toArray(),
-            'dataPengeluaran' => $dataPengeluaran->toArray()
+            'dataPemasukan' => $listPemasukanBulanan,
+            'dataPengeluaran' => $listPengeluaranBulanan
         ]);
     }
 }

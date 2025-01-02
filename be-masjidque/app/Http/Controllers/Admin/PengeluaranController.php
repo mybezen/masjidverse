@@ -16,17 +16,25 @@ class PengeluaranController extends Controller
         $akunMasjid = Auth::guard('masjid')->user();
         $idMasjid = $akunMasjid->id;
 
-        $listPemasukan = KeuanganInfaq::where('masjid_id', $idMasjid)
+        $listPengeluaran = KeuanganInfaq::where('masjid_id', $idMasjid)
             ->where('jenis_transaksi', 'kredit')
             ->orderBy('created_at', 'desc')
             ->get();
 
-        $totalPemasukan = $listPemasukan->sum('nominal');
+        if ($listPengeluaran->isEmpty()) {
+            return response()->json([
+                'success' => false,
+                'listPengeluaran' => [],
+                'totalPengeluaran' => 0
+            ]);
+        }
+
+        $totalPengeluaran = $listPengeluaran->sum('nominal');
 
         return response()->json([
             'success' => true,
-            'listPemasukan' => $listPemasukan,
-            'totalPemasukan' => $totalPemasukan
+            'listPengel$listPengeluaran' => $listPengeluaran,
+            'totalPengeluaran' => $totalPengeluaran
         ]);
     }
 

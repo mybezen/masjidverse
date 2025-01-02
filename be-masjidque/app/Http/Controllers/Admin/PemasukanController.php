@@ -21,6 +21,14 @@ class PemasukanController extends Controller
             ->orderBy('created_at', 'desc')
             ->get();
 
+        if ($listPemasukan->isEmpty()) {
+            return response()->json([
+                'success' => false,
+                'listPemasukan' => [],
+                'totalPemasukan' => 0
+            ]);
+        }
+
         $totalPemasukan = $listPemasukan->sum('nominal');
 
         return response()->json([
