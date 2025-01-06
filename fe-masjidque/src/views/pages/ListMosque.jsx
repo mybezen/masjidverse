@@ -1,4 +1,4 @@
-import Navbar from "../components/Navbar";
+import Navbar from "../../components/Navbar";
 import MasjidIcon from "../assets/Images/image.png"; // Replace with the correct image path
 import BannerIcon from "../assets/Banner.png";
 import EventIcon from "../assets/Icon/event.svg";
@@ -32,11 +32,9 @@ function ListMosque() {
       {/* Main Content */}
       <div className="max-w-screen-xl px-2 mx-auto">
         {/* Kegiatan Yang Akan Datang */}
-        
 
         {/* Daftar Masjid */}
         <section className="pb-12 mt-12">
-          
           <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
             {[1, 2, 3, 4, 5, 6].map((item) => (
               <div

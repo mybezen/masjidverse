@@ -1,4 +1,4 @@
-import Navbar from "../components/Navbar";
+import Navbar from "../../components/Navbar";
 import MosqueImage from "../assets/Images/mosque.png";
 import ReportIcon from "../assets/Icon/report.svg";
 
@@ -18,7 +18,7 @@ function MosqueProfile() {
     { label: "Instagram", value: "masjid_alhuda" },
     { label: "Facebook", value: "Masjid.Alhuda" },
     { label: "Nama Yayasan", value: "Yayasan Alhuda" },
-  ]
+  ];
 
   return (
     <div className="min-h-screen bg-white">
@@ -80,21 +80,18 @@ function MosqueProfile() {
         </div>
 
         <div className="pl-10">
-        <hr className="border-t-2 border-gray-300 my-4 w-[50%]" />
-        <h3 className="font-bold text-4xl mb-4">Informasi Layanan</h3>
-
+          <hr className="border-t-2 border-gray-300 my-4 w-[50%]" />
+          <h3 className="font-bold text-4xl mb-4">Informasi Layanan</h3>
         </div>
         <div className="space-y-1 grid grid-cols-2 pl-10">
-              {serviceInfo.map((item, index) => (
-                <div key={index} className="flex text-xl">
-                  <span className="w-28">{item.label}</span>
-                  {item.label && <span className="px-1">:</span>}
-                  <span className={item.label ? "" : "pl-28"}>
-                    {item.value}
-                  </span>
-                </div>
-              ))}
+          {serviceInfo.map((item, index) => (
+            <div key={index} className="flex text-xl">
+              <span className="w-28">{item.label}</span>
+              {item.label && <span className="px-1">:</span>}
+              <span className={item.label ? "" : "pl-28"}>{item.value}</span>
             </div>
+          ))}
+        </div>
       </div>
     </div>
   );

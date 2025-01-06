@@ -11,11 +11,11 @@ import {
   Filler,
   Legend,
 } from "chart.js";
-import Navbar from "../components/Navbar";
+import Navbar from "../../components/Navbar";
 import BankBriLogo from "../assets/Icon/bank-bri.svg";
-import BankBcaLogo from '../assets/Images/bank-bca.png';
-import BankMandiriLogo from '../assets/Images/bank-mandiri.png';
-import QrisLogo from '../assets/Images/logoqris.png';
+import BankBcaLogo from "../assets/Images/bank-bca.png";
+import BankMandiriLogo from "../assets/Images/bank-mandiri.png";
+import QrisLogo from "../assets/Images/logoqris.png";
 
 ChartJS.register(
   CategoryScale,
@@ -69,8 +69,8 @@ function MasjidFinance() {
       },
       labels: {
         usePointStyle: true,
-        pointStyle: 'circle',
-      }
+        pointStyle: "circle",
+      },
     },
   };
 
