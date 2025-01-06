@@ -1,5 +1,5 @@
 import Navbar from "../../components/Navbar";
-import MosqueImage from "../assets/Images/mosque.png";
+import MosqueImage from "../../assets/Images/mosque.png";
 import MenuIcon from "../../components/MenuIcon";
 
 function FeatureBoard() {

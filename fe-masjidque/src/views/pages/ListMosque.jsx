@@ -1,10 +1,10 @@
 import Navbar from "../../components/Navbar";
-import MasjidIcon from "../assets/Images/image.png"; // Replace with the correct image path
-import BannerIcon from "../assets/Banner.png";
-import EventIcon from "../assets/Icon/event.svg";
-import LocationIcon from "../assets/Icon/location.svg";
-import ClockIcon from "../assets/Icon/clock.png";
-import MosqueIcon from "../assets/Icon/mosque.svg";
+import MasjidIcon from "../../assets/Images/image.png"; // Replace with the correct image path
+import BannerIcon from "../../assets/Images/Banner.png";
+import EventIcon from "../../assets/Icon/event.svg";
+import LocationIcon from "../../assets/Icon/location.svg";
+import ClockIcon from "../../assets/Icon/clock.png";
+import MosqueIcon from "../../assets/Icon/mosque.svg";
 
 function ListMosque() {
   return (

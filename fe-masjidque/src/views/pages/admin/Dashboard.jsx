@@ -1,10 +1,10 @@
 import Sidebar from "../../../components/Sidebar";
 import { Typography, Card, CardContent, Input } from "@mui/joy";
 import BarChart from "../../../components/Chart";
-import MasjidIcon from "../../assets/Images/image.png";
-import ActionIcon from "../../assets/Icon/run.svg";
-import IncomeIcon from "../../assets/Icon/income.svg";
-import OutcomeIcon from "../../assets/Icon/outcome.svg";
+import MasjidIcon from "../../../assets/Images/image.png";
+import ActionIcon from "../../../assets/Icon/run.svg";
+import IncomeIcon from "../../../assets/Icon/income.svg";
+import OutcomeIcon from "../../../assets/Icon/outcome.svg";
 import SearchIcon from "@mui/icons-material/Search";
 
 function AdminDashboard() {

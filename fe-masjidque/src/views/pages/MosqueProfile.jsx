@@ -1,6 +1,6 @@
 import Navbar from "../../components/Navbar";
-import MosqueImage from "../assets/Images/mosque.png";
-import ReportIcon from "../assets/Icon/report.svg";
+import MosqueImage from "../../assets/Images/mosque.png";
+import ReportIcon from "../../assets/Icon/report.svg";
 
 function MosqueProfile() {
   const locationDetails = [

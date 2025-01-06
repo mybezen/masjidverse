@@ -1,5 +1,5 @@
 import { Typography, Card, CardContent } from "@mui/joy";
-import MasjidIcon from "../assets/Images/image.png"; // Replace with actual path to the mosque image
+import MasjidIcon from "../../assets/Images/image.png"; // Replace with actual path to the mosque image
 
 function ProfileView() {
   return (

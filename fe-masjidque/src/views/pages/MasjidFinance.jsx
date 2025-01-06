@@ -12,10 +12,10 @@ import {
   Legend,
 } from "chart.js";
 import Navbar from "../../components/Navbar";
-import BankBriLogo from "../assets/Icon/bank-bri.svg";
-import BankBcaLogo from "../assets/Images/bank-bca.png";
-import BankMandiriLogo from "../assets/Images/bank-mandiri.png";
-import QrisLogo from "../assets/Images/logoqris.png";
+import BankBriLogo from "../../assets/Icon/bank-bri.svg";
+import BankBcaLogo from "../../assets/Images/bank-bca.png";
+import BankMandiriLogo from "../../assets/Images/bank-mandiri.png";
+import QrisLogo from "../../assets/Images/logoqris.png";
 
 ChartJS.register(
   CategoryScale,

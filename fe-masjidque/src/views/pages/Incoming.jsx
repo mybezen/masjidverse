@@ -1,5 +1,5 @@
 import { Typography, Card, CardContent } from "@mui/joy";
-import ActionIcon from "../assets/Icon/run.svg";
+import ActionIcon from "../../assets/Icon/run.svg";
 import Navbar from "../../components/Navbar";
 
 function Incoming() {
