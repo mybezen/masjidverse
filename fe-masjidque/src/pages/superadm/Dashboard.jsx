@@ -1,12 +1,5 @@
+function SuperDashboard() {
+  return <div></div>;
+}
 
-    
-    function SuperDashboard() {
-      return (
-        <div>
-          
-        </div>
-      )
-    }
-    
-    export default SuperDashboard
-    
+export default SuperDashboard;
