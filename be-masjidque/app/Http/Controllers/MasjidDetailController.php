@@ -10,7 +10,8 @@ use Illuminate\Http\Request;
 
 class MasjidDetailController extends Controller
 {
-    public function index($id){
+    public function index($id)
+    {
         $masjid = Masjid::find($id);
         return response()->json([
             'nama' => $masjid->nama,
@@ -19,27 +20,40 @@ class MasjidDetailController extends Controller
         ]);
     }
 
-    public function profile($id){
+    public function profile($id)
+    {
         $masjid = Masjid::find($id);
         return response()->json([
             'masjid' => $masjid->only([
-                'id', 'nama', 'deskripsi', 'provinsi', 'kota', 'alamat',
-                'tahun_berdiri', 'instagram', 'facebook', 'website',
-                'nama_yayasan', 'foto', 'logo', 'status'
+                'id',
+                'nama',
+                'deskripsi',
+                'provinsi',
+                'kota',
+                'alamat',
+                'tahun_berdiri',
+                'instagram',
+                'facebook',
+                'website',
+                'nama_yayasan',
+                'foto',
+                'logo',
+                'status'
             ])
         ]);
     }
 
-    public function kegiatan($id){
+    public function kegiatan($id)
+    {
         $masjid = Masjid::find($id);
 
-        $kegiatanTerbaru = $masjid->kegiatan()
+        $kegiatanTerbaru = KegiatanMasjid::where('masjid_id', $masjid->id)
             ->whereDate('tanggal', '<=', now())
             ->orderBy('tanggal', 'desc')
             ->limit(3)
             ->get();
 
-        $kegiatanAkanDatang = $masjid->kegiatan()
+        $kegiatanAkanDatang = KegiatanMasjid::where('masjid_id', $masjid->id)
             ->whereDate('tanggal', '>', now())
             ->orderBy('tanggal', 'asc')
             ->limit(3)
@@ -51,7 +65,8 @@ class MasjidDetailController extends Controller
         ]);
     }
 
-    public function kegiatanDetail($id){
+    public function kegiatanDetail($id)
+    {
         $kegiatan = KegiatanMasjid::find($id);
         $sudahDilaksanakan = $kegiatan->tanggal <= now()->toDateString();
 
@@ -61,64 +76,66 @@ class MasjidDetailController extends Controller
         ]);
     }
 
-    public function keuangan($id, Request $request){
+    public function keuangan($id, Request $request)
+    {
 
-    // Validasi input tanggal (jika diperlukan)
-    $validated = $request->validate([
-        'bulan' => 'required|date_format:Y-m' // Contoh: '2024-12'
-    ]);
+        // Validasi input tanggal (jika diperlukan)
+        $validated = $request->validate([
+            'bulan' => 'required|date_format:Y-m' // Contoh: '2024-12'
+        ]);
 
-    $masjid = Masjid::with('keuanganInfaq')->find($id);
+        $masjid = Masjid::with('keuanganInfaq')->find($id);
 
-    // Ambil bulan dari request
-    $bulan = $validated['bulan'];
-    $startDate = \Carbon\Carbon::parse($bulan)->startOfMonth();
-    $endDate = \Carbon\Carbon::parse($bulan)->endOfMonth();
+        // Ambil bulan dari request
+        $bulan = $validated['bulan'];
+        $startDate = \Carbon\Carbon::parse($bulan)->startOfMonth();
+        $endDate = \Carbon\Carbon::parse($bulan)->endOfMonth();
 
-    // Filter data keuangan berdasarkan rentang tanggal
-    $keuangan = $masjid->keuanganInfaq()
-        ->whereBetween('tanggal', [$startDate, $endDate])
-        ->get();
+        // Filter data keuangan berdasarkan rentang tanggal
+        $keuangan = $masjid->keuanganInfaq()
+            ->whereBetween('tanggal', [$startDate, $endDate])
+            ->get();
 
-    // Hitung pemasukan dan pengeluaran untuk bulan tersebut
-    $pemasukan = $keuangan->where('jenis_transaksi', 'debit')->sum('nominal');
-    $pengeluaran = $keuangan->where('jenis_transaksi', 'kredit')->sum('nominal');
+        // Hitung pemasukan dan pengeluaran untuk bulan tersebut
+        $pemasukan = $keuangan->where('jenis_transaksi', 'debit')->sum('nominal');
+        $pengeluaran = $keuangan->where('jenis_transaksi', 'kredit')->sum('nominal');
 
-    // Hitung saldo awal (sebelum bulan ini)
-    $saldoAwal = $masjid->keuanganInfaq()
-        ->where('tanggal', '<', $startDate)
-        ->where('jenis_transaksi', 'debit')
-        ->sum('nominal');
+        // Hitung saldo awal (sebelum bulan ini)
+        $saldoAwal = $masjid->keuanganInfaq()
+            ->where('tanggal', '<', $startDate)
+            ->where('jenis_transaksi', 'debit')
+            ->sum('nominal');
         $masjid->keuanganInfaq()
             ->where('tanggal', '<', $startDate)
             ->where('jenis_transaksi', 'kredit')
             ->sum('nominal');
 
-    // Hitung saldo akhir untuk bulan tersebut
-    $saldoAkhir = $saldoAwal + $pemasukan - $pengeluaran;
+        // Hitung saldo akhir untuk bulan tersebut
+        $saldoAkhir = $saldoAwal + $pemasukan - $pengeluaran;
 
-    // Siapkan data untuk grafik jika diperlukan
-    $dataGrafik = $keuangan->groupBy(function ($item) {
-        return \Carbon\Carbon::parse($item->tanggal)->format('d'); // Group by day of the month
-    })->map(function ($group) {
-        return [
-            'pemasukan' => $group->where('jenis_transaksi', 'debit')->sum('nominal'),
-            'pengeluaran' => $group->where('jenis_transaksi', 'kredit')->sum('nominal'),
-        ];
-    });
+        // Siapkan data untuk grafik jika diperlukan
+        $dataGrafik = $keuangan->groupBy(function ($item) {
+            return \Carbon\Carbon::parse($item->tanggal)->format('d'); // Group by day of the month
+        })->map(function ($group) {
+            return [
+                'pemasukan' => $group->where('jenis_transaksi', 'debit')->sum('nominal'),
+                'pengeluaran' => $group->where('jenis_transaksi', 'kredit')->sum('nominal'),
+            ];
+        });
 
-    return response()->json([
-        'laporan' => [
-            'saldoAwal' => $saldoAwal,
-            'totalPemasukan' => $pemasukan,
-            'totalPengeluaran' => $pengeluaran,
-            'saldoAkhir' => $saldoAkhir,
-        ],
-        'grafik' => $dataGrafik,
-    ]);
-}
+        return response()->json([
+            'laporan' => [
+                'saldoAwal' => $saldoAwal,
+                'totalPemasukan' => $pemasukan,
+                'totalPengeluaran' => $pengeluaran,
+                'saldoAkhir' => $saldoAkhir,
+            ],
+            'grafik' => $dataGrafik,
+        ]);
+    }
 
-    public function aset($id){
+    public function aset($id)
+    {
         $masjid = Masjid::find($id);
         $asetMasjid = $masjid->asetMasjid;
 
@@ -127,7 +144,8 @@ class MasjidDetailController extends Controller
         ]);
     }
 
-    public function donasi($id, Request $request){
+    public function donasi($id, Request $request)
+    {
         $validated = $request->validate([
             'atas_nama' => 'required|string|max:64',
             'nominal' => 'required|numeric|min:5000',
@@ -136,21 +154,28 @@ class MasjidDetailController extends Controller
 
         $buktiTransfer = $request->file('bukti_transfer');
 
-        KeuanganInfaq::create([
+        $donasi = KeuanganInfaq::create([
             'masjid_id' => $id,
             'atas_nama' => $validated['atas_nama'],
             'nominal' => $validated['nominal'],
             'bukti_transfer' => $buktiTransfer ? $buktiTransfer->store('bukti_transfer') : null,
             'jenis_transaksi' => 'debit',
-            'status_transaksi' => 'diajukan'
+            'status_transaksi' => 'diajukan',
+            'tanggal' => now(),
+            'keterangan' => 'Donasi sebesar Rp. ' . $validated['nominal']
         ]);
 
+        if (!$donasi) {
+            return response()->json(['message' => 'Gagal menambahkan donasi'], 422);
+        }
+
         return response()->json([
-            'status' => 'success'
+            'success' => true
         ]);
     }
 
-    public function organisasi($id){
+    public function organisasi($id)
+    {
         $masjid = Masjid::find($id);
         $strukturOrganisasi = $masjid->strukturOrganisasi;
 
@@ -159,12 +184,13 @@ class MasjidDetailController extends Controller
         ]);
     }
 
-    public function peminjamanAset($id, Request $request){
+    public function peminjamanAset($id, Request $request)
+    {
         $validated = $request->validate([
             'nama_lengkap' => 'required|string|max:255',
             'nomor_telepon' => 'required|string|max:20',
             'barang' => 'required|string|max:255',
-            'jumlah' => 'required|integer|min:1',
+            'jumlah' => 'required|integer|min:1', 
             'tanggal_mulai' => 'required|date|after_or_equal:today',
             'tanggal_selesai' => 'required|date|after_or_equal:tanggal_mulai',
         ]);
@@ -181,9 +207,7 @@ class MasjidDetailController extends Controller
         ]);
 
         return response()->json([
-            'status' => 'success',
+            'success' => true
         ]);
     }
-
-    
 }

@@ -31,13 +31,18 @@ class MasjidController extends Controller
         ]);
     }
 
-    public function searchKegiatan($query): JsonResponse
+    public function searchKegiatan(Request $request): JsonResponse
     {
-        $kegiatan = KegiatanMasjid::where('nama', 'like', '%' . $query . '%')->get();
+        $kegiatan = [];
+
+        if ($request->has('keyword')) {
+            $query = $request->keyword;
+            $kegiatan = KegiatanMasjid::where('nama_kegiatan', 'like', '%' . $query . '%')->paginate(10);
+        }
 
         return response()->json([
             'success' => true,
-            'kegiatan' => $kegiatan
+            'kegiatan' => $kegiatan,
         ]);
     }
 
@@ -51,9 +56,14 @@ class MasjidController extends Controller
         ]);
     }
 
-    public function searchMasjid($query): JsonResponse
+    public function searchMasjid(Request $request): JsonResponse
     {
-        $masjid = Masjid::where('nama', 'like', '%' . $query . '%')->get();
+        $masjid = [];
+
+        if ($request->has('keyword')) {
+            $query = $request->keyword;
+            $masjid = Masjid::where('nama', 'like', '%' . $query . '%')->paginate(10);
+        }
 
         return response()->json([
             'success' => true,

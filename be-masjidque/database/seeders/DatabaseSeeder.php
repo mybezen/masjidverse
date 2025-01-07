@@ -72,6 +72,8 @@ class DatabaseSeeder extends Seeder
             'tanggal_peminjaman' => now()->subDays(1),
             'tanggal_pengembalian' => now()->addDays(3),
             'aset_id' => 1,
+            'masjid_id' => 1,
+            'status' => 'diajukan'
         ]);
 
         Peminjaman::create([
@@ -81,6 +83,9 @@ class DatabaseSeeder extends Seeder
             'tanggal_peminjaman' => now()->subDays(3),
             'tanggal_pengembalian' => now()->subDay(),
             'aset_id' => 2,
+            'aset_id' => 1,
+            'masjid_id' => 1,
+            'status' => 'diajukan'
         ]);
 
         // Seed Kegiatan Masjid
@@ -103,7 +108,7 @@ class DatabaseSeeder extends Seeder
             'jenis_transaksi' => 'debit',
             'status_transaksi' => 'diajukan',
             'masjid_id' => $masjidId,
-            'bukti_transfer' => 'path/to/example_transfer1.jpg', 
+            'bukti_transfer' => 'path/to/example_transfer1.jpg',
         ]);
 
         KeuanganInfaq::create([
@@ -113,7 +118,7 @@ class DatabaseSeeder extends Seeder
             'jenis_transaksi' => 'debit',
             'status_transaksi' => 'disetujui',
             'masjid_id' => $masjidId,
-            'bukti_transfer' => 'path/to/example_transfer2.jpg', 
+            'bukti_transfer' => 'path/to/example_transfer2.jpg',
         ]);
 
         // Seed Keuangan Infaq: Kredit (Pengeluaran)
@@ -124,7 +129,7 @@ class DatabaseSeeder extends Seeder
             'jenis_transaksi' => 'kredit',
             'status_transaksi' => 'disetujui',
             'masjid_id' => $masjidId,
-            'bukti_transfer' => 'path/to/example_transfer3.jpg', 
+            'bukti_transfer' => 'path/to/example_transfer3.jpg',
         ]);
 
         KeuanganInfaq::create([
@@ -134,7 +139,7 @@ class DatabaseSeeder extends Seeder
             'jenis_transaksi' => 'kredit',
             'status_transaksi' => 'diajukan',
             'masjid_id' => $masjidId,
-            'bukti_transfer' => 'path/to/example_transfer4.jpg', 
+            'bukti_transfer' => 'path/to/example_transfer4.jpg',
         ]);
 
 
