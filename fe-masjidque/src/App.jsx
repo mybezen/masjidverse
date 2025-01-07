@@ -32,8 +32,6 @@ function App() {
         <Route path="/keuanganmasjid" element={<MasjidFinance />} />
         <Route path="/listmasjid" element={<ListMosque />} />
         <Route path="/assetmasjid" element={<Asset />} />
-        <Route path="/organisasi" element={<Organisasi />} />
-        <Route path="/peminjaman" element={<RentAsset />} />
       </Routes>
     </BrowserRouter>
   );
