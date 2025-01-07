@@ -11,6 +11,7 @@ import EventUpcoming from "./views/pages/EventUpcoming";
 import NewEvent from "./views/pages/NewEvent";
 import MasjidFinance from "./views/pages/MasjidFinance";
 import ListMosque from "./views/pages/ListMosque";
+import Asset from "./views/pages/Asset";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <Route path="/newevent" element={<NewEvent />} />
         <Route path="/keuanganmasjid" element={<MasjidFinance />} />
         <Route path="/listmasjid" element={<ListMosque />} />
+        <Route path="/assetmasjid" element={<Asset />} />
       </Routes>
     </BrowserRouter>
   );
