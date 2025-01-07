@@ -17,7 +17,8 @@ class KegiatanMasjid extends Model
         'deskripsi',
         'lokasi',
         'penceramah',
-        'masjid_id'
+        'masjid_id',
+        'status_laporan'
     ];
 
     public function masjid(): BelongsTo

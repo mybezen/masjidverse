@@ -22,6 +22,9 @@
                 $table->text('deskripsi');
                 $table->string('lokasi');
                 $table->unsignedBigInteger('masjid_id');
+                $table->enum('status_laporan', ['normal','diajukan', 'disetujui', 'ditolak', 'ditinjau'])->default('normal');
+
+
 
                 $table->foreign('masjid_id')->references('id')->on('masjid')->onDelete('cascade');
             });
