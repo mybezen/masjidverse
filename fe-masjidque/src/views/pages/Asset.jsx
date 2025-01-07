@@ -59,7 +59,7 @@ function Asset() {
 
                     <div className="flex flex-col items-center justify-center">
                         {listAsset.map((item) => (
-                            <div key={item.id} className="flex items-center justify-center text-xl gap-60 ">
+                            <div key={item.id} className="flex items-center justify-center text-xl gap-60 mt-5">
                                 <p>{item.num}</p>
                                 <p>{item.text}</p>
                                 <p>{item.quantity}</p>
@@ -70,6 +70,15 @@ function Asset() {
                             </div>
                         ))}
                     </div>
+
+                    <div className="flex items-center justify-center hover:">
+                    <button className="flex items-center justify-center pt-10">
+                    <div className="w-[440px] h-[70px] bg-gradient-to-r from-[#070707] via-[#154431] to-[#29845F] 
+                        rounded-[10px] flex items-center justify-center">
+                            <p className="text-white text-[18px] poppins">Ajukan Peminjaman</p>
+                    </div>
+                    </button>
+                            </div>
                 </div>
             </div>
         </div>
