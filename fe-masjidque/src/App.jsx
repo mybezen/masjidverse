@@ -12,6 +12,7 @@ import NewEvent from "./views/pages/NewEvent";
 import MasjidFinance from "./views/pages/MasjidFinance";
 import ListMosque from "./views/pages/ListMosque";
 import Asset from "./views/pages/Asset";
+import ActivityManagement from "./views/pages/admin/ActivityManagement";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
         <Route path="/keuanganmasjid" element={<MasjidFinance />} />
         <Route path="/listmasjid" element={<ListMosque />} />
         <Route path="/assetmasjid" element={<Asset />} />
+        <Route path="/admin/activity" element={<ActivityManagement />} />
       </Routes>
     </BrowserRouter>
   );
