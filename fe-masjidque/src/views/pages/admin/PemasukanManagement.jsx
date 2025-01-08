@@ -4,18 +4,16 @@ import AddView from "../../../components/Modal/AddView";
 import EditView from "../../../components/Modal/EditView";
 import DeleteView from "../../../components/Modal/DeleteView";
 
-function ActivityManagement() {
-  const fields = ["tanggal", "namaKegiatan", "foto", "deskripsi", "lokasi"]; // Ambil dari header tabel
+function PemasukanManagement() {
+  const fields = ["sumber", "nominal", "tanggal"]; // Ambil dari header tabel
 
   const [open, setOpen] = useState({ add: false, edit: false, delete: false });
   const [activities, setActivities] = useState([
     {
       id: 1,
-      tanggal: "20/10/2024",
-      namaKegiatan: "Pengajian",
-      foto: "Img1",
-      deskripsi: "Kegiatan 1",
-      lokasi: "Masjid Al Huda",
+      sumber: "Hamba Allah",
+      nominal: "Rp. 100.000.000,00",
+      tanggal: "20/10/24",
     },
   ]);
   const [currentActivity, setCurrentActivity] = useState(null);
@@ -125,4 +123,4 @@ function ActivityManagement() {
   );
 }
 
-export default ActivityManagement;
+export default PemasukanManagement;
