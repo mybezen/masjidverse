@@ -119,7 +119,7 @@ const Sidebar = () => {
                     <div key={index} className="my-2">
                       <div
                         className={`flex items-center space-x-3 cursor-pointer hover:scale-105 poppins-bold ${
-                          isActiveItem ? "bg-[#B2DF8A] text-black rounded-lg text-center" : ""
+                          isActiveItem ? "bg-white opacity-20 text-black rounded-lg text-center" : ""
                         }`}
                         onClick={() =>
                           item.path ? navigate(item.path) : toggleDropdown(identifier)
@@ -163,9 +163,9 @@ const Sidebar = () => {
                           {item.subItems.map((subItem, idx) => (
                             <p
                               key={idx}
-                              className={`p-2 transition hover:bg-[#9EDF9C] rounded-lg cursor-pointer poppins-semibold ${
+                              className={`p-2 transition hover:bg-white bg-opacity-40 rounded-lg cursor-pointer poppins-semibold ${
                                 subItem.path === location.pathname
-                                  ? "bg-[#9EDF9C] text-black"
+                                  ? "bg-white bg-opacity-40 text-black"
                                   : ""
                               }`}
                               onClick={() => navigate(subItem.path)}
@@ -182,7 +182,7 @@ const Sidebar = () => {
                   <div
                     className={`flex items-center space-x-3 cursor-pointer hover:scale-105 poppins-bold ${
                       location.pathname === menu.path
-                        ? "bg-[#9EDF9C] text-black rounded-lg"
+                        ? "bg-white bg-opacity-20 text-black rounded-lg"
                         : ""
                     }`}
                     onClick={() => navigate(menu.path)}
