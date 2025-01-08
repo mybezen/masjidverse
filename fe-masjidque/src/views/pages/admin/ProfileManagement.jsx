@@ -1,13 +1,12 @@
 import { useState } from "react";
 import Sidebar from "../../../components/Sidebar";
-import AddView from "../../../components/Modal/AddView";
 import EditView from "../../../components/Modal/EditView";
 import DeleteView from "../../../components/Modal/DeleteView";
 
 function ProfileManagement() {
   const fields = ["nama", "namaMasjid", "noTelp", "email"]; // Ambil dari header tabel
 
-  const [open, setOpen] = useState({ add: false, edit: false, delete: false });
+  const [open, setOpen] = useState({  edit: false, delete: false });
   const [activities, setActivities] = useState([
     {
       id: 1,
@@ -19,13 +18,7 @@ function ProfileManagement() {
   ]);
   const [currentActivity, setCurrentActivity] = useState(null);
 
-  const handleAdd = (newActivity) => {
-    setActivities([
-      ...activities,
-      { ...newActivity, id: activities.length + 1 },
-    ]);
-    setOpen({ ...open, add: false });
-  };
+  
 
   const handleEdit = (updatedActivity) => {
     setActivities(
@@ -93,19 +86,9 @@ function ProfileManagement() {
           </tbody>
         </table>
 
-        <button
-          className="fixed p-4 text-white bg-green-600 rounded-full shadow-lg bottom-6 right-6 hover:bg-green-700"
-          onClick={() => setOpen({ ...open, add: true })}
-        >
-          +
-        </button>
 
-        <AddView
-          open={open.add}
-          onClose={() => setOpen({ ...open, add: false })}
-          onSubmit={handleAdd}
-          fields={fields}
-        />
+
+
         <EditView
           open={open.edit}
           onClose={() => setOpen({ ...open, edit: false })}

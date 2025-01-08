@@ -20,6 +20,7 @@ import ProfileManagement from "./views/pages/admin/ProfileManagement";
 import ItemsManagement from "./views/pages/admin/ItemsManagement";
 import UserManagement from "./views/pages/admin/UserManagement";
 import RequestManagement from "./views/pages/admin/RequestManagement";
+import PemasukanManagement from "./views/pages/admin/PemasukanManagement";
 
 function App() {
   return (
@@ -44,7 +45,7 @@ function App() {
 
         <Route path="/admin/activity" element={<ActivityManagement />} />
         <Route path="/admin/pengeluaran" element={<PengeluaranManagement />} />
-        <Route path="/admin/pemasukan" element={<PengeluaranManagement />} />
+        <Route path="/admin/pemasukan" element={<PemasukanManagement />} />
         <Route path="/admin/profiles" element={<ProfileManagement />} />
         <Route path="/admin/items" element={<ItemsManagement />} />
         <Route path="/admin/users" element={<UserManagement />} />

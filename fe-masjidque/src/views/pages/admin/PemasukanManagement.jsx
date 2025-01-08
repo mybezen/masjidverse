@@ -3,11 +3,12 @@ import Sidebar from "../../../components/Sidebar";
 import AddView from "../../../components/Modal/AddView";
 import EditView from "../../../components/Modal/EditView";
 import DeleteView from "../../../components/Modal/DeleteView";
+import DetailView from "../../../components/Modal/DetailView";
 
 function PemasukanManagement() {
   const fields = ["sumber", "nominal", "tanggal"]; // Ambil dari header tabel
 
-  const [open, setOpen] = useState({ add: false, edit: false, delete: false });
+  const [open, setOpen] = useState({ add: false, edit: false, delete: false, view: false });
   const [activities, setActivities] = useState([
     {
       id: 1,
@@ -77,6 +78,7 @@ function PemasukanManagement() {
                   >
                     Edit
                   </button>
+
                   <button
                     className="px-2 py-1 text-white bg-red-500 rounded hover:bg-red-600"
                     onClick={() => {
@@ -86,7 +88,17 @@ function PemasukanManagement() {
                   >
                     Delete
                   </button>
+                  <button
+                    className="px-2 py-1 text-white bg-green-500 rounded hover:bg-green-600"
+                    onClick={() => {
+                      setCurrentActivity(activity);
+                      setOpen({ ...open, view: true });
+                    }}
+                  >
+                    View
+                  </button>
                 </td>
+
               </tr>
             ))}
           </tbody>
@@ -118,6 +130,13 @@ function PemasukanManagement() {
           onSubmit={() => handleDelete(currentActivity.id)}
           activity={currentActivity}
         />
+        <DetailView
+  open={open.view}
+  onClose={() => setOpen({ ...open, view: false })}
+  fields={fields}
+  data={currentActivity}
+/>
+
       </div>
     </div>
   );
