@@ -11,15 +11,15 @@ class DashboardSuperAdminController extends Controller
 {
     public function index()
     {
-        $jumlahMasjid = Masjid::count();
-        $jumlahPenggunaAktif = User::where('status', 'aktif')->count();
+        $jumlahMasjid = Masjid::count(); // ? status diterima
+        $jumlahPenggunaAktif = User::where('status', 'aktif')->count(); // ? status
 
         $manajemenAkun = User::select('name', 'password', 'no_telp', 'email')
             ->orderBy('id', 'desc')
             ->take(5)
             ->get();
 
-            $manajemenPendaftaran = Masjid::where('nama','nama_masjid','no_telp','email','status','diajukan')
+        $manajemenPendaftaran = Masjid::where('nama', 'nama_masjid', 'no_telp', 'email', 'status', 'diajukan')
             ->orderBy('created_at', 'desc')
             ->take(5)
             ->get();

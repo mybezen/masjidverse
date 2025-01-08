@@ -1,4 +1,5 @@
 <?php
+
 use App\Http\Controllers\DashboardSuperAdminController;
 use App\Http\Controllers\SuperAdmin\ManajemenPendaftaranController;
 use App\Http\Controllers\SuperAdmin\ManajemenAkunController;
@@ -15,6 +16,7 @@ use App\Http\Controllers\MasjidController;
 use App\Http\Controllers\MasjidDetailController;
 use App\Http\Controllers\Auth\MasjidAuthController;
 use App\Http\Controllers\Auth\UserAuthController;
+use App\Http\Middleware\CheckMasjidAdmin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -43,36 +45,38 @@ Route::post('/masjid/{id}/keuangan', [MasjidDetailController::class, 'donasi']);
 Route::post('/masjid/{id}/peminjaman', [MasjidDetailController::class, 'peminjamanAset']);
 
 // Dashboard Admin
-Route::get('/dashboard', [DashboardAdminController::class, 'index']);
+// ? Middleware
+Route::middleware([CheckMasjidAdmin::class])->group(function () {
+    Route::get('/dashboard', [DashboardAdminController::class, 'index']);
 
-Route::get('/dashboard/pemasukan', [PemasukanController::class, 'index']);
-Route::get('/dashboard/pemasukan/{id}', [PemasukanController::class, 'show']);
-Route::patch('/dashboard/pemasukan/{id}/setujui', [PemasukanController::class, 'setujui']);
-Route::patch('/dashboard/pemasukan/{id}/tolak', [PemasukanController::class, 'tolak']);
-Route::get('/dashboard/pengeluaran', [PengeluaranController::class, 'index']);
-Route::post('/dashboard/pengeluaran', [PengeluaranController::class, 'store']);
+    Route::get('/dashboard/pemasukan', [PemasukanController::class, 'index']);
+    Route::get('/dashboard/pemasukan/{id}', [PemasukanController::class, 'show']);
+    Route::patch('/dashboard/pemasukan/{id}/setujui', [PemasukanController::class, 'setujui']);
+    Route::patch('/dashboard/pemasukan/{id}/tolak', [PemasukanController::class, 'tolak']);
+    Route::get('/dashboard/pengeluaran', [PengeluaranController::class, 'index']);
+    Route::post('/dashboard/pengeluaran', [PengeluaranController::class, 'store']);
 
-Route::get('/dashboard/inventaris', [InventarisController::class, 'index']);
-Route::post('/dashboard/inventaris', [InventarisController::class, 'store']);
-Route::put('/dashboard/inventaris/{id}', [InventarisController::class, 'update']);
-Route::delete('/dashboard/inventaris/{id}', [InventarisController::class, 'destroy']);
+    Route::get('/dashboard/inventaris', [InventarisController::class, 'asetMasjid']);
+    Route::post('/dashboard/inventaris', [InventarisController::class, 'store']);
+    Route::put('/dashboard/inventaris/{id}', [InventarisController::class, 'update']);
+    Route::delete('/dashboard/inventaris/{id}', [InventarisController::class, 'destroy']);
+    Route::get('/dashboard/peminjaman', [InventarisController::class, 'pengajuanPeminjaman']);
+    Route::patch('/dashboard/peminjaman/{id}/setujui', [InventarisController::class, 'setujuiPeminjaman']);
+    Route::patch('/dashboard/peminjaman/{id}/tolak', [InventarisController::class, 'tolakPeminjaman']);
+    Route::patch('/dashboard/peminjaman/{id}/pengembalian', [InventarisController::class, 'pengembalianPeminjaman']);
 
-Route::get('/dashboard/peminjaman', [InventarisController::class, 'pengajuanPeminjaman']);
-Route::patch('/dashboard/peminjaman/{id}/setujui', [InventarisController::class, 'setujuiPeminjaman']);
-Route::patch('/dashboard/peminjaman/{id}/tolak', [InventarisController::class, 'tolakPeminjaman']);
-Route::patch('/dashboard/peminjaman/{id}/pengembalian', [InventarisController::class, 'pengembalianPeminjaman']);
+    Route::get('/dashboard/kegiatan', [KegiatanController::class, 'index']);
+    Route::get('/dashboard/kegiatan/{id}', [KegiatanController::class, 'show']); // Perlu?
+    Route::post('/dashboard/kegiatan', [KegiatanController::class, 'store']);
+    Route::get('/dashboard/kegiatan/{id}/edit', [KegiatanController::class, 'edit']);
+    Route::put('/dashboard/kegiatan/{id}/edit', [KegiatanController::class, 'update']);
+    Route::delete('/dashboard/kegiatan/{id}', [KegiatanController::class, 'destroy']);
 
-Route::get('/dashboard/kegiatan', [KegiatanController::class, 'index']);
-Route::get('/dashboard/kegiatan/{id}', [KegiatanController::class, 'show']); // Perlu?
-Route::post('/dashboard/kegiatan', [KegiatanController::class, 'store']);
-Route::get('/dashboard/kegiatan/{id}/edit', [KegiatanController::class, 'edit']);
-Route::put('/dashboard/kegiatan/{id}/edit', [KegiatanController::class, 'update']);
-Route::delete('/dashboard/kegiatan/{id}', [KegiatanController::class, 'destroy']);
-
-Route::get('/dashboard/organisasi', [OrganisasiController::class, 'index']);
-Route::post('/dashboard/organisasi', [OrganisasiController::class, 'store']);
-Route::put('/dashboard/organisasi/{id}', [OrganisasiController::class, 'update']);
-Route::delete('/dashboard/organisasi/{id}', [OrganisasiController::class, 'destroy']);
+    Route::get('/dashboard/organisasi', [OrganisasiController::class, 'index']);
+    Route::post('/dashboard/organisasi', [OrganisasiController::class, 'store']);
+    Route::put('/dashboard/organisasi/{id}', [OrganisasiController::class, 'update']);
+    Route::delete('/dashboard/organisasi/{id}', [OrganisasiController::class, 'destroy']);
+});
 
 // Dashboard SuperAdmin
 Route::get('/dashboard', [DashboardSuperAdminController::class, 'index']);
@@ -95,9 +99,3 @@ Route::post('/manajemen-konten/{id}/tolak', [ManajemenKontenController::class, '
 Route::post('/manajemen-konten/{id}/tinjau', [ManajemenKontenController::class, 'tinjauKonten']);
 
 // manajemen keuangan
-
-
-
-
-
-
