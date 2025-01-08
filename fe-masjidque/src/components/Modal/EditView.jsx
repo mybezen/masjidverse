@@ -2,11 +2,18 @@
 import { useState, useEffect } from "react";
 import Modal from "./Modal";
 
-function EditView({ open, onClose, onSubmit, activity }) {
-  const [formData, setFormData] = useState(activity);
+function EditView({ open, onClose, onSubmit, fields, activity }) {
+  const [formData, setFormData] = useState(
+    fields.reduce((acc, field) => {
+      acc[field] = ""; // Inisialisasi semua field sebagai string kosong
+      return acc;
+    }, {})
+  );
 
   useEffect(() => {
-    setFormData(activity);
+    if (activity) {
+      setFormData(activity); // Isi data awal dengan activity yang diterima
+    }
   }, [activity]);
 
   const handleChange = (e) => {
@@ -14,53 +21,30 @@ function EditView({ open, onClose, onSubmit, activity }) {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = () => {
-    onSubmit(formData);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const isValid = fields.every((field) => formData[field]); // Validasi semua field
+    if (isValid) {
+      onSubmit(formData);
+    } else {
+      alert("Pastikan semua input terisi dengan benar!");
+    }
   };
 
   return (
-    <Modal open={open} onClose={onClose} title="Edit Kegiatan" onSubmit={handleSubmit}>
+    <Modal open={open} onClose={onClose} title="Edit Data" onSubmit={handleSubmit}>
       <form className="space-y-4">
-        <input
-          type="text"
-          name="tanggal"
-          placeholder="Tanggal"
-          value={formData?.tanggal || ""}
-          onChange={handleChange}
-          className="w-full p-2 border rounded"
-        />
-        <input
-          type="text"
-          name="namaKegiatan"
-          placeholder="Nama Kegiatan"
-          value={formData?.namaKegiatan || ""}
-          onChange={handleChange}
-          className="w-full p-2 border rounded"
-        />
-        <input
-          type="text"
-          name="foto"
-          placeholder="Foto"
-          value={formData?.foto || ""}
-          onChange={handleChange}
-          className="w-full p-2 border rounded"
-        />
-        <input
-          type="text"
-          name="deskripsi"
-          placeholder="Deskripsi"
-          value={formData?.deskripsi || ""}
-          onChange={handleChange}
-          className="w-full p-2 border rounded"
-        />
-        <input
-          type="text"
-          name="lokal"
-          placeholder="Lokal"
-          value={formData?.lokal || ""}
-          onChange={handleChange}
-          className="w-full p-2 border rounded"
-        />
+        {fields.map((field, index) => (
+          <input
+            key={index}
+            type="text"
+            name={field}
+            placeholder={field}
+            value={formData[field]}
+            onChange={handleChange}
+            className="w-full p-2 border rounded"
+          />
+        ))}
       </form>
     </Modal>
   );

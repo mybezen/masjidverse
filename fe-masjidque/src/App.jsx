@@ -15,6 +15,7 @@ import Asset from "./views/pages/Asset";
 import ActivityManagement from "./views/pages/admin/ActivityManagement";
 import Organisasi from "./views/pages/Organisasi";
 import RentAsset from "./views/pages/RentAsset";
+import PengeluaranManagement from "./views/pages/admin/PengeluaranManagement";
 
 function App() {
   return (
@@ -33,8 +34,8 @@ function App() {
         <Route path="/keuanganmasjid" element={<MasjidFinance />} />
         <Route path="/listmasjid" element={<ListMosque />} />
         <Route path="/assetmasjid" element={<Asset />} />
-        <Route path='/admin/activity' element={<ActivityManagement />}/>
-        
+        <Route path="/admin/activity" element={<ActivityManagement />} />
+        <Route path="/admin/pengeluaran" element={<PengeluaranManagement />} />
       </Routes>
     </BrowserRouter>
   );
