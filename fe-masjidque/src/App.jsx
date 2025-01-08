@@ -37,7 +37,11 @@ function App() {
         <Route path="/newevent" element={<NewEvent />} />
         <Route path="/keuanganmasjid" element={<MasjidFinance />} />
         <Route path="/listmasjid" element={<ListMosque />} />
+        <Route path="/organisasi" element={<Organisasi />} />
         <Route path="/assetmasjid" element={<Asset />} />
+        <Route path="/peminjaman" element={<RentAsset />} />
+
+
         <Route path="/admin/activity" element={<ActivityManagement />} />
         <Route path="/admin/pengeluaran" element={<PengeluaranManagement />} />
         <Route path="/admin/pemasukan" element={<PengeluaranManagement />} />
