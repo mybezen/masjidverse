@@ -1,7 +1,15 @@
 import { Typography, Card, CardContent } from "@mui/joy";
-import MasjidIcon from "../../assets/Images/image.png"; // Replace with actual path to the mosque image
+import MasjidIcon from "../../assets/Images/image.png"; 
+import BackIcon from "../../assets/Icon/back.svg"
+import { useState } from "react";
+
 
 function ProfileView() {
+  const handleNavigate = useState();
+  
+  const navigate = (path) => {
+    handleNavigate(path);
+  }
   return (
     <div className="flex h-screen bg-white">
       {/* Main Content */}

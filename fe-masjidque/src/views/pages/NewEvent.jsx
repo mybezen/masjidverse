@@ -8,6 +8,9 @@ import MosqueIcon from "../../assets/Icon/mosque.svg";
 import TimeIcon from "../../assets/Icon/time.svg";
 import CardName from "../../assets/Icon/card-name.svg";
 import DescriptionIcon from "../../assets/Icon/description.svg";
+import BackIcon from "../../assets/Icon/back.svg"
+import { useNavigate } from "react-router-dom";
+
 
 // Data Informasi Kegiatan
 const eventDetails = [
@@ -41,7 +44,22 @@ const eventDetails = [
   },
 ];
 
+ const backPages = [
+    {
+        id:1,
+        title: "Kembali",
+        icon: BackIcon,
+        path: "/feature",
+    
+    }
+  ]
+
 function NewEvent() {
+  const handleNavigate = useNavigate();
+  
+    const navigate = (path) => {
+      handleNavigate(path)
+    }
   return (
     <div>
       <Navbar />
@@ -52,12 +70,23 @@ function NewEvent() {
           alt="Masjid"
           className="w-full h-[500px] object-cover"
         />
+        
+        
         <div className="absolute top-0 left-0 w-full h-24 bg-gradient-to-b from-white to-transparent z-10" />
 
         <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-white to-transparent z-10" />
       </div>
 
       <div className="bg-white rounded-lg shadow-md p-6 w-[90%] md:w-[60%] lg:w-[50%] mx-auto -mt-20 relative z-20">
+      {backPages.map((back) => (
+            <button key={back.id} className="w-[80%] mb-10" onClick={() => handleNavigate("/feature")}>
+                <div className="flex items-center">
+                    <img src={back.icon} 
+                    className="w-10"/>
+                    <p className="text-lg">{back.title}</p>
+                </div>
+            </button>
+        ))}
         <div className="space-y-4">
           {eventDetails.map((item) => (
             <div key={item.id} className="flex items-center space-x-4 ">
