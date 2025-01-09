@@ -33,7 +33,7 @@ class PengeluaranController extends Controller
 
         return response()->json([
             'success' => true,
-            'listPengel$listPengeluaran' => $listPengeluaran,
+            'listPengeluaran' => $listPengeluaran,
             'totalPengeluaran' => $totalPengeluaran
         ]);
     }
@@ -42,6 +42,8 @@ class PengeluaranController extends Controller
     {
         $akunMasjid = Auth::guard('masjid')->user();
         $idMasjid = $akunMasjid->id;
+
+        $masjid = Masjid::find($idMasjid);
 
         $validator = Validator::make($request->all(), [
             'deskripsi' => 'required',
@@ -52,6 +54,13 @@ class PengeluaranController extends Controller
             return response()->json([
                 'success' => false,
                 'message' => $validator->errors()
+            ], 422);
+        }
+
+        if ($request->input('nominal') > $masjid->saldo_kas) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Saldo kas tidak cukup'
             ], 422);
         }
 

@@ -33,7 +33,7 @@ class DatabaseSeeder extends Seeder
             'luas_bangunan' => '300 m2',
             'bank' => 'Bank Mandiri',
             'no_rekening' => '1234567890',
-            'saldo_kas' => 10000000,
+            'saldo_kas' => 0,
             'atas_nama' => 'Yayasan Al-Falah',
             'no_telepon' => '08123456789',
             'email' => 'contact@masjidalfalah.com',
@@ -137,7 +137,7 @@ class DatabaseSeeder extends Seeder
             'keterangan' => 'Biaya Listrik',
             'nominal' => 100000,
             'jenis_transaksi' => 'kredit',
-            'status_transaksi' => 'diajukan',
+            'status_transaksi' => 'disetujui',
             'masjid_id' => $masjidId,
             'bukti_transfer' => 'path/to/example_transfer4.jpg',
         ]);

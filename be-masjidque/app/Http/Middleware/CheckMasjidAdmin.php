@@ -17,10 +17,7 @@ class CheckMasjidAdmin
     public function handle(Request $request, Closure $next): Response
     {
         if (!Auth::guard('masjid')->check()) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Maaf anda tidak memiliki izin untuk mengakses halaman ini',
-            ]);
+            return redirect()->back();
         }
 
         return $next($request);

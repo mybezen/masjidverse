@@ -29,6 +29,7 @@ class DashboardAdminController extends Controller
 
         $listPemasukan = KeuanganInfaq::where('masjid_id', $idMasjid)
             ->where('jenis_transaksi', 'debit')
+            ->where('status_transaksi', 'disetujui')
             ->pluck('nominal');
 
         $totalPemasukan = $listPemasukan->sum();
@@ -55,7 +56,7 @@ class DashboardAdminController extends Controller
             $listPengeluaranBulanan[$bulan] = $pengeluaranBulanan->get($bulan, 0);
         }
 
-        $pengeluaranBulanan = KeuanganInfaq::selectRaw('MONTH(tanggal) as bulan, SUM(nominal) as total_pengeluaran')
+        $pemasukanBulanan = KeuanganInfaq::selectRaw('MONTH(tanggal) as bulan, SUM(nominal) as total_pemasukan')
             ->whereYear('tanggal', $tahun)
             ->where('masjid_id', $idMasjid)
             ->where('jenis_transaksi', 'debit')
@@ -67,7 +68,7 @@ class DashboardAdminController extends Controller
 
         $listPemasukanBulanan = [];
         for ($bulan = 1; $bulan <= 12; $bulan++) {
-            $listPemasukanBulanan[$bulan] = $pengeluaranBulanan->get($bulan, 0);
+            $listPemasukanBulanan[$bulan] = $pemasukanBulanan->get($bulan, 0);
         }
 
         return response()->json([

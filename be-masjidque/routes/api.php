@@ -79,7 +79,7 @@ Route::middleware([CheckMasjidAdmin::class])->group(function () {
 });
 
 // Dashboard SuperAdmin
-Route::get('/dashboard', [DashboardSuperAdminController::class, 'index']);
+Route::get('/dashboard/superadmin', [DashboardSuperAdminController::class, 'index']);
 
 Route::get('/manajemen-pendaftaran', [ManajemenPendaftaranController::class, 'index']);
 Route::post('/manajemen-pendaftaran/{id}/setujui', [ManajemenPendaftaranController::class, 'setujuiPendaftaran']);

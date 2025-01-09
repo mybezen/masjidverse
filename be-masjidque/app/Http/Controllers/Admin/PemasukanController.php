@@ -18,18 +18,16 @@ class PemasukanController extends Controller
 
         $listPemasukan = KeuanganInfaq::where('masjid_id', $idMasjid)
             ->where('jenis_transaksi', 'debit')
+            ->where('status_transaksi', 'diajukan')
             ->orderBy('created_at', 'desc')
             ->get();
 
-        if ($listPemasukan->isEmpty()) {
-            return response()->json([
-                'success' => false,
-                'listPemasukan' => [],
-                'totalPemasukan' => 0
-            ]);
-        }
+        $listPemasukanDisetujui = KeuanganInfaq::where('masjid_id', $idMasjid)
+            ->where('jenis_transaksi', 'debit')
+            ->where('status_transaksi', 'disetujui')
+            ->pluck('nominal');
 
-        $totalPemasukan = $listPemasukan->sum('nominal');
+        $totalPemasukan = $listPemasukanDisetujui->sum();
 
         return response()->json([
             'success' => true,
@@ -40,12 +38,15 @@ class PemasukanController extends Controller
 
     public function show($id)
     {
+        $akunMasjid = Auth::guard('masjid')->user();
+        $idMasjid = $akunMasjid->id;
+
         $pemasukan = KeuanganInfaq::find($id);
 
-        if (!$pemasukan) {
+        if (!$pemasukan || $pemasukan->status_transaksi != 'diajukan' || $pemasukan->masjid_id != $idMasjid) {
             return response()->json([
                 'success' => false,
-                'message' => 'Data tidak ditemukan',
+                'message' => 'Data tidak ditemukan.',
             ], 404);
         }
 
@@ -64,15 +65,15 @@ class PemasukanController extends Controller
         $akunMasjid = Auth::guard('masjid')->user();
         $idMasjid = $akunMasjid->id;
 
-        if (!$pemasukan) {
+        if (!$pemasukan || $pemasukan->status_transaksi != 'diajukan' || $pemasukan->masjid_id != $idMasjid) {
             return response()->json([
                 'success' => false,
-                'message' => 'Data tidak ditemukan',
+                'message' => 'Data tidak ditemukan.',
             ], 404);
         }
 
         $pemasukan->update([
-            'status' => 'disetujui'
+            'status_transaksi' => 'disetujui'
         ]);
 
         $masjid = Masjid::find($idMasjid);
