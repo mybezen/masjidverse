@@ -4,6 +4,9 @@ import BarChart from "../../../components/Chart";
 import ActionIcon from "../../../assets/Icon/run.svg";
 import IncomeIcon from "../../../assets/Icon/income.svg";
 import OutcomeIcon from "../../../assets/Icon/outcome.svg";
+import ClockIcon from "../../../assets/Icon/clock.svg";
+import DateIcon from "../../../assets/Icon/date.svg";
+import LocationIcon from "../../../assets/Icon/location.svg";
 import SearchIcon from "@mui/icons-material/Search";
 
 function AdminDashboard() {
@@ -48,7 +51,11 @@ function AdminDashboard() {
           <div className="col-span-8">
             <Card className="p-4 rounded-lg shadow-md bg-white">
               <div className="flex items-center mb-4">
-                <img src={ActionIcon} alt="Action Icon" className="w-6 h-6 mr-2 invert" />
+                <img
+                  src={ActionIcon}
+                  alt="Action Icon"
+                  className="w-6 h-6 mr-2 invert"
+                />
                 <Typography className="font-semibold text-gray-700 text-lg">
                   Kegiatan Yang Akan Datang
                 </Typography>
@@ -61,9 +68,12 @@ function AdminDashboard() {
                     className="p-4 rounded-lg shadow-sm bg-gray-50"
                   >
                     <CardContent>
-                      <Typography fontWeight="bold" className="text-gray-800">
-                        Maulid Nabi Muhammad
-                      </Typography>
+                      <div className="flex  text-center items-center gap-4">
+                        <img src={DateIcon} alt="" className="w-8" />
+                        <Typography fontWeight="bold" className="text-gray-800">
+                          Maulid Nabi Muhammad
+                        </Typography>
+                      </div>
                       <Typography className="text-gray-500">
                         Masjid Al Falah
                       </Typography>
@@ -85,7 +95,11 @@ function AdminDashboard() {
             {/* Income Section */}
             <Card className="p-4 rounded-lg shadow-md bg-white">
               <div className="flex items-center mb-2">
-                <img src={IncomeIcon} alt="Income Icon" className="w-6 h-6 mr-2" />
+                <img
+                  src={IncomeIcon}
+                  alt="Income Icon"
+                  className="w-6 h-6 mr-2"
+                />
                 <Typography className="font-semibold text-gray-700 text-lg">
                   Pemasukan
                 </Typography>
@@ -101,7 +115,11 @@ function AdminDashboard() {
             {/* Expense Section */}
             <Card className="p-4 rounded-lg shadow-md bg-white">
               <div className="flex items-center mb-2">
-                <img src={OutcomeIcon} alt="Outcome Icon" className="w-6 h-6 mr-2" />
+                <img
+                  src={OutcomeIcon}
+                  alt="Outcome Icon"
+                  className="w-6 h-6 mr-2"
+                />
                 <Typography className="font-semibold text-gray-700 text-lg">
                   Pengeluaran
                 </Typography>

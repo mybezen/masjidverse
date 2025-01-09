@@ -21,6 +21,7 @@ import ItemsManagement from "./views/pages/admin/ItemsManagement";
 import UserManagement from "./views/pages/admin/UserManagement";
 import RequestManagement from "./views/pages/admin/RequestManagement";
 import PemasukanManagement from "./views/pages/admin/PemasukanManagement";
+import UpComingEvent from "./views/pages/UpComingEvent";
 
 function App() {
   return (
@@ -41,7 +42,7 @@ function App() {
         <Route path="/organisasi" element={<Organisasi />} />
         <Route path="/assetmasjid" element={<Asset />} />
         <Route path="/peminjaman" element={<RentAsset />} />
-
+        <Route path="/kegiatanakandatang" element={<UpComingEvent />} />
 
         <Route path="/admin/activity" element={<ActivityManagement />} />
         <Route path="/admin/pengeluaran" element={<PengeluaranManagement />} />
