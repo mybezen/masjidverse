@@ -1,6 +1,8 @@
 import Navbar from "../../components/Navbar";
 import AssetIcon from "../../assets/Icon/asset.svg"
 import AcceptIcon from "../../assets/Icon/accept.svg"
+import BackIcon from "../../assets/Icon/back.svg"
+import { useNavigate } from "react-router-dom";
 
 const tabelAsset = [
     {
@@ -28,7 +30,23 @@ const listAsset = [
         action: AcceptIcon,
     },
 ]
-function Asset() {
+
+const backPages = [
+    {
+        id:1,
+        title: "Kembali",
+        icon: BackIcon,
+        path: "/feature",
+    
+    }
+  ]
+
+  function Asset() {
+    const handleNavigate = useNavigate();
+    
+      const navigate = (path) => {
+        handleNavigate(path)
+      }
     return (
         <div>
             <Navbar/>
@@ -36,6 +54,15 @@ function Asset() {
             <div className="pt-4 flex flex-col items-center justify-center">
 
             <div className="">
+            {backPages.map((back) => (
+            <button key={back.id} className="w-[80%] mb-10" onClick={() => handleNavigate("/feature")}>
+                <div className="flex items-center">
+                    <img src={back.icon} 
+                    className="w-10"/>
+                    <p className="text-lg">{back.title}</p>
+                </div>
+            </button>
+        ))}
                 
                 <div className="flex items-center gap-3">
                     <img src={AssetIcon} alt="" />
@@ -72,7 +99,7 @@ function Asset() {
                     </div>
 
                     <div className="flex items-center justify-center hover:">
-                    <button className="flex items-center justify-center pt-10">
+                    <button className="flex items-center justify-center pt-10" onClick={() => handleNavigate("/peminjaman")}>
                     <div className="w-[440px] h-[70px] bg-gradient-to-r from-[#070707] via-[#154431] to-[#29845F] 
                         rounded-[10px] flex items-center justify-center">
                             <p className="text-white text-[18px] poppins">Ajukan Peminjaman</p>

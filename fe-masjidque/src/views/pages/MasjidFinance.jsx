@@ -16,6 +16,9 @@ import BankBriLogo from "../../assets/Icon/bank-bri.svg";
 import BankBcaLogo from "../../assets/Images/bank-bca.png";
 import BankMandiriLogo from "../../assets/Images/bank-mandiri.png";
 import QrisLogo from "../../assets/Images/logoqris.png";
+import BackIcon from "../../assets/Icon/back.svg"
+import { useNavigate } from "react-router-dom";
+
 
 ChartJS.register(
   CategoryScale,
@@ -93,14 +96,39 @@ function MasjidFinance() {
     },
   ];
 
+  const backPages = [
+      {
+          id:1,
+          title: "Kembali",
+          icon: BackIcon,
+          path: "/feature",
+      
+      }
+    ]
+
+    const handleNavigate = useNavigate();
+        
+          const navigate = (path) => {
+            handleNavigate(path)
+          }
   return (
     <div className="min-h-screen bg-gray-100">
       <Navbar />
 
       <div className="p-6 max-w-6xl mx-auto">
+      {backPages.map((back) => (
+            <button key={back.id} className="w-[80%] mb-10" onClick={() => handleNavigate("/feature")}>
+                <div className="flex items-center">
+                    <img src={back.icon} 
+                    className="w-10"/>
+                    <p className="text-lg">{back.title}</p>
+                </div>
+            </button>
+        ))}
         <h1 className="text-2xl font-bold mb-2 text-center">
           Informasi Keuangan
         </h1>
+        
         <div className="w-28 h-0.5 bg-black justify-center mx-auto"></div>
         <div className="w-44 h-0.5 bg-black justify-center mx-auto mt-2 mb-2"></div>
 

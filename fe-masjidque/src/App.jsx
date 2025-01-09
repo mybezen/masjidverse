@@ -12,8 +12,15 @@ import NewEvent from "./views/pages/NewEvent";
 import MasjidFinance from "./views/pages/MasjidFinance";
 import ListMosque from "./views/pages/ListMosque";
 import Asset from "./views/pages/Asset";
+import ActivityManagement from "./views/pages/admin/ActivityManagement";
 import Organisasi from "./views/pages/Organisasi";
 import RentAsset from "./views/pages/RentAsset";
+import PengeluaranManagement from "./views/pages/admin/PengeluaranManagement";
+import ProfileManagement from "./views/pages/admin/ProfileManagement";
+import ItemsManagement from "./views/pages/admin/ItemsManagement";
+import UserManagement from "./views/pages/admin/UserManagement";
+import RequestManagement from "./views/pages/admin/RequestManagement";
+import PemasukanManagement from "./views/pages/admin/PemasukanManagement";
 
 function App() {
   return (
@@ -31,7 +38,18 @@ function App() {
         <Route path="/newevent" element={<NewEvent />} />
         <Route path="/keuanganmasjid" element={<MasjidFinance />} />
         <Route path="/listmasjid" element={<ListMosque />} />
+        <Route path="/organisasi" element={<Organisasi />} />
         <Route path="/assetmasjid" element={<Asset />} />
+        <Route path="/peminjaman" element={<RentAsset />} />
+
+
+        <Route path="/admin/activity" element={<ActivityManagement />} />
+        <Route path="/admin/pengeluaran" element={<PengeluaranManagement />} />
+        <Route path="/admin/pemasukan" element={<PemasukanManagement />} />
+        <Route path="/admin/profiles" element={<ProfileManagement />} />
+        <Route path="/admin/items" element={<ItemsManagement />} />
+        <Route path="/admin/users" element={<UserManagement />} />
+        <Route path="/admin/request" element={<RequestManagement />} />
       </Routes>
     </BrowserRouter>
   );

@@ -1,6 +1,9 @@
 import Navbar from "../../components/Navbar";
 import MosqueImage from "../../assets/Images/mosque.png";
 import ReportIcon from "../../assets/Icon/report.svg";
+import BackIcon from "../../assets/Icon/back.svg"
+import { useNavigate } from "react-router-dom";
+
 
 function MosqueProfile() {
   const locationDetails = [
@@ -20,6 +23,20 @@ function MosqueProfile() {
     { label: "Nama Yayasan", value: "Yayasan Alhuda" },
   ];
 
+  const backPages = [
+      {
+          id:1,
+          title: "Kembali",
+          icon: BackIcon,
+          path: "/feature",
+      
+      }
+    ]
+    const handleNavigate = useNavigate();
+
+    const navigate = (path) => {
+      handleNavigate(path)
+    }
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
@@ -48,8 +65,18 @@ function MosqueProfile() {
           className="absolute top-4 right-4  rounded-full w-20 h-20 flex items-center justify-center"
         ></img>
       </div>
+      
 
       <div className="px-6">
+      {backPages.map((back) => (
+            <button key={back.id} className="w-[80%] mb-10" onClick={() => handleNavigate("/feature")}>
+                <div className="flex items-center">
+                    <img src={back.icon} 
+                    className="w-10"/>
+                    <p className="text-lg">{back.title}</p>
+                </div>
+            </button>
+        ))}
         <div className="pl-10 mt-5 mb-8">
           <h3 className="font-bold mb-2 text-4xl">Deskripsi</h3>
           <p className="text-xl">Masjid umum</p>

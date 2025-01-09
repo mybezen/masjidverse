@@ -10,8 +10,8 @@ function MenuIcon() {
     { id: 1, name: "Profil", icon: MosqueIcon, path: "/mosqueprofile" },
     { id: 2, name: "Kegiatan", icon: EventIcon, path: "/newevent" },
     { id: 3, name: "Keuangan", icon: FinanceIcon, path: "/keuanganmasjid" },
-    { id: 4, name: "Aset", icon: AssetIcon, path: "/" },
-    { id: 5, name: "Organisasi", icon: OrganitationIcon, path: "/" },
+    { id: 4, name: "Aset", icon: AssetIcon, path: "/assetmasjid" },
+    { id: 5, name: "Organisasi", icon: OrganitationIcon, path: "/organisasi" },
   ];
 
   const navigate = useNavigate();
