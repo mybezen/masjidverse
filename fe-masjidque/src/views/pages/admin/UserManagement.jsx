@@ -43,7 +43,7 @@ function UserManagement() {
     <div className="flex h-screen bg-white plus-jakarta-sans-bold">
       <Sidebar />
       <div className="relative flex-1 p-6">
-        <h1 className="text-2xl font-bold">Kegiatan</h1>
+        <h1 className="text-2xl font-bold">Users</h1>
 
         <table className="min-w-full mt-4 bg-white rounded shadow">
           <thead>

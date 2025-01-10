@@ -15,7 +15,7 @@ function RequestManagement() {
       noTelp: "08112391245",
       namaBarang: "Speaker",
       jumlah: "1",
-      tanggal: "20/10/24"
+      tanggal: "20/10/24",
     },
   ]);
   const [currentActivity, setCurrentActivity] = useState(null);
@@ -46,7 +46,7 @@ function RequestManagement() {
     <div className="flex h-screen bg-white plus-jakarta-sans-bold">
       <Sidebar />
       <div className="relative flex-1 p-6">
-        <h1 className="text-2xl font-bold">Kegiatan</h1>
+        <h1 className="text-2xl font-bold">Request</h1>
 
         <table className="min-w-full mt-4 bg-white rounded shadow">
           <thead>
