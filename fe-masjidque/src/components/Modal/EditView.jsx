@@ -18,8 +18,17 @@ function EditView({ open, onClose, onSubmit, fields, activity }) {
   }, [activity]);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    const { name, value, files } = e.target;
+
+    if (name === "foto" && files && files[0]) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        setFormData({ ...formData, foto: reader.result });
+      };
+      reader.readAsDataURL(files[0]);
+    } else {
+      setFormData({ ...formData, [name]: value });
+    }
   };
 
   const handleSubmit = (e) => {
@@ -50,16 +59,33 @@ function EditView({ open, onClose, onSubmit, fields, activity }) {
     <Modal open={open} onClose={onClose} title="Edit Data">
       <form className="space-y-4" onSubmit={handleSubmit}>
         {fields.map((field, index) => (
-          <input
-            key={index}
-            type="text"
-            name={field}
-            placeholder={field}
-            value={formData[field]}
-            onChange={handleChange}
-            className="w-full p-2 border rounded"
-          />
+          <div key={index}>
+            {field === "foto" ? (
+              <>
+                <label className="block mb-1 text-sm font-semibold">
+                  {field}
+                </label>
+                <input
+                  type="file"
+                  name={field}
+                  accept="image/*"
+                  onChange={handleChange}
+                  className="w-full p-2 border rounded"
+                />
+              </>
+            ) : (
+              <input
+                type="text"
+                name={field}
+                placeholder={field}
+                value={formData[field]}
+                onChange={handleChange}
+                className="w-full p-2 border rounded"
+              />
+            )}
+          </div>
         ))}
+
         {/* Footer */}
         <div className="flex justify-end space-x-2">
           <button
