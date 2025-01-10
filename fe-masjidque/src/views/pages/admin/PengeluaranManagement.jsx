@@ -3,6 +3,7 @@ import Sidebar from "../../../components/Sidebar";
 import AddView from "../../../components/Modal/AddView";
 import EditView from "../../../components/Modal/EditView";
 import DeleteView from "../../../components/Modal/DeleteView";
+import DetailView from "../../../components/Modal/DetailView";
 
 function PengeluaranManagement() {
   const fields = ["deskripsi", "nominal", "tanggal"]; // Ambil dari header tabel
@@ -86,6 +87,15 @@ function PengeluaranManagement() {
                   >
                     Delete
                   </button>
+                  <button
+                    className="px-2 py-1 text-white bg-green-500 rounded hover:bg-green-600"
+                    onClick={() => {
+                      setCurrentActivity(activity);
+                      setOpen({ ...open, view: true });
+                    }}
+                  >
+                    View
+                  </button>
                 </td>
               </tr>
             ))}
@@ -117,6 +127,12 @@ function PengeluaranManagement() {
           onClose={() => setOpen({ ...open, delete: false })}
           onSubmit={() => handleDelete(currentActivity.id)}
           activity={currentActivity}
+        />
+        <DetailView
+          open={open.view}
+          onClose={() => setOpen({ ...open, view: false })}
+          fields={fields}
+          data={currentActivity}
         />
       </div>
     </div>
