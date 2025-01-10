@@ -22,6 +22,8 @@ import UserManagement from "./views/pages/admin/UserManagement";
 import RequestManagement from "./views/pages/admin/RequestManagement";
 import PemasukanManagement from "./views/pages/admin/PemasukanManagement";
 import UpComingEvent from "./views/pages/UpComingEvent";
+import SuperDashboard from "./views/pages/superadmin/Dashboard";
+import AccountManagement from "./views/pages/superadmin/AccountManagement";
 
 function App() {
   return (
@@ -51,6 +53,11 @@ function App() {
         <Route path="/admin/items" element={<ItemsManagement />} />
         <Route path="/admin/users" element={<UserManagement />} />
         <Route path="/admin/request" element={<RequestManagement />} />
+
+        <Route path='/super/' element={<SuperDashboard/>}/>
+        <Route path='/super/users' element={<AccountManagement/>}/>
+        
+        
       </Routes>
     </BrowserRouter>
   );

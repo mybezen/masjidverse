@@ -1,13 +1,16 @@
-/* eslint-disable react/no-unescaped-entities */
+
 /* eslint-disable react/prop-types */
 import Modal from "./Modal";
 
-function DeleteView({ open, onClose, onSubmit, activity }) {
+function DeleteView({ open, onClose, activityName, onSubmit }) {
   return (
-    <Modal open={open} onClose={onClose} title="Hapus Kegiatan" onSubmit={onSubmit}>
-      <p>
-        Apakah Anda yakin ingin menghapus kegiatan "{activity?.namaKegiatan}"?
-      </p>
+    <Modal open={open} onClose={onClose} title="Hapus Data" onSubmit={onSubmit}>
+      <div className="space-y-4">
+        <p>
+          Apakah Anda yakin ingin menghapus data{" "}
+          <strong>{activityName || "ini"}</strong>?
+        </p>
+      </div>
     </Modal>
   );
 }

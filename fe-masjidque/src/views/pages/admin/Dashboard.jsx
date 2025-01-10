@@ -4,9 +4,6 @@ import BarChart from "../../../components/Chart";
 import ActionIcon from "../../../assets/Icon/run.svg";
 import IncomeIcon from "../../../assets/Icon/income.svg";
 import OutcomeIcon from "../../../assets/Icon/outcome.svg";
-import ClockIcon from "../../../assets/Icon/clock.svg";
-import DateIcon from "../../../assets/Icon/date.svg";
-import LocationIcon from "../../../assets/Icon/location.svg";
 import SearchIcon from "@mui/icons-material/Search";
 
 function AdminDashboard() {
