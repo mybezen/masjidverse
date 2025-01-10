@@ -1,5 +1,7 @@
 import Navbar from "../../components/Navbar";
 import OrganisasiIcon from "../../assets/Icon/organisasi.svg"
+import BackIcon from "../../assets/Icon/back.svg"
+import { useNavigate } from "react-router-dom";
 
 const strukturOrganisasi = [
     {
@@ -31,7 +33,21 @@ const dataOrganisasi = [
     },
 
 ]
+
+
+const backPages = [
+    {
+        id: 1,
+        title: "Kembali",
+        icon: BackIcon,
+        path: "/feature"
+    }
+]
 function Organisasi() {
+    const navigate = useNavigate()
+const handleNavigate = (path) => {
+    navigate(path)
+}
     return (
         <div>
             <Navbar/>
@@ -39,7 +55,15 @@ function Organisasi() {
             <div className="pt-4 flex flex-col items-center justify-center">
 
             <div className="">
-                
+            {backPages.map((back) => (
+            <button key={back.id} className="w-[80%] mb-10" onClick={() => handleNavigate("/feature")}>
+                <div className="flex items-center">
+                    <img src={back.icon} 
+                    className="w-10"/>
+                    <p className="text-lg">{back.title}</p>
+                </div>
+            </button>
+        ))}
                 <div className="flex items-center gap-3">
                     <img src={OrganisasiIcon} alt="" />
                     <p className="plus-jakarta-sans-bold">Struktur Organisasi</p>
@@ -68,8 +92,6 @@ function Organisasi() {
                                     </div>
                                 ))}
                         </div>
-
-                    \
                 </div>
             </div>
         </div>

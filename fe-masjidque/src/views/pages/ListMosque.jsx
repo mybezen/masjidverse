@@ -5,8 +5,13 @@ import EventIcon from "../../assets/Icon/event.svg";
 import LocationIcon from "../../assets/Icon/location.svg";
 import ClockIcon from "../../assets/Icon/clock.png";
 import MosqueIcon from "../../assets/Icon/mosque.svg";
+import { useNavigate } from "react-router-dom";
 
 function ListMosque() {
+  const navigate = useNavigate()
+  const handleNavigate = (path) => {
+    navigate(path)
+  }
   return (
     <div className="min-h-screen bg-[#EDEDF9]">
       <Navbar />
@@ -49,7 +54,8 @@ function ListMosque() {
                     <p className="text-sm text-gray-700">
                       Jl. Kecubung V, RT 5 RW 2, Jakarta Timur 13420
                     </p>
-                    <button className="mt-1 font-medium text-green-600 hover:underline">
+                    <button className="mt-1 font-medium text-green-600 hover:underline"
+                    onClick={() => handleNavigate("/feature")}>
                       Lihat Selengkapnya &gt;
                     </button>
                   </div>

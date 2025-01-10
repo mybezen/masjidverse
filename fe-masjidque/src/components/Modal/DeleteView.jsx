@@ -35,7 +35,6 @@ function DeleteView({ open, onClose, activityName, onSubmit }) {
           Apakah Anda yakin ingin menghapus data{" "}
           <strong>{activityName || "ini"}</strong>?
         </p>
-        {/* Footer */}
         <div className="flex justify-end space-x-2">
           <button
             onClick={onClose}

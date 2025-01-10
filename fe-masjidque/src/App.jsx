@@ -27,6 +27,7 @@ import AccountManagement from "./views/pages/superadmin/AccountManagement";
 import ContentManagement from "./views/pages/superadmin/ContentManagement";
 import RegistrationManagement from "./views/pages/superadmin/RegistrationManagement";
 import AddActivity from "./views/pages/admin/AddActivity";
+import AddMasjid from "./views/pages/AddMasjid";
 
 function App() {
   return (
@@ -48,6 +49,7 @@ function App() {
         <Route path="/assetmasjid" element={<Asset />} />
         <Route path="/peminjaman" element={<RentAsset />} />
         <Route path="/kegiatanakandatang" element={<UpComingEvent />} />
+        <Route path="/tambahmasjid" element={<AddMasjid />} />
 
         <Route path="/admin/activity" element={<ActivityManagement />} />
         <Route path="/admin/pengeluaran" element={<PengeluaranManagement />} />

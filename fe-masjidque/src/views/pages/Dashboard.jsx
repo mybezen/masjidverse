@@ -136,7 +136,7 @@ function Dashboard() {
                   </p>
                   <button
                     className="mt-1 font-medium text-green-600 hover:underline"
-                    onClick={() => handleNavigate("/listmasjid")}
+                    onClick={() => handleNavigate("/feature")}
                   >
                     Lihat Selengkapnya &gt;
                   </button>

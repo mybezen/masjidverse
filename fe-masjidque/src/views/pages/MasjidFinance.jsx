@@ -106,11 +106,10 @@ function MasjidFinance() {
       }
     ]
 
-    const handleNavigate = useNavigate();
-        
-          const navigate = (path) => {
-            handleNavigate(path)
-          }
+    const navigate = useNavigate()
+const handleNavigate = (path) => {
+    navigate(path)
+}
   return (
     <div className="min-h-screen bg-gray-100">
       <Navbar />
