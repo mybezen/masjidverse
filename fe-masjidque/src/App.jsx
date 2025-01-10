@@ -26,6 +26,7 @@ import SuperDashboard from "./views/pages/superadmin/Dashboard";
 import AccountManagement from "./views/pages/superadmin/AccountManagement";
 import ContentManagement from "./views/pages/superadmin/ContentManagement";
 import RegistrationManagement from "./views/pages/superadmin/RegistrationManagement";
+import AddActivity from "./views/pages/admin/AddActivity";
 
 function App() {
   return (
@@ -55,14 +56,12 @@ function App() {
         <Route path="/admin/items" element={<ItemsManagement />} />
         <Route path="/admin/users" element={<UserManagement />} />
         <Route path="/admin/request" element={<RequestManagement />} />
+        <Route path="/admin/addactivity" element={<AddActivity />} />
 
-        <Route path='/super/' element={<SuperDashboard/>}/>
-        <Route path='/super/users' element={<AccountManagement/>}/>
-        <Route path='/super/content' element={<ContentManagement/>}/>
-        <Route path='/super/regist' element={<RegistrationManagement/>}/>
-        
-        
-        
+        <Route path="/super/" element={<SuperDashboard />} />
+        <Route path="/super/users" element={<AccountManagement />} />
+        <Route path="/super/content" element={<ContentManagement />} />
+        <Route path="/super/regist" element={<RegistrationManagement />} />
       </Routes>
     </BrowserRouter>
   );

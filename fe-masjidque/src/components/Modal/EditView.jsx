@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from "react";
 import Modal from "./Modal";
+import Swal from "sweetalert2"; // Import SweetAlert2
 
 function EditView({ open, onClose, onSubmit, fields, activity }) {
   const [formData, setFormData] = useState(
@@ -24,10 +25,24 @@ function EditView({ open, onClose, onSubmit, fields, activity }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     const isValid = fields.every((field) => formData[field]); // Validasi semua field
+
     if (isValid) {
-      onSubmit(formData);
+      onSubmit(formData); // Kirim data ke parent component
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Sudah Terupdate",
+        showConfirmButton: false,
+        timer: 1500,
+      });
     } else {
-      alert("Pastikan semua input terisi dengan benar!");
+      Swal.fire({
+        position: "center",
+        icon: "error",
+        title: "Pastikan semua input terisi dengan benar!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
     }
   };
 

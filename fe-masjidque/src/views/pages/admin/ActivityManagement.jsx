@@ -3,6 +3,7 @@ import Sidebar from "../../../components/Sidebar";
 import AddView from "../../../components/Modal/AddView";
 import EditView from "../../../components/Modal/EditView";
 import DeleteView from "../../../components/Modal/DeleteView";
+import Swal from "sweetalert2";
 
 function ActivityManagement() {
   const fields = ["tanggal", "namaKegiatan", "foto", "deskripsi", "lokasi"]; // Ambil dari header tabel
@@ -40,6 +41,17 @@ function ActivityManagement() {
   const handleDelete = (id) => {
     setActivities(activities.filter((activity) => activity.id !== id));
     setOpen({ ...open, delete: false });
+  };
+
+  const handleSubmit = () => {
+    // Tampilkan alert
+    Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "Sudah Terupdate",
+      showConfirmButton: false,
+      timer: 1500,
+    });
   };
 
   return (
@@ -107,6 +119,7 @@ function ActivityManagement() {
           onSubmit={handleAdd}
           fields={fields}
         />
+
         <EditView
           open={open.edit}
           onClose={() => setOpen({ ...open, edit: false })}

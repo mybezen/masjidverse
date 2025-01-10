@@ -1,7 +1,33 @@
 /* eslint-disable react/prop-types */
+import Swal from "sweetalert2"; // Import SweetAlert2
 import Modal from "./Modal";
 
 function DeleteView({ open, onClose, activityName, onSubmit }) {
+  const handleDelete = () => {
+    // Tampilkan konfirmasi SweetAlert2
+    Swal.fire({
+      title: "Apakah Anda yakin?",
+      text: `Anda akan menghapus data ${activityName || "ini"}.`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Ya, hapus!",
+      cancelButtonText: "Batal",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        onSubmit(); // Panggil fungsi onSubmit dari parent component
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Data berhasil dihapus!",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    });
+  };
+
   return (
     <Modal open={open} onClose={onClose} title="Hapus Data">
       <div className="space-y-4">
@@ -18,7 +44,7 @@ function DeleteView({ open, onClose, activityName, onSubmit }) {
             Cancel
           </button>
           <button
-            onClick={onSubmit}
+            onClick={handleDelete} // Panggil handleDelete saat tombol Delete diklik
             className="px-4 py-2 text-sm text-white bg-red-600 rounded hover:bg-red-700"
           >
             Delete
