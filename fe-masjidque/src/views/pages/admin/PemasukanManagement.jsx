@@ -8,7 +8,12 @@ import DetailView from "../../../components/Modal/DetailView";
 function PemasukanManagement() {
   const fields = ["sumber", "nominal", "tanggal"]; // Ambil dari header tabel
 
-  const [open, setOpen] = useState({ add: false, edit: false, delete: false, view: false });
+  const [open, setOpen] = useState({
+    add: false,
+    edit: false,
+    delete: false,
+    view: false,
+  });
   const [activities, setActivities] = useState([
     {
       id: 1,
@@ -98,7 +103,6 @@ function PemasukanManagement() {
                     View
                   </button>
                 </td>
-
               </tr>
             ))}
           </tbody>
@@ -131,12 +135,11 @@ function PemasukanManagement() {
           activity={currentActivity}
         />
         <DetailView
-  open={open.view}
-  onClose={() => setOpen({ ...open, view: false })}
-  fields={fields}
-  data={currentActivity}
-/>
-
+          open={open.view}
+          onClose={() => setOpen({ ...open, view: false })}
+          fields={fields}
+          data={currentActivity}
+        />
       </div>
     </div>
   );

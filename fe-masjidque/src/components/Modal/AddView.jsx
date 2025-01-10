@@ -32,8 +32,8 @@ function AddView({ open, onClose, onSubmit, fields }) {
   };
 
   return (
-    <Modal open={open} onClose={onClose} title="Tambah Data" onSubmit={handleSubmit}>
-      <form className="space-y-4">
+    <Modal open={open} onClose={onClose} title="Tambah Data">
+      <form className="space-y-4" onSubmit={handleSubmit}>
         {fields.map((field, index) => (
           <input
             key={index}
@@ -45,6 +45,22 @@ function AddView({ open, onClose, onSubmit, fields }) {
             className="w-full p-2 border rounded"
           />
         ))}
+        {/* Footer */}
+        <div className="flex justify-end space-x-2">
+          <button
+            type="button"
+            onClick={onClose}
+            className="px-4 py-2 text-sm text-gray-700 bg-gray-200 rounded hover:bg-gray-300"
+          >
+            Cancel
+          </button>
+          <button
+            type="submit"
+            className="px-4 py-2 text-sm text-white bg-blue-600 rounded hover:bg-blue-700"
+          >
+            Submit
+          </button>
+        </div>
       </form>
     </Modal>
   );
