@@ -21,14 +21,6 @@ class PengeluaranController extends Controller
             ->orderBy('created_at', 'desc')
             ->get();
 
-        if ($listPengeluaran->isEmpty()) {
-            return response()->json([
-                'success' => false,
-                'listPengeluaran' => [],
-                'totalPengeluaran' => 0
-            ]);
-        }
-
         $totalPengeluaran = $listPengeluaran->sum('nominal');
 
         return response()->json([

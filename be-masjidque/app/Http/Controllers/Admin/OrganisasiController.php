@@ -37,7 +37,8 @@ class OrganisasiController extends Controller
 
         $validator = Validator::make($request->all(), [
             'nama' => 'required',
-            'jabatan' => 'required'
+            'jabatan' => 'required',
+            'no_telepon' => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -50,6 +51,7 @@ class OrganisasiController extends Controller
         $organisasi = StrukturOrganisasi::create([
             'nama' => $request->input('nama'),
             'jabatan' => $request->input('jabatan'),
+            'no_telepon' => $request->input('no_telepon'),
             'masjid_id' => $idMasjid
         ]);
 

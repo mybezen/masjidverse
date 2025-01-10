@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AsetMasjid;
 use App\Models\Masjid;
 use App\Models\KegiatanMasjid;
 use App\Models\KeuanganInfaq;
 use App\Models\Peminjaman;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MasjidDetailController extends Controller
 {
@@ -184,15 +186,26 @@ class MasjidDetailController extends Controller
         ]);
     }
 
+    public function peminjamanAsetShow($id)
+    {
+        $aset = AsetMasjid::where('masjid_id', $id)->get();
+
+        return response()->json([
+            'success' => true,
+            'aset' => $aset
+        ]);
+    }
+
     public function peminjamanAset($id, Request $request)
     {
         $validated = $request->validate([
             'nama_lengkap' => 'required|string|max:255',
             'nomor_telepon' => 'required|string|max:20',
             'barang' => 'required|string|max:255',
-            'jumlah' => 'required|integer|min:1', 
+            'jumlah' => 'required|integer|min:1',
             'tanggal_mulai' => 'required|date|after_or_equal:today',
             'tanggal_selesai' => 'required|date|after_or_equal:tanggal_mulai',
+            'aset_id' => 'required'
         ]);
 
         Peminjaman::create([
@@ -203,11 +216,13 @@ class MasjidDetailController extends Controller
             'jumlah' => $validated['jumlah'],
             'tanggal_mulai' => $validated['tanggal_mulai'],
             'tanggal_selesai' => $validated['tanggal_selesai'],
+            'aset_id' => $validated['aset_id'],
             'status' => 'diajukan',
         ]);
 
         return response()->json([
-            'success' => true
+            'success' => true,
+            'message' => 'Berhasil membuat peminjaman aset.'
         ]);
     }
 }

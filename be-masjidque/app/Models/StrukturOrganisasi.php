@@ -12,7 +12,8 @@ class StrukturOrganisasi extends Model
     protected $fillable = [
         'nama',
         'jabatan',
-        'masjid_id'
+        'masjid_id',
+        'no_telepon',
     ];
 
     public function masjid(): BelongsTo

@@ -119,18 +119,14 @@ class InventarisController extends Controller
         $akunMasjid = Auth::guard('masjid')->user();
         $idMasjid = $akunMasjid->id;
 
-        $peminjaman = Peminjaman::where('masjid_id', $idMasjid)->get();
+        $peminjaman = Peminjaman::where('masjid_id', $idMasjid)->where('status', 'diajukan')->get();
 
-        if ($peminjaman->isEmpty()) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Tidak ada pengajuan peminjaman barang masjid.'
-            ]);
-        }
+        $pengembalian = Peminjaman::where('masjid_id', $idMasjid)->where('status', 'disetujui')->get();
 
         return response()->json([
             'success' => true,
-            'peminjaman' => $peminjaman
+            'peminjaman' => $peminjaman,
+            'pengembalian' => $pengembalian
         ]);
     }
 
@@ -221,6 +217,10 @@ class InventarisController extends Controller
                 'status' => 'tersedia'
             ]);
         }
+
+        $peminjaman->update([
+            'status' => 'selesai'
+        ]);
 
         return response()->json([
             'success' => true,

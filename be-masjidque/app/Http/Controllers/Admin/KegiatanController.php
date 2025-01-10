@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\KegiatanMasjid;
+use App\Models\Masjid;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -52,8 +53,10 @@ class KegiatanController extends Controller
         $akunMasjid = Auth::guard('masjid')->user();
         $idMasjid = $akunMasjid->id;
 
+        $masjid = Masjid::find($idMasjid);
+        $namaMasjid = $masjid->nama;
+
         $validator = Validator::make($request->all(), [
-            'nama_masjid' => 'required',
             'nama_kegiatan' => 'required',
             'penceramah' => 'required',
             'deskripsi' => 'required',
@@ -75,7 +78,7 @@ class KegiatanController extends Controller
         $kegiatan = KegiatanMasjid::create([
             'tanggal' => $request->input('tanggal'),
             'waktu' => $request->input('waktu'),
-            'nama_masjid' => $request->input('nama_masjid'),
+            'nama_masjid' => $namaMasjid,
             'nama_kegiatan' => $request->input('nama_kegiatan'),
             'foto' => $request->input('foto'),
             'deskripsi' => $request->input('deskripsi'),
@@ -97,7 +100,6 @@ class KegiatanController extends Controller
         ]);
     }
 
-    // ? Butuh method edit?
     public function edit($id)
     {
         $kegiatan = KegiatanMasjid::find($id);
@@ -118,7 +120,6 @@ class KegiatanController extends Controller
     public function update($id, Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'nama_masjid' => 'required',
             'nama_kegiatan' => 'required',
             'penceramah' => 'required',
             'deskripsi' => 'required',
@@ -140,7 +141,6 @@ class KegiatanController extends Controller
         $kegiatan->update([
             'tanggal' => $request->input('tanggal'),
             'waktu' => $request->input('waktu'),
-            'nama_masjid' => $request->input('nama_masjid'),
             'nama_kegiatan' => $request->input('nama_kegiatan'),
             'foto' => $request->input('foto'),
             'deskripsi' => $request->input('deskripsi'),
