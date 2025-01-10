@@ -4,17 +4,15 @@ import AddView from "../../../components/Modal/AddView";
 import EditView from "../../../components/Modal/EditView";
 import DeleteView from "../../../components/Modal/DeleteView";
 
-function AccountManagement() {
-  const fields = ["nama", "password", "nomorHp", "email"]; // Ambil dari header tabel
+function ContentManagement() {
+  const fields = ["notifikasi"]; // Ambil dari header tabel
 
   const [open, setOpen] = useState({ add: false, edit: false, delete: false });
   const [activities, setActivities] = useState([
     {
-      id: 1,
-      nama: "Agus",
-      password: "*****",
-      nomorHp: "089982139512",
-      email: "agus@gmail.com",
+      id: "1",
+      notifikasi:
+        "Konten dengan judul 'Ceramah Ustadz Bahlul' telah menerima laporan dari pengguna karena dianggap tidak sesuai dengan kebijakan. Silakan tinjau konten tersebut segera untuk mengambil tindakan lebih lanjut.",
     },
   ]);
   const [currentActivity, setCurrentActivity] = useState(null);
@@ -45,7 +43,7 @@ function AccountManagement() {
     <div className="flex h-screen bg-white plus-jakarta-sans-bold">
       <Sidebar />
       <div className="relative flex-1 p-6">
-        <h1 className="text-2xl font-bold">Account</h1>
+        <h1 className="text-2xl font-bold">Content</h1>
 
         <table className="min-w-full mt-4 bg-white rounded shadow">
           <thead>
@@ -124,4 +122,4 @@ function AccountManagement() {
   );
 }
 
-export default AccountManagement;
+export default ContentManagement;

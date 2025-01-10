@@ -36,7 +36,7 @@ function SuperSidebar() {
           label: "Pendaftaran",
           path: null,
           subItems: [
-            { label: "Manajemen Pendaftaran ", path: "/super/registration" },
+            { label: "Manajemen Pendaftaran ", path: "/super/regist" },
           ],
         },
       ],
@@ -48,7 +48,7 @@ function SuperSidebar() {
           icon: BellIcon,
           label: "Notifikasi",
           path: null,
-          subItems: [{ label: "Manajemen Konten", path: "/admin/content" }],
+          subItems: [{ label: "Manajemen Konten", path: "/super/content" }],
         },
       ],
     },

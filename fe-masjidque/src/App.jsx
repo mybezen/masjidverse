@@ -24,6 +24,8 @@ import PemasukanManagement from "./views/pages/admin/PemasukanManagement";
 import UpComingEvent from "./views/pages/UpComingEvent";
 import SuperDashboard from "./views/pages/superadmin/Dashboard";
 import AccountManagement from "./views/pages/superadmin/AccountManagement";
+import ContentManagement from "./views/pages/superadmin/ContentManagement";
+import RegistrationManagement from "./views/pages/superadmin/RegistrationManagement";
 
 function App() {
   return (
@@ -56,6 +58,9 @@ function App() {
 
         <Route path='/super/' element={<SuperDashboard/>}/>
         <Route path='/super/users' element={<AccountManagement/>}/>
+        <Route path='/super/content' element={<ContentManagement/>}/>
+        <Route path='/super/regist' element={<RegistrationManagement/>}/>
+        
         
         
       </Routes>
