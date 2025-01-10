@@ -1,14 +1,21 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Modal from "./Modal";
+import Swal from "sweetalert2";
 
-function AddView({ open, onClose, onSubmit, fields }) {
+function AddView({ open, onClose, onSubmit, fields, activity }) {
   const [formData, setFormData] = useState(
     fields.reduce((acc, field) => {
       acc[field] = ""; // Inisialisasi semua field sebagai string kosong
       return acc;
     }, {})
   );
+
+  useEffect(() => {
+    if(activity) {
+      setFormData(activity);
+    }
+  }, [activity]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -19,17 +26,26 @@ function AddView({ open, onClose, onSubmit, fields }) {
     e.preventDefault();
     const isValid = fields.every((field) => formData[field]); // Validasi semua field
     if (isValid) {
-      onSubmit(formData);
-      setFormData(
-        fields.reduce((acc, field) => {
-          acc[field] = ""; // Reset form setelah submit
-          return acc;
-        }, {})
-      );
-    } else {
-      alert("Pastikan semua input terisi dengan benar!");
-    }
+          onSubmit(formData); // Kirim data ke parent component
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Berhasil menambahkan data",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        } else {
+          Swal.fire({
+            position: "center",
+            icon: "error",
+            title: "Pastikan semua input terisi dengan benar!",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
   };
+
+
 
   return (
     <Modal open={open} onClose={onClose} title="Tambah Data">

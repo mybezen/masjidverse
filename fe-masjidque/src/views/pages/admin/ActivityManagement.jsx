@@ -3,6 +3,7 @@ import Sidebar from "../../../components/Sidebar";
 import AddView from "../../../components/Modal/AddView";
 import EditView from "../../../components/Modal/EditView";
 import DeleteView from "../../../components/Modal/DeleteView";
+import DetailView from '../../../components/Modal/DetailView'
 import Swal from "sweetalert2";
 
 function ActivityManagement() {

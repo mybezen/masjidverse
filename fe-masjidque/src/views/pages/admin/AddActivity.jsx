@@ -7,6 +7,7 @@ import DescriptCard from "../../../assets/Icon/description.svg";
 import DateIcon from "../../../assets/Icon/date.svg";
 import TimeIcon from "../../../assets/Icon/time.svg";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 function AddActivity() {
   // State untuk setiap input
@@ -37,6 +38,10 @@ function AddActivity() {
     setWaktuSelesai("");
   };
 
+  const navigate = useNavigate()
+  const handleNavigate = (path) => {
+    navigate(path)
+  }
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="w-[900px] max-w-xl p-6 bg-white rounded-lg shadow-md">
@@ -86,6 +91,7 @@ function AddActivity() {
                 value={namaKegiatan}
                 onChange={(e) => setNamaKegiatan(e.target.value)}
                 className="w-full p-2 border-0 border-b-2 border-gray-300 focus:outline-none focus:border-blue-500"
+              
               />
             </div>
           </div>
@@ -169,13 +175,22 @@ function AddActivity() {
           </div>
         </div>
 
+
         {/* Tombol Simpan */}
+        <div className="flex justify-center items-center gap-2">
+
+        <button 
+        className=" mt-6 w-full px-4 py-2 bg-gradient-to-r from-[#070707] via-[#154431] to-[#29845F] text-white rounded-lg hover:bg-green-600"
+        onClick={() => handleNavigate("/admin/activity")}>
+          Cancel
+        </button>
         <button
           className="mt-6 w-full px-4 py-2 bg-gradient-to-r from-[#070707] via-[#154431] to-[#29845F] text-white rounded-lg hover:bg-green-600"
           onClick={handleSubmit}
-        >
+          >
           Simpan
         </button>
+          </div>
       </div>
     </div>
   );
