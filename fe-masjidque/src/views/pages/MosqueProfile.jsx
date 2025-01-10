@@ -1,9 +1,8 @@
 import Navbar from "../../components/Navbar";
 import MosqueImage from "../../assets/Images/mosque.png";
 import ReportIcon from "../../assets/Icon/report.svg";
-import BackIcon from "../../assets/Icon/back.svg"
+import BackIcon from "../../assets/Icon/back.svg";
 import { useNavigate } from "react-router-dom";
-
 
 function MosqueProfile() {
   const locationDetails = [
@@ -24,19 +23,20 @@ function MosqueProfile() {
   ];
 
   const backPages = [
-      {
-          id:1,
-          title: "Kembali",
-          icon: BackIcon,
-          path: "/feature",
-      
-      }
-    ]
-    const handleNavigate = useNavigate();
+    {
+      id: 1,
+      title: "Kembali",
+      icon: BackIcon,
+      path: "/feature",
+    },
+  ];
 
-    const navigate = (path) => {
-      handleNavigate(path)
-    }
+  const handleNavigate = useNavigate();
+
+  const navigate = (path) => {
+    handleNavigate(path);
+  };
+
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
@@ -51,32 +51,33 @@ function MosqueProfile() {
           Masjid Al Huda
         </h1>
 
-        <div className="relative">
-          <img
-            src={MosqueImage}
-            alt="Masjid"
-            className="w-full h-[500px] object-cover"
-          />
-          <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-white to-transparent z-10" />
-        </div>
+        <img
+          src={MosqueImage}
+          alt="Masjid"
+          className="w-full h-[500px] object-cover"
+        />
+
+        <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-white to-transparent z-10" />
+
+        {backPages.map((back) => (
+          <button
+            key={back.id}
+            className="absolute top-4 left-4 z-20 flex items-center space-x-2 bg-white bg-opacity-75 rounded-lg p-2 hover:bg-opacity-100 transition-all"
+            onClick={() => navigate(back.path)}
+          >
+            <img src={back.icon} alt="Back Icon" className="w-6 h-6" />
+            <p className="text-lg">{back.title}</p>
+          </button>
+        ))}
 
         <img
           src={ReportIcon}
-          className="absolute top-4 right-4  rounded-full w-20 h-20 flex items-center justify-center"
-        ></img>
+          alt="Report Icon"
+          className="absolute top-4 right-4 z-20 rounded-full w-16 h-16 bg-white bg-opacity-75 p-2 hover:bg-opacity-100 transition-all"
+        />
       </div>
-      
 
       <div className="px-6">
-      {backPages.map((back) => (
-            <button key={back.id} className="w-[80%] mb-10" onClick={() => handleNavigate("/feature")}>
-                <div className="flex items-center">
-                    <img src={back.icon} 
-                    className="w-10"/>
-                    <p className="text-lg">{back.title}</p>
-                </div>
-            </button>
-        ))}
         <div className="pl-10 mt-5 mb-8">
           <h3 className="font-bold mb-2 text-4xl">Deskripsi</h3>
           <p className="text-xl">Masjid umum</p>

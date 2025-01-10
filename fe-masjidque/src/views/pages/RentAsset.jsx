@@ -6,7 +6,7 @@ import MejaICon from "../../assets/Icon/meja.svg";
 import KarpetIcon from "../../assets/Icon/karpet.svg";
 import SpeakerIcon from "../../assets/Icon/speaker.svg";
 import MicIcon from "../../assets/Icon/mic.svg";
-import BackIcon from "../../assets/Icon/back.svg"
+import BackIcon from "../../assets/Icon/back.svg";
 import { useNavigate } from "react-router-dom";
 
 function RentAsset() {
@@ -45,25 +45,24 @@ function RentAsset() {
 
   const backPages = [
     {
-        id:1,
-        title: "Kembali",
-        icon: BackIcon,
-        path: "/feature",
-    
-    }
-  ]
+      id: 1,
+      title: "Kembali",
+      icon: BackIcon,
+      path: "/feature",
+    },
+  ];
 
   const [selectedItem, setSelectedItem] = useState(null);
 
   const handleItemClick = (item) => {
-    setSelectedItem(item)
+    setSelectedItem(item);
   };
 
   const handleNavigate = useNavigate();
 
   const navigate = (path) => {
-    handleNavigate(path)
-  }
+    handleNavigate(path);
+  };
 
   return (
     <div>
@@ -71,13 +70,16 @@ function RentAsset() {
 
       <div className="flex flex-col items-center justify-center pt-10">
         {backPages.map((back) => (
-            <button key={back.id} className="w-[80%] mb-10" onClick={() => handleNavigate("/assetmasjid")}>
-                <div className="flex items-center">
-                    <img src={back.icon} 
-                    className="w-10"/>
-                    <p className="text-lg">{back.title}</p>
-                </div>
-            </button>
+          <button
+            key={back.id}
+            className="w-[80%] mb-10"
+            onClick={() => handleNavigate("/assetmasjid")}
+          >
+            <div className="flex items-center">
+              <img src={back.icon} className="w-10" />
+              <p className="text-lg">{back.title}</p>
+            </div>
+          </button>
         ))}
         <div className="w-[80%]">
           <div className="flex items-center gap-4 mb-6">
@@ -118,7 +120,10 @@ function RentAsset() {
             <form>
               <div className="grid grid-cols-2 gap-4 mb-4">
                 <div>
-                  <label htmlFor="name" className="block text-[15px] font-medium mb-2 ">
+                  <label
+                    htmlFor="name"
+                    className="block text-[15px] font-medium mb-2 "
+                  >
                     Nama Lengkap:
                   </label>
                   <input
@@ -129,7 +134,10 @@ function RentAsset() {
                   />
                 </div>
                 <div>
-                  <label htmlFor="phone" className="block text-[15px] font-medium mb-2">
+                  <label
+                    htmlFor="phone"
+                    className="block text-[15px] font-medium mb-2"
+                  >
                     Nomor Telepon:
                   </label>
                   <input
@@ -140,19 +148,25 @@ function RentAsset() {
                   />
                 </div>
                 <div>
-                  <label htmlFor="item" className="block text-[15px] font-medium mb-2">
+                  <label
+                    htmlFor="item"
+                    className="block text-[15px] font-medium mb-2"
+                  >
                     Barang Yang Dipinjam:
                   </label>
                   <input
                     type="text"
                     id="item"
-                    value={selectedItem.title} 
+                    value={selectedItem.title}
                     readOnly
                     className="w-full border border-gray-300 rounded-md p-2 bg-gray-100"
                   />
                 </div>
                 <div>
-                  <label htmlFor="quantity" className="block text-[15px] font-medium mb-2 ">
+                  <label
+                    htmlFor="quantity"
+                    className="block text-[15px] font-medium mb-2 "
+                  >
                     Jumlah:
                   </label>
                   <input
@@ -165,7 +179,9 @@ function RentAsset() {
               </div>
 
               <div className="mb-4">
-                <p className="block text-sm font-medium mb-2">Waktu Peminjaman:</p>
+                <p className="block text-sm font-medium mb-2">
+                  Waktu Peminjaman:
+                </p>
                 <div className="grid grid-cols-3 items-center gap-4">
                   <div>
                     <label htmlFor="start-date" className="block text-sm">

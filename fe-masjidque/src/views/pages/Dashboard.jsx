@@ -1,19 +1,20 @@
 import Navbar from "../../components/Navbar";
-import MasjidIcon from "../../assets/Images/image.png"; // Replace with the correct image path
+import MasjidImage from "../../assets/Images/image.png"; // Replace with the correct image path
 import BannerIcon from "../../assets/Images/Banner.png";
 import EventIcon from "../../assets/Icon/event.svg";
 import LocationIcon from "../../assets/Icon/location.svg";
 import ClockIcon from "../../assets/Icon/clock.png";
+import DateIcon from "../../assets/Icon/date.svg";
+import MasjidICon from "../../assets/Icon/mosque.svg";
 import { useNavigate } from "react-router-dom";
 
 function Dashboard() {
-  
   const navigate = useNavigate();
 
   const handleNavigate = (path) => {
     navigate(path);
   };
-  
+
   return (
     <div className="min-h-screen bg-[#EDEDF9]">
       {/* Navbar */}
@@ -47,12 +48,15 @@ function Dashboard() {
         <section className="mt-8">
           <div className="flex items-center justify-between mb-4">
             <div className="flex flex-row items-center justify-center">
-              <img src={EventIcon}></img>
+              <img src={DateIcon}></img>
               <h3 className="ml-[12px] text-xl font-bold text-gray-700">
                 Kegiatan Yang Akan Datang
               </h3>
             </div>
-            <button className="text-black poppins-medium hover:underline">
+            <button
+              className="text-black poppins-medium hover:underline"
+              onClick={() => handleNavigate("/kegiatanakandatang")}
+            >
               View All
             </button>
           </div>
@@ -98,8 +102,14 @@ function Dashboard() {
         {/* Daftar Masjid */}
         <section className="pb-12 mt-12">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-xl font-bold text-gray-700">Daftar Masjid</h3>
-            <button className="font-medium text-green-600 hover:underline">
+            <div className="flex items-center gap-4">
+              <img src={MasjidICon} alt="" />
+              <h3 className="text-xl font-bold text-gray-700">Daftar Masjid</h3>
+            </div>
+            <button
+              className="font-medium text-green-600 hover:underline"
+              onClick={() => handleNavigate("/listmasjid")}
+            >
               View All
             </button>
           </div>
@@ -111,7 +121,7 @@ function Dashboard() {
               >
                 {/* Image */}
                 <img
-                  src={MasjidIcon}
+                  src={MasjidImage}
                   alt="Masjid"
                   className="object-cover w-[410px] h-[300px]"
                 />
@@ -124,7 +134,10 @@ function Dashboard() {
                   <p className="text-sm text-gray-700">
                     Jl. Kecubung V, RT 5 RW 2, Jakarta Timur 13420
                   </p>
-                  <button className="mt-1 font-medium text-green-600 hover:underline" onClick={() => handleNavigate("/listmasjid")}>
+                  <button
+                    className="mt-1 font-medium text-green-600 hover:underline"
+                    onClick={() => handleNavigate("/listmasjid")}
+                  >
                     Lihat Selengkapnya &gt;
                   </button>
                 </div>

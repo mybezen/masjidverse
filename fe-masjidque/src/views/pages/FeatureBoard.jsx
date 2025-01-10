@@ -1,8 +1,23 @@
 import Navbar from "../../components/Navbar";
 import MosqueImage from "../../assets/Images/mosque.png";
 import MenuIcon from "../../components/MenuIcon";
+import BackIcon from "../../assets/Icon/back.svg";
+import { useNavigate } from "react-router-dom";
+
+const backPages = [
+  {
+    id: 1,
+    title: "Kembali",
+    icon: BackIcon,
+    path: "/feature",
+  },
+];
 
 function FeatureBoard() {
+  const navigate = useNavigate();
+  const handleNavigate = (path) => {
+    navigate(path);
+  };
   return (
     <div>
       <Navbar />
