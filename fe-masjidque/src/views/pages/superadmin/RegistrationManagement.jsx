@@ -1,52 +1,36 @@
 import { useState } from "react";
 import Sidebar from "../../../components/SuperSidebar";
-import AddView from "../../../components/Modal/AddView";
-import EditView from "../../../components/Modal/EditView";
-import DeleteView from "../../../components/Modal/DeleteView";
 import DetailView from "../../../components/Modal/DetailView";
 
 function RegistrationManagement() {
-  const fields = ["nama", "password", "nomorHp", "email"]; // Ambil dari header tabel
+  const fields = ["nama", "nomorHp", "email", "password"];
 
-  const [open, setOpen] = useState({ add: false, edit: false, delete: false });
+  const [open, setOpen] = useState({ add: false, view: false });
   const [activities, setActivities] = useState([
     {
       id: 1,
       nama: "Agus",
-      password: "*****",
+      password: "supersecret",
       nomorHp: "089982139512",
       email: "agus@gmail.com",
     },
   ]);
   const [currentActivity, setCurrentActivity] = useState(null);
 
-  const handleAdd = (newActivity) => {
-    setActivities([
-      ...activities,
-      { ...newActivity, id: activities.length + 1 },
-    ]);
-    setOpen({ ...open, add: false });
+  const handleApprove = (id) => {
+    alert(`Activity with ID ${id} has been approved.`);
   };
 
-  const handleEdit = (updatedActivity) => {
-    setActivities(
-      activities.map((activity) =>
-        activity.id === updatedActivity.id ? updatedActivity : activity
-      )
-    );
-    setOpen({ ...open, edit: false });
-  };
-
-  const handleDelete = (id) => {
+  const handleReject = (id) => {
     setActivities(activities.filter((activity) => activity.id !== id));
-    setOpen({ ...open, delete: false });
+    alert(`Activity with ID ${id} has been rejected.`);
   };
 
   return (
     <div className="flex h-screen bg-white plus-jakarta-sans-bold">
       <Sidebar />
       <div className="relative flex-1 p-6">
-        <h1 className="text-2xl font-bold">Registration</h1>
+        <h1 className="text-2xl font-bold">Account</h1>
 
         <table className="min-w-full mt-4 bg-white rounded shadow">
           <thead>
@@ -66,30 +50,24 @@ function RegistrationManagement() {
                 <td className="p-4">{activity.id}</td>
                 {fields.map((field) => (
                   <td key={field} className="p-4">
-                    {activity[field]}
+                    {field === "password" ? "***" : activity[field]}
                   </td>
                 ))}
                 <td className="flex p-4 space-x-2">
                   <button
-                    className="px-2 py-1 text-white bg-blue-500 rounded hover:bg-blue-600"
-                    onClick={() => {
-                      setCurrentActivity(activity);
-                      setOpen({ ...open, edit: true });
-                    }}
+                    className="px-2 py-1 text-white bg-green-500 rounded hover:bg-green-600"
+                    onClick={() => handleApprove(activity.id)}
                   >
-                    Edit
+                    Setujui
                   </button>
                   <button
                     className="px-2 py-1 text-white bg-red-500 rounded hover:bg-red-600"
-                    onClick={() => {
-                      setCurrentActivity(activity);
-                      setOpen({ ...open, delete: true });
-                    }}
+                    onClick={() => handleReject(activity.id)}
                   >
-                    Delete
+                    Tolak
                   </button>
                   <button
-                    className="px-2 py-1 text-white bg-green-500 rounded hover:bg-green-600"
+                    className="px-2 py-1 text-white bg-blue-500 rounded hover:bg-blue-600"
                     onClick={() => {
                       setCurrentActivity(activity);
                       setOpen({ ...open, view: true });
@@ -102,33 +80,6 @@ function RegistrationManagement() {
             ))}
           </tbody>
         </table>
-
-        <button
-          className="fixed p-4 text-white bg-green-600 rounded-full shadow-lg bottom-6 right-6 hover:bg-green-700"
-          onClick={() => setOpen({ ...open, add: true })}
-        >
-          +
-        </button>
-
-        <AddView
-          open={open.add}
-          onClose={() => setOpen({ ...open, add: false })}
-          onSubmit={handleAdd}
-          fields={fields}
-        />
-        <EditView
-          open={open.edit}
-          onClose={() => setOpen({ ...open, edit: false })}
-          onSubmit={handleEdit}
-          fields={fields}
-          activity={currentActivity}
-        />
-        <DeleteView
-          open={open.delete}
-          onClose={() => setOpen({ ...open, delete: false })}
-          onSubmit={() => handleDelete(currentActivity.id)}
-          activity={currentActivity}
-        />
         <DetailView
           open={open.view}
           onClose={() => setOpen({ ...open, view: false })}

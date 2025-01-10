@@ -17,7 +17,7 @@ function AddActivity() {
   const [tanggal, setTanggal] = useState("");
   const [waktuMulai, setWaktuMulai] = useState("");
   const [waktuSelesai, setWaktuSelesai] = useState("");
-  const [foto, setFoto] = useState(AddPhoto); // Default gambar kosong
+  const [foto, setFoto] = useState(AddPhoto); 
 
   const navigate = useNavigate();
 
@@ -25,7 +25,7 @@ function AddActivity() {
     const file = e.target.files[0];
     if (file) {
       const reader = new FileReader();
-      reader.onload = () => setFoto(reader.result); // Simpan base64 image
+      reader.onload = () => setFoto(reader.result); 
       reader.readAsDataURL(file);
     }
   };
