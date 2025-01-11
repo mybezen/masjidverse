@@ -24,6 +24,10 @@ class User extends Authenticatable implements JWTSubject
         'password',
     ];
 
+    protected $casts = [
+        'status' => 'string',
+    ];
+
     /**
      * The attributes that should be hidden for serialization.
      *

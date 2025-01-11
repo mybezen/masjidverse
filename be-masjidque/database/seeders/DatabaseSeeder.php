@@ -9,6 +9,7 @@ use App\Models\AsetMasjid;
 use App\Models\KegiatanMasjid;
 use App\Models\KeuanganInfaq;
 use App\Models\StrukturOrganisasi;
+use App\Models\User;
 
 class DatabaseSeeder extends Seeder
 {
@@ -17,6 +18,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        // Seed SuperAdmin User
+        User::create([
+            'name' => 'Super Admin',
+            'email' => 'superadmin@gmail.com',
+            'password' => bcrypt('password123'),
+            'role' => 'superadmin',
+        ]);
+
         // Seed Masjid
         $masjid = Masjid::create([
             'nama' => 'Masjid Al-Falah',
@@ -33,7 +42,7 @@ class DatabaseSeeder extends Seeder
             'luas_bangunan' => '300 m2',
             'bank' => 'Bank Mandiri',
             'no_rekening' => '1234567890',
-            'saldo_kas' => 0,
+            'saldo_kas' => 10000000,
             'atas_nama' => 'Yayasan Al-Falah',
             'no_telepon' => '08123456789',
             'email' => 'contact@masjidalfalah.com',
@@ -46,7 +55,35 @@ class DatabaseSeeder extends Seeder
             'status' => 'diajukan',
         ]);
 
-        // Use the dynamically created Masjid ID
+        $masjid = Masjid::create([
+            'nama' => 'Masjid Al-Huda',
+            'password' => bcrypt('password123'),
+            'deskripsi' => 'Masjid modern yang melayani masyarakat dengan berbagai fasilitas.',
+            'provinsi' => 'Jawa Tengah',
+            'kota' => 'Semarang',
+            'kecamatan' => 'Tembalang',
+            'alamat' => 'Jl. Masjid No. 2',
+            'alamat_map' => 'https://goo.gl/maps/example',
+            'kode_pos' => '50275',
+            'tahun_berdiri' => '1985',
+            'luas_tanah' => '600 m2',
+            'luas_bangunan' => '400 m2',
+            'bank' => 'Bank BRI',
+            'no_rekening' => '9876543210',
+            'saldo_kas' => 15000000,
+            'atas_nama' => 'Yayasan Al-Huda',
+            'no_telepon' => '08223456789',
+            'email' => 'contact@masjidalhuda.com',
+            'instagram' => '@masjidalhuda',
+            'facebook' => 'facebook.com/masjidalhuda',
+            'website' => 'http://masjidalhuda.com',
+            'nama_yayasan' => 'Yayasan Al-Huda',
+            'foto' => 'path/to/foto.jpg',
+            'logo' => 'path/to/logo.png',
+            'status' => 'diterima',
+        ]);
+
+        // Ambil ID masjid
         $masjidId = $masjid->id;
 
         // Seed Aset Masjid
@@ -72,7 +109,7 @@ class DatabaseSeeder extends Seeder
             'tanggal_peminjaman' => now()->subDays(1),
             'tanggal_pengembalian' => now()->addDays(3),
             'aset_id' => 1,
-            'masjid_id' => 1,
+            'masjid_id' => $masjidId,
             'status' => 'diajukan'
         ]);
 
@@ -82,9 +119,8 @@ class DatabaseSeeder extends Seeder
             'jumlah' => 5,
             'tanggal_peminjaman' => now()->subDays(3),
             'tanggal_pengembalian' => now()->subDay(),
-            'aset_id' => 2,
-            'aset_id' => 1,
-            'masjid_id' => 1,
+            'aset_id' => 1, // Pastikan aset ID yang valid
+            'masjid_id' => $masjidId,
             'status' => 'diajukan'
         ]);
 
@@ -97,7 +133,8 @@ class DatabaseSeeder extends Seeder
             'foto' => 'path/to/kajian_subuh.jpg',
             'deskripsi' => 'Kajian tafsir Al-Quran bersama Ustadz Abdul Somad.',
             'lokasi' => 'Masjid Al-Falah',
-            'masjid_id' => $masjidId,
+            'masjid_id' => $masjidId, // Gunakan ID masjid
+            'status_laporan' => 'diajukan',
         ]);
 
         // Seed Keuangan Infaq: Debit (Pemasukan)
@@ -142,13 +179,11 @@ class DatabaseSeeder extends Seeder
             'bukti_transfer' => 'path/to/example_transfer4.jpg',
         ]);
 
-
         // Seed Struktur Organisasi
         StrukturOrganisasi::create([
             'nama' => 'Ustadz Ahmad',
             'jabatan' => 'Ketua',
             'no_telepon' => '08123456789',
-            'foto' => 'path/to/ustadz_ahmad.jpg',
             'masjid_id' => $masjidId,
         ]);
 
@@ -156,7 +191,6 @@ class DatabaseSeeder extends Seeder
             'nama' => 'Ustadz Adi',
             'jabatan' => 'Wakil Ketua',
             'no_telepon' => '08198765432',
-            'foto' => 'path/to/ustadz_adi.jpg',
             'masjid_id' => $masjidId,
         ]);
     }

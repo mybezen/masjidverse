@@ -41,6 +41,16 @@ return [
             'provider' => 'users',
         ],
 
+        'superadmin' => [
+            'driver' => 'jwt',
+            'provider' => 'users','superadmins',
+        ],
+
+        'api' => [
+            'driver' => 'jwt',
+            'provider' => 'users',
+        ],
+
         'user' => [
             'driver' => 'jwt',
             'provider' => 'users'
@@ -73,6 +83,11 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => env('AUTH_MODEL', App\Models\User::class),
+        ],
+
+        'superadmins' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\User::class,
         ],
 
         'masjids' => [

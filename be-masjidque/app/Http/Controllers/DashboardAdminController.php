@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Hash;
 use App\Models\KegiatanMasjid;
 use App\Models\KeuanganInfaq;
+use App\Models\Masjid;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -78,5 +80,34 @@ class DashboardAdminController extends Controller
             'dataPemasukan' => $listPemasukanBulanan,
             'dataPengeluaran' => $listPengeluaranBulanan
         ]);
+    }
+
+    public function gantiPassword(Request $request)
+    {
+        $request->validate([
+            'old_password' => 'required',
+            'new_password' => 'required|min:8|confirmed',
+        ]);
+
+        $user = Auth::guard('masjid')->user();
+
+        if (!$user) {
+            return response()->json(['success' => false, 'message' => 'User tidak ditemukan.'], 404);
+        }
+
+        if (!Hash::check($request->old_password, $user->password)) {
+            return response()->json(['success' => false, 'message' => 'Password lama salah.'], 400);
+        }
+
+        $updated = Masjid::where('id', $user->id)->update([
+            'password' => Hash::make($request->new_password),
+            'password_last_updated_at' => now(),
+        ]);
+
+        if ($updated) {
+            return response()->json(['success' => true, 'message' => 'Password berhasil diubah.'], 200);
+        }
+
+        return response()->json(['success' => false, 'message' => 'Gagal mengubah password.'], 500);
     }
 }

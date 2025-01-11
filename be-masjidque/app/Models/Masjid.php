@@ -39,6 +39,11 @@ class Masjid extends Authenticatable implements JWTSubject
         'status',
     ];
 
+    
+    protected $casts = [
+        'password_last_updated_at' => 'datetime',
+    ];
+
     public function kegiatanMasjid(): HasMany
     {
         return $this->hasMany(KegiatanMasjid::class);

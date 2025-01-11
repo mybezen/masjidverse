@@ -41,21 +41,7 @@ class ManajemenAkunController extends Controller
                 'message' => $validator->errors()
             ], 422);
         }
-
-//
-        User::create([
-            'name' => $request->input('name'),
-            'email' => $request->input('email'),
-            'password' => bcrypt($request->input('password')),
-            'no_telp' => $request->input('no_telp'),
-        ]);
-
-        return response()->json([
-            'success' => true,
-            'message' => 'Berhasil menambahkan akun pengguna.'
-        ]);
     }
-//
 
     public function update(Request $request, $id)
     {
@@ -80,7 +66,6 @@ class ManajemenAkunController extends Controller
             'message' => 'Berhasil mengubah data akun pengguna.'
         ]);
     }
-
 
     public function destroy($id)
     {
