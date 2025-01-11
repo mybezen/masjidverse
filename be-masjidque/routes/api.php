@@ -5,6 +5,8 @@ use App\Http\Controllers\SuperAdmin\ManajemenPendaftaranController;
 use App\Http\Controllers\SuperAdmin\ManajemenAkunController;
 use App\Http\Controllers\SuperAdmin\ManajemenKontenController;
 use App\Http\Controllers\SuperAdmin\ManajemenKeuanganController;
+use App\Http\Controllers\SuperAdmin\DashboardStatistikController;
+use App\Http\Controllers\SuperAdmin\DashboardKeamananController;
 
 use App\Http\Controllers\DashboardAdminController;
 use App\Http\Controllers\Admin\InventarisController;
@@ -17,9 +19,11 @@ use App\Http\Controllers\MasjidController;
 use App\Http\Controllers\MasjidDetailController;
 use App\Http\Controllers\Auth\SuperAdminAuthController;
 use App\Http\Controllers\Auth\MasjidAuthController;
+
 use App\Http\Middleware\CheckGuest;
 use App\Http\Middleware\CheckMasjidAdmin;
 use App\Http\Middleware\CheckSuperAdmin;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -50,10 +54,7 @@ Route::middleware([CheckGuest::class])->group(function () {
     // Admin Authentication
 Route::middleware([CheckMasjidAdmin::class])->group(function () {
     Route::get('/logout', [MasjidAuthController::class, 'logout']);
-
-Route::middleware('auth:masjid')->group(function () {
-    Route::post('/masjid/ganti-password', [DashboardAdminController::class, 'gantiPassword']);
-    });
+    Route::post('/dashboard/ganti-password', [DashboardAdminController::class, 'gantiPassword']);
 
     // Dashboard Admin
     Route::get('/dashboard', [DashboardAdminController::class, 'index']);
@@ -112,8 +113,8 @@ Route::middleware([CheckSuperAdmin::class])->group(function () {
 
     Route::get('/dashboard/manajemen-keuangan', [ManajemenKeuanganController::class, 'index']);
     Route::get('/dashboard/manajemen-keuangan/{id}', [ManajemenKeuanganController::class, 'show']);
+
+    Route::get('/dashboard/statistik', [DashboardStatistikController::class, 'index']);
+
+    Route::get('/dashboard/keamanan', [DashboardKeamananController::class, 'index']);
     });
-
-// statistik ?
-
-// keamanan ?

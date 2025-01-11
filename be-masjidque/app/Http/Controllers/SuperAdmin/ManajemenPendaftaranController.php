@@ -4,6 +4,7 @@ namespace App\Http\Controllers\SuperAdmin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Masjid;
+
 use Illuminate\Http\Request;
 
 class ManajemenPendaftaranController extends Controller
@@ -49,5 +50,4 @@ class ManajemenPendaftaranController extends Controller
 
         return redirect()->back()->with('success', 'Pendaftaran berhasil ditandai untuk ditinjau.');
     }
-
 }
