@@ -18,13 +18,6 @@ class InventarisController extends Controller
 
         $listAsetMasjid = AsetMasjid::where('masjid_id', $idMasjid)->get();
 
-        if ($listAsetMasjid->isEmpty()) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Belum ada data barang.'
-            ]);
-        }
-
         return response()->json([
             'success' => true,
             'dataBarang' => $listAsetMasjid
@@ -49,8 +42,8 @@ class InventarisController extends Controller
         }
 
         AsetMasjid::create([
-            'nama_aset' => $request->input('nama_barang'),
-            'quantity' => $request->input('jumlah'),
+            'nama_barang' => $request->input('nama_barang'),
+            'jumlah' => $request->input('jumlah'),
             'status_peminjaman' => 'tersedia',
             'masjid_id' => $idMasjid
         ]);
@@ -63,18 +56,6 @@ class InventarisController extends Controller
 
     public function update(Request $request, $id)
     {
-        $validator = Validator::make($request->all(), [
-            'nama_barang' => 'required',
-            'jumlah' => 'required|integer|min:1',
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json([
-                'success' => false,
-                'message' => $validator->errors()
-            ], 422);
-        }
-
         $aset = AsetMasjid::find($id);
 
         if (!$aset) {
@@ -84,9 +65,21 @@ class InventarisController extends Controller
             ], 404);
         }
 
+        $validator = Validator::make($request->all(), [
+            'nama_barang' => 'required',
+            'jumlah' => 'required|integer|min:1',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => true,
+                'message' => $validator->errors()
+            ], 422);
+        }
+
         $aset->update([
-            'nama_aset' => $request->input('nama_barang'),
-            'quantity' => $request->input('jumlah'),
+            'nama_barang' => $request->input('nama_barang'),
+            'jumlah' => $request->input('jumlah'),
         ]);
 
         return response()->json([
@@ -142,7 +135,7 @@ class InventarisController extends Controller
         }
 
         $barang = AsetMasjid::find($peminjaman->aset_id);
-        $jumlahBarangTersedia = $barang->quantity;
+        $jumlahBarangTersedia = $barang->jumlah;
 
         if ($peminjaman->jumlah > $jumlahBarangTersedia) {
             return response()->json([
@@ -154,8 +147,8 @@ class InventarisController extends Controller
         $jumlahBarangSetelahDipinjam = $jumlahBarangTersedia - $peminjaman->jumlah;
 
         $barang->update([
-            'quantity' => $jumlahBarangSetelahDipinjam,
-            'status' => 'dipinjamkan'
+            'jumlah' => $jumlahBarangSetelahDipinjam,
+            'status_peminjaman' => 'dipinjamkan'
         ]);
 
         $peminjaman->update([
@@ -201,26 +194,26 @@ class InventarisController extends Controller
         }
 
         $barang = AsetMasjid::find($peminjaman->aset_id);
-        $jumlahBarang = $barang->quantity;
+        $jumlahBarang = $barang->jumlah;
         $jumlahPeminjaman = $peminjaman->jumlah;
 
         $jumlahBarangSetelahDikembalikan = $jumlahBarang + $jumlahPeminjaman;
 
-        if (Peminjaman::where('aset_id', $barang->id)->exist()) {
+        $peminjaman->update([
+            'status' => 'selesai'
+        ]);
+
+        if (Peminjaman::where('aset_id', $barang->id)->where('status', 'disetujui')->exists()) {
             $barang->update([
-                'quantity' => $jumlahBarangSetelahDikembalikan,
+                'jumlah' => $jumlahBarangSetelahDikembalikan,
                 'status' => 'dipinjamkan'
             ]);
         } else {
             $barang->update([
-                'quantity' => $jumlahBarangSetelahDikembalikan,
+                'jumlah' => $jumlahBarangSetelahDikembalikan,
                 'status' => 'tersedia'
             ]);
         }
-
-        $peminjaman->update([
-            'status' => 'selesai'
-        ]);
 
         return response()->json([
             'success' => true,

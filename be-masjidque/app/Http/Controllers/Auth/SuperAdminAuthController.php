@@ -62,7 +62,6 @@ class SuperAdminAuthController extends Controller
                 'status' => 'success',
                 'message' => 'Berhasil Logout.',
             ], 200);
-
         } catch (\Exception $e) {
             return response()->json([
                 'status' => 'error',

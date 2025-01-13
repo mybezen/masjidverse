@@ -13,6 +13,7 @@ class KeuanganInfaq extends Model
         'tanggal',
         'keterangan',
         'nominal',
+        'atas_nama',
         'jenis_transaksi',
         'status_transaksi',
         'masjid_id',

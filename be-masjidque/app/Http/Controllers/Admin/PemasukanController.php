@@ -22,8 +22,6 @@ class PemasukanController extends Controller
             ->orderBy('created_at', 'desc')
             ->get();
 
-        
-
         $listPemasukanDisetujui = KeuanganInfaq::where('masjid_id', $idMasjid)
             ->where('jenis_transaksi', 'debit')
             ->where('status_transaksi', 'disetujui')
@@ -105,7 +103,7 @@ class PemasukanController extends Controller
         }
 
         $pemasukan->update([
-            'status' => 'ditolak'
+            'status_transaksi' => 'ditolak'
         ]);
 
         return response()->json([

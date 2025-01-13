@@ -11,9 +11,9 @@ class AsetMasjid extends Model
     protected $table = 'aset_masjid';
 
     protected $fillable = [
-        'nama_aset',
+        'nama_barang',
         'foto',
-        'quantity',
+        'jumlah',
         'status_peminjaman',
         'masjid_id'
     ];

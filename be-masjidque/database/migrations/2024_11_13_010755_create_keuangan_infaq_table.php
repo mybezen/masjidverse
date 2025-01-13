@@ -21,6 +21,7 @@ return new class extends Migration
             $table->enum('jenis_transaksi', ['debit', 'kredit'])->default('debit');
             $table->enum('status_transaksi', ['diajukan', 'disetujui', 'ditolak'])->default('diajukan');
             $table->string('bukti_transfer')->nullable();
+            $table->string('atas_nama')->nullable();
 
             $table->foreign('masjid_id')->references('id')->on('masjid')->onDelete('cascade');
         });
