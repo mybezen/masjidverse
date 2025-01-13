@@ -29,7 +29,15 @@ function DeleteView({ open, onClose, activityName, onSubmit }) {
   };
 
   return (
-    <Modal open={open} onClose={onClose} title="Hapus Data">
+    <Modal
+      open={open}
+      onClose={onClose}
+      title="Hapus Data"
+      showDeleteIcon={true} // Tampilkan icon delete
+      showEditIcon={false} // Sembunyikan icon edit
+      showViewIcon={false} // Sembunyikan icon view
+      iconType={null} // Tidak menampilkan icon tambahan
+    >
       <div className="space-y-4">
         <p>
           Apakah Anda yakin ingin menghapus data{" "}

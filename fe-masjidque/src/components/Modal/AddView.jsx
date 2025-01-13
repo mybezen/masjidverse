@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
-import Modal from "./Modal";
-import Swal from "sweetalert2";
+import Modal from "./Modal"; // Import Modal
+import Swal from "sweetalert2"; // Import SweetAlert2
 
-function AddView({ open, onClose, onSubmit, fields, activity }) {
+function AddView({ open, onClose, onSubmit, fields, activity, iconType }) {
   const [formData, setFormData] = useState(
     fields.reduce((acc, field) => {
       acc[field] = ""; // Inisialisasi semua field sebagai string kosong
@@ -12,8 +12,8 @@ function AddView({ open, onClose, onSubmit, fields, activity }) {
   );
 
   useEffect(() => {
-    if(activity) {
-      setFormData(activity);
+    if (activity) {
+      setFormData(activity); // Isi data awal jika ada
     }
   }, [activity]);
 
@@ -26,29 +26,35 @@ function AddView({ open, onClose, onSubmit, fields, activity }) {
     e.preventDefault();
     const isValid = fields.every((field) => formData[field]); // Validasi semua field
     if (isValid) {
-          onSubmit(formData); // Kirim data ke parent component
-          Swal.fire({
-            position: "center",
-            icon: "success",
-            title: "Berhasil menambahkan data",
-            showConfirmButton: false,
-            timer: 1500,
-          });
-        } else {
-          Swal.fire({
-            position: "center",
-            icon: "error",
-            title: "Pastikan semua input terisi dengan benar!",
-            showConfirmButton: false,
-            timer: 1500,
-          });
-        }
+      onSubmit(formData); // Kirim data ke parent component
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Berhasil menambahkan data",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    } else {
+      Swal.fire({
+        position: "center",
+        icon: "error",
+        title: "Pastikan semua input terisi dengan benar!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
   };
 
-
-
   return (
-    <Modal open={open} onClose={onClose} title="Tambah Data">
+    <Modal
+      open={open}
+      onClose={onClose}
+      title="Tambah Data"
+      iconType={"finance"} // Tentukan iconType sesuai kebutuhan
+      showDeleteIcon={false} // Sembunyikan icon delete
+      showEditIcon={false} // Sembunyikan icon edit
+      showViewIcon={false} // Sembunyikan icon view
+    >
       <form className="space-y-4" onSubmit={handleSubmit}>
         {fields.map((field, index) => (
           <input

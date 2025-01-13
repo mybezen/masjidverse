@@ -56,7 +56,7 @@ function EditView({ open, onClose, onSubmit, fields, activity }) {
   };
 
   return (
-    <Modal open={open} onClose={onClose} title="Edit Data">
+    <Modal open={open} onClose={onClose} title="Edit Data" showEditIcon={true}>
       <form className="space-y-4" onSubmit={handleSubmit}>
         {fields.map((field, index) => (
           <div key={index}>
