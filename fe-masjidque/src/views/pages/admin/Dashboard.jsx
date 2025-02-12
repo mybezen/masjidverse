@@ -7,8 +7,17 @@ import IncomeIcon from "../../../assets/Icon/income.svg";
 import OutcomeIcon from "../../../assets/Icon/outcome.svg";
 import ChartPengeluaran from "../../../components/ChartPengeluaran";
 import SearchIcon from "@mui/icons-material/Search";
+import UserIcon from "../../../assets/Icon/user.svg";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+
+
 
 function AdminDashboard() {
+  const navigate = useNavigate();
+  const handleNavigate = (path) => {
+    navigate(path);
+  };
   return (
     <div className="flex h-screen bg-gray-100">
       {/* Sidebar */}
@@ -17,10 +26,10 @@ function AdminDashboard() {
       {/* Main Content */}
       <div className="flex-1 p-6">
         {/* Header */}
-        <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center justify-between mb-4 p-6">
           <Typography
             level="h1"
-            fontSize="xl"
+            fontSize="2rem"
             className="font-bold text-gray-800"
           >
             Dashboard
@@ -33,13 +42,19 @@ function AdminDashboard() {
               className="bg-gray-200 rounded-lg"
             />
             {/* User Info */}
-            <div className="text-right">
+            <div className="text-right flex">
+              <div className="flex flex-col items-end mr-4">
               <Typography level="body1" className="text-gray-800 poppins-bold">
                 Hello, Admin
               </Typography>
               <Typography level="body2" className="text-gray-500 poppins-bold">
                 Role: Admin
               </Typography>
+              </div>
+              <button className="hover:bg-gray-200 w-10 flex items-center justify-center" 
+              onClick={() => handleNavigate("/admin/dashboard")}>
+              <img src={UserIcon} className="invert" />
+              </button>
             </div>
           </div>
         </div>

@@ -49,7 +49,7 @@ function PemasukanManagement() {
   return (
     <div className="flex h-screen bg-white plus-jakarta-sans-bold">
       <Sidebar />
-      <div className="relative flex-1 p-6">
+      <div className="relative flex-1 p-10">
         <h1 className="text-2xl font-bold">Pemasukan</h1>
 
         <table className="min-w-full mt-4 bg-white rounded shadow">

@@ -28,6 +28,7 @@ import ContentManagement from "./views/pages/superadmin/ContentManagement";
 import RegistrationManagement from "./views/pages/superadmin/RegistrationManagement";
 import AddActivity from "./views/pages/admin/AddActivity";
 import AddMasjid from "./views/pages/AddMasjid";
+import PasswordManagement from "./views/pages/admin/PasswordManagement";
 
 function App() {
   return (
@@ -59,6 +60,7 @@ function App() {
         <Route path="/admin/users" element={<UserManagement />} />
         <Route path="/admin/request" element={<RequestManagement />} />
         <Route path="/admin/addactivity" element={<AddActivity />} />
+        <Route path="/admin/dashboard" element={<PasswordManagement />} />
 
         <Route path="/super/" element={<SuperDashboard />} />
         <Route path="/super/users" element={<AccountManagement />} />
