@@ -43,7 +43,7 @@ function ContentManagement() {
   return (
     <div className="flex h-screen bg-white plus-jakarta-sans-bold">
       <Sidebar />
-      <div className="relative flex-1 p-6">
+      <div className="relative flex-1 p-10">
         <h1 className="text-2xl font-bold">Content</h1>
 
         <table className="min-w-full mt-4 bg-white rounded shadow">
@@ -51,7 +51,7 @@ function ContentManagement() {
             <tr className="text-left bg-gray-200">
               <th className="p-4 rounded-tl-lg">Id</th>
               {fields.map((field) => (
-                <th key={field} className="p-4">
+                <th key={field} className="p-4 ml">
                   {field.charAt(0).toUpperCase() + field.slice(1)}
                 </th>
               ))}
@@ -63,7 +63,7 @@ function ContentManagement() {
               <tr key={activity.id} className="border-b">
                 <td className="p-4">{activity.id}</td>
                 {fields.map((field) => (
-                  <td key={field} className="p-4">
+                  <td key={field} className="p-4   text-balance">
                     {activity[field]}
                   </td>
                 ))}
