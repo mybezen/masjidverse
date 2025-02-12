@@ -102,7 +102,7 @@ const Sidebar = () => {
           <div key={menuIndex} className="mb-4">
             {/* Section Title */}
             {menu.section && isHovered && (
-              <div className="text-sm font-semibold uppercase text-gray-300 mb-2">
+              <div className="mb-2 text-sm font-semibold text-gray-300 uppercase">
                 {menu.section}
               </div>
             )}
@@ -119,10 +119,14 @@ const Sidebar = () => {
                     <div key={index} className="my-2">
                       <div
                         className={`flex items-center space-x-3 cursor-pointer hover:scale-105 poppins-bold ${
-                          isActiveItem ? "bg-white opacity-20 text-black rounded-lg text-center" : ""
+                          isActiveItem
+                            ? "bg-white opacity-20 text-black rounded-lg text-center"
+                            : ""
                         }`}
                         onClick={() =>
-                          item.path ? navigate(item.path) : toggleDropdown(identifier)
+                          item.path
+                            ? navigate(item.path)
+                            : toggleDropdown(identifier)
                         }
                       >
                         {/* Icon */}
