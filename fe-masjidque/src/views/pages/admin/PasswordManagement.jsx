@@ -98,9 +98,10 @@ function PasswordManagement() {
               </Typography>
               <Input sx={{ width: "30em", height: "2rem", marginTop: "0.5rem" }} placeholder="Masukkan password" />
               
-              <div className="flex ">
+              <div className="flex mt-10 justify-between">
               <Typography marginTop={1} marginLeft={1}>Minimal 6 Karakter</Typography>
-              <button className="flex ">Ubah</button>
+              <button className="flex w-[120px] h-[50px] bg-[#154431] rounded-full items-center justify-center
+              text-white">Ubah</button>
               </div>
             </div>
           </div>
