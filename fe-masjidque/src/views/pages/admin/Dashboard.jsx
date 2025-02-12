@@ -138,24 +138,35 @@ function AdminDashboard() {
 
           {/* Right Section */}
           <div className="flex flex-col col-span-4 space-y-6">
+            <div className="flex items-center space-x-2">
+            <img src={IncomeIcon} 
+            className="w-10 h-10" />
             <Typography
-            sx={{  }}> Pemasukan </Typography>
+            sx={{ fontSize: "1.5rem" }}> Pemasukan </Typography>
+            </div>
             {/* Income Section */}
             <Card
-              sx={{ borderRadius: "xl" }}
+              sx={{ 
+                borderRadius: "xl",
+                width:"50%",
+               }}
               className="p-4 bg-white rounded-lg shadow-md"
             >
-              <div className="flex items-center mb-2">
-                <img
-                  src={IncomeIcon}
-                  alt="Income Icon"
-                  className="w-6 h-6 mr-2"
-                />
-                <Typography className="text-lg font-semibold text-gray-700">
-                  Pemasukan
+              <div className="flex  mb-2 flex-col">
+                <Typography 
+                sx={{ fontSize: "1.3rem" }}
+                className="text-lg font-semibold text-gray-700">
+                  Total Pemasukan
                 </Typography>
+                <hr className="w-32 h-1 bg-black/40 rounded-full"/>
               </div>
-              <Typography fontWeight="bold" className="text-2xl text-gray-800">
+              <Typography 
+              fontWeight="bold"
+              fontSize={25}
+              sx={{
+                marginTop: "-1rem"
+              }} 
+              className="text-2xl text-gray-800">
                 Rp. 500.000
               </Typography>
               <Typography className="text-sm text-gray-500">
@@ -164,19 +175,35 @@ function AdminDashboard() {
             </Card>
 
             {/* Expense Section */}
-            <Card className="p-4 bg-white rounded-lg shadow-md">
-              <div className="flex items-center mb-2">
-                <img
-                  src={OutcomeIcon}
-                  alt="Outcome Icon"
-                  className="w-6 h-6 mr-2"
-                />
-                <Typography className="text-lg font-semibold text-gray-700">
-                  Pengeluaran
+            <div className="flex items-center space-x-2">
+            <img src={IncomeIcon} 
+            className="w-10 h-10" />
+            <Typography
+            sx={{ fontSize: "1.5rem" }}> Pengeluaran </Typography>
+            </div>
+            <Card
+              sx={{ 
+                borderRadius: "xl",
+                width:"50%"
+               }}
+              className="p-4 bg-white rounded-lg shadow-md"
+            >
+              <div className="flex  mb-2 flex-col">
+                <Typography 
+                sx={{ fontSize: "1.3rem" }}
+                className="text-lg font-semibold text-gray-700">
+                  Total Pengeluaran
                 </Typography>
+                <hr className="w-32 h-1 bg-black/40 rounded-full"/>
               </div>
-              <Typography fontWeight="bold" className="text-2xl text-gray-800">
-                Rp. 250.000
+              <Typography 
+              fontWeight="bold"
+              fontSize={25}
+              sx={{
+                marginTop: "-1rem"
+              }} 
+              className="text-2xl text-gray-800">
+                Rp. 500.000
               </Typography>
               <Typography className="text-sm text-gray-500">
                 Total hingga saat ini
