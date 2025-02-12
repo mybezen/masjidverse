@@ -34,7 +34,10 @@ function Dashboard() {
                 <br></br>
                 <h2>Klik Tombol dibawah ini !</h2>
               </h2>
-              <button className="px-6 py-2 font-medium text-black bg-white rounded-lg w-[150px] h-[50px] hover:bg-gray-200">
+              <button
+                className="px-6 py-2 font-medium text-black bg-white rounded-lg w-[150px] h-[50px] hover:bg-gray-200"
+                onClick={() => handleNavigate("/register")}
+              >
                 Daftar
               </button>
             </div>

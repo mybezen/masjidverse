@@ -5,20 +5,28 @@ import EventIcon from "../../assets/Icon/event.svg";
 import LocationIcon from "../../assets/Icon/location.svg";
 import ClockIcon from "../../assets/Icon/clock.png";
 import MosqueIcon from "../../assets/Icon/mosque.svg";
+import BackIcon from "../../assets/Icon/back.svg";
 import { useNavigate } from "react-router-dom";
 
 function ListMosque() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const handleNavigate = (path) => {
-    navigate(path)
-  }
+    navigate(path);
+  };
   return (
     <div className="min-h-screen bg-[#EDEDF9]">
       <Navbar />
       <div className="max-w-screen-xl mx-auto px-4">
         <div className="flex justify-between items-center pt-10">
           <div className="flex gap-3 items-center">
-            <img src={MosqueIcon} alt="Mosque Icon" />
+            <button
+              className="flex items-center space-x-2 rounded-lg p-2 hover:bg-opacity-100 transition-all"
+              onClick={() => window.history.back()}
+            >
+              <img src={BackIcon} alt="Back Icon" className="w-6 h-6" />
+              <p className="text-lg">Kembali</p>
+            </button>
+            <img src={MosqueIcon} className="ml-10" />
             <h1 className="text-center pt-2 plus-jakarta-sans-bold">
               Daftar Masjid
             </h1>
@@ -54,8 +62,10 @@ function ListMosque() {
                     <p className="text-sm text-gray-700">
                       Jl. Kecubung V, RT 5 RW 2, Jakarta Timur 13420
                     </p>
-                    <button className="mt-1 font-medium text-green-600 hover:underline"
-                    onClick={() => handleNavigate("/feature")}>
+                    <button
+                      className="mt-1 font-medium text-green-600 hover:underline"
+                      onClick={() => handleNavigate("/feature")}
+                    >
                       Lihat Selengkapnya &gt;
                     </button>
                   </div>

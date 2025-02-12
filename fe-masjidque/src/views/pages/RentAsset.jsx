@@ -7,6 +7,7 @@ import KarpetIcon from "../../assets/Icon/karpet.svg";
 import SpeakerIcon from "../../assets/Icon/speaker.svg";
 import MicIcon from "../../assets/Icon/mic.svg";
 import BackIcon from "../../assets/Icon/back.svg";
+import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 
 function RentAsset() {
@@ -211,6 +212,23 @@ function RentAsset() {
                 <button
                   type="submit"
                   className="px-6 py-2 bg-green-600 text-white font-medium rounded-md hover:bg-green-700"
+                  onClick={() => {
+                    Swal.fire({
+                      position: "center",
+                      icon: "success",
+                      title: "Your work has been saved",
+                      showConfirmButton: false,
+                      timer: 1500,
+                    }).then((result) => {
+                      if (result.isConfirmed) {
+                        Swal.fire({
+                          title: "Berhasil!",
+                          text: "Peminjaman aset berhasil diajukan.",
+                          icon: "success",
+                        });
+                      }
+                    });
+                  }}
                 >
                   Kirim
                 </button>
