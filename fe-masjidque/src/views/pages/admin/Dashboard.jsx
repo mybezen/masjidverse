@@ -64,20 +64,31 @@ function AdminDashboard() {
                   <Card
                     key={index}
                     variant="outlined"
-                    className="p-4 rounded-lg shadow-sm bg-gray-50"
+                    className="flex items-center w-full shadow-lg rounded-2xl bg-white overflow-hidden"
                   >
-                    <CardContent>
-                      <Typography fontWeight="bold" className="text-gray-800">
-                        Maulid Nabi Muhammad
+                    {/* Side Background (Garis Hijau) */}
+                    <div className="h-full w-10 bg-green-900 rounded-l-2xl"></div>
+
+                    {/* Card Content */}
+                    <CardContent className="flex-1 p-4">
+                      <div className="flex items-center gap-2">
+                        <img
+                          src={ActionIcon}
+                          alt="Event Icon"
+                          className="w-5 h-5"
+                        />
+                        <Typography fontWeight="bold" className="text-gray-800">
+                          Maulid Nabi Muhammad
+                        </Typography>
+                      </div>
+                      <Typography className="text-gray-500 text-sm">
+                        12 Rabiul Awal 1445H &gt; 16 September 2024
                       </Typography>
-                      <Typography className="text-gray-500">
-                        Masjid Al Falah
+                      <Typography className="text-gray-500 text-sm mt-1">
+                        📍 Masjid Al Falah
                       </Typography>
-                      <Typography className="text-gray-500">
-                        16 September 2024
-                      </Typography>
-                      <Typography className="text-gray-500">
-                        18:00 - Selesai
+                      <Typography className="text-gray-500 text-sm">
+                        ⏰ 18:00 - Selesai
                       </Typography>
                     </CardContent>
                   </Card>
