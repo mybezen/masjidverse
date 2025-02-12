@@ -4,24 +4,22 @@ import MenuIcon from "../../components/MenuIcon";
 import BackIcon from "../../assets/Icon/back.svg";
 import { useNavigate } from "react-router-dom";
 
-const backPages = [
-  {
-    id: 1,
-    title: "Kembali",
-    icon: BackIcon,
-    path: "/feature",
-  },
-];
-
 function FeatureBoard() {
   const navigate = useNavigate();
-  const handleNavigate = (path) => {
-    navigate(path);
-  };
+
   return (
     <div>
       <Navbar />
       <div className="relative">
+        {/* Tombol Kembali */}
+        <button
+          onClick={() => navigate("/")}
+          className="absolute top-6 left-6 flex items-center space-x-2  rounded-lg p-2 hover:bg-opacity-100 transition-all z-20"
+        >
+          <img src={BackIcon} alt="Back Icon" className="w-6 h-6" />
+          <p className="text-lg">Kembali</p>
+        </button>
+
         <div className="absolute top-0 left-0 w-full h-24 bg-gradient-to-b from-white to-transparent z-10" />
 
         <h1
