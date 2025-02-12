@@ -87,6 +87,7 @@ function Modal({
         </div>
 
         {/* Content */}
+        <div></div>
         <div>{children}</div>
       </div>
     </div>
