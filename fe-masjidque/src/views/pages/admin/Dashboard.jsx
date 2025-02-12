@@ -4,6 +4,7 @@ import BarChart from "../../../components/Chart";
 import ActionIcon from "../../../assets/Icon/run.svg";
 import IncomeIcon from "../../../assets/Icon/income.svg";
 import OutcomeIcon from "../../../assets/Icon/outcome.svg";
+import ChartPengeluaran from "../../../components/ChartPengeluaran";
 import SearchIcon from "@mui/icons-material/Search";
 
 function AdminDashboard() {
@@ -90,8 +91,8 @@ function AdminDashboard() {
                 <Typography className="mb-2 text-lg font-semibold text-gray-700">
                   Data Pemasukan
                 </Typography>
-                <div className="h-48">
-                  <BarChart
+                <div className="h-80">
+                  <ChartPengeluaran
                     title=""
                     dataLabel="Pemasukan"
                     className="h-full"
@@ -105,7 +106,7 @@ function AdminDashboard() {
                 <Typography className="mb-2 text-lg font-semibold text-gray-700">
                   Data Pengeluaran
                 </Typography>
-                <div className="h-48">
+                <div className="h-80">
                   <BarChart
                     title=""
                     dataLabel="Pengeluaran"
