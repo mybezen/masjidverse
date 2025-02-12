@@ -2,6 +2,7 @@ import Sidebar from "../../../components/Sidebar";
 import { Typography, Card, CardContent, Input } from "@mui/joy";
 import BarChart from "../../../components/Chart";
 import ActionIcon from "../../../assets/Icon/run.svg";
+import EventIcon from "../../../assets/Icon/date.svg";
 import IncomeIcon from "../../../assets/Icon/income.svg";
 import OutcomeIcon from "../../../assets/Icon/outcome.svg";
 import ChartPengeluaran from "../../../components/ChartPengeluaran";
@@ -48,12 +49,15 @@ function AdminDashboard() {
           {/* Left Section */}
           <div className="col-span-8 space-y-6">
             {/* Activities Section */}
-            <Card className="p-4 bg-white rounded-lg shadow-md">
+            <Card
+              sx={{ borderRadius: "xl" }}
+              className="p-4 bg-white rounded-lg shadow-md"
+            >
               <div className="flex items-center mb-4">
                 <img
-                  src={ActionIcon}
+                  src={EventIcon}
                   alt="Action Icon"
-                  className="w-6 h-6 mr-2 invert"
+                  className="w-10 h-10 mr-2 "
                 />
                 <Typography className="text-lg font-semibold text-gray-700">
                   Kegiatan Yang Akan Datang
@@ -64,30 +68,31 @@ function AdminDashboard() {
                   <Card
                     key={index}
                     variant="outlined"
-                    className="flex items-center w-full shadow-lg rounded-2xl bg-white overflow-hidden"
+                    sx={{ borderRadius: "xl" }}
+                    className="flex items-center w-full bg-white shadow-lg rounded-2xl"
                   >
                     {/* Side Background (Garis Hijau) */}
-                    <div className="h-full w-10 bg-green-900 rounded-l-2xl"></div>
+                    <div className="w-10 bg-green-900 rounded-l-2xl"></div>
 
                     {/* Card Content */}
                     <CardContent className="flex-1 p-4">
                       <div className="flex items-center gap-2">
                         <img
                           src={ActionIcon}
-                          alt="Event Icon"
-                          className="w-5 h-5"
+                          alt="Event Icon "
+                          className="w-7 h-7 invert"
                         />
                         <Typography fontWeight="bold" className="text-gray-800">
                           Maulid Nabi Muhammad
                         </Typography>
                       </div>
-                      <Typography className="text-gray-500 text-sm">
+                      <Typography className="text-sm text-gray-500">
                         12 Rabiul Awal 1445H &gt; 16 September 2024
                       </Typography>
-                      <Typography className="text-gray-500 text-sm mt-1">
+                      <Typography className="mt-1 text-sm text-gray-500">
                         📍 Masjid Al Falah
                       </Typography>
-                      <Typography className="text-gray-500 text-sm">
+                      <Typography className="text-sm text-gray-500">
                         ⏰ 18:00 - Selesai
                       </Typography>
                     </CardContent>
@@ -102,7 +107,7 @@ function AdminDashboard() {
                 <Typography className="mb-2 text-lg font-semibold text-gray-700">
                   Data Pemasukan
                 </Typography>
-                <div className="h-80">
+                <div className="h-60">
                   <ChartPengeluaran
                     title=""
                     dataLabel="Pemasukan"
@@ -117,7 +122,7 @@ function AdminDashboard() {
                 <Typography className="mb-2 text-lg font-semibold text-gray-700">
                   Data Pengeluaran
                 </Typography>
-                <div className="h-80">
+                <div className="h-60">
                   <BarChart
                     title=""
                     dataLabel="Pengeluaran"
@@ -133,8 +138,13 @@ function AdminDashboard() {
 
           {/* Right Section */}
           <div className="flex flex-col col-span-4 space-y-6">
+            <Typography
+            sx={{  }}> Pemasukan </Typography>
             {/* Income Section */}
-            <Card className="p-4 bg-white rounded-lg shadow-md">
+            <Card
+              sx={{ borderRadius: "xl" }}
+              className="p-4 bg-white rounded-lg shadow-md"
+            >
               <div className="flex items-center mb-2">
                 <img
                   src={IncomeIcon}
