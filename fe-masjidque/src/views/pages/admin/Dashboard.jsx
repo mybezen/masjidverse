@@ -7,6 +7,8 @@ import IncomeIcon from "../../../assets/Icon/income.svg";
 import OutcomeIcon from "../../../assets/Icon/outcome.svg";
 import ChartPengeluaran from "../../../components/ChartPengeluaran";
 import SearchIcon from "@mui/icons-material/Search";
+import TimeIcon from "../../../assets/Icon/time.svg"
+import LocationIcon from "../../../assets/Icon/location.svg"
 import UserIcon from "../../../assets/Icon/user.svg";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -104,12 +106,19 @@ function AdminDashboard() {
                       <Typography className="text-sm text-gray-500">
                         12 Rabiul Awal 1445H &gt; 16 September 2024
                       </Typography>
+                      <div className="flex gap-3">
+                        <img src={LocationIcon} className="w-6" />
                       <Typography className="mt-1 text-sm text-gray-500">
-                        📍 Masjid Al Falah
+                        Masjid Al Falah
                       </Typography>
+                      </div>
+
+                      <div className="flex gap-3.5 ml-0.5">
+                        <img src={TimeIcon} className="w-5 " />
                       <Typography className="text-sm text-gray-500">
-                        ⏰ 18:00 - Selesai
+                         18:00 - Selesai
                       </Typography>
+                      </div>
                     </CardContent>
                   </Card>
                 ))}
@@ -163,7 +172,7 @@ function AdminDashboard() {
             <Card
               sx={{ 
                 borderRadius: "xl",
-                width:"50%",
+                width:"100%",
                }}
               className="p-4 bg-white rounded-lg shadow-md"
             >
@@ -199,7 +208,7 @@ function AdminDashboard() {
             <Card
               sx={{ 
                 borderRadius: "xl",
-                width:"50%"
+                width:"100%"
                }}
               className="p-4 bg-white rounded-lg shadow-md"
             >
