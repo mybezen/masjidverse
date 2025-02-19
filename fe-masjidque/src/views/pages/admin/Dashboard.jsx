@@ -7,13 +7,11 @@ import IncomeIcon from "../../../assets/Icon/income.svg";
 import OutcomeIcon from "../../../assets/Icon/outcome.svg";
 import ChartPengeluaran from "../../../components/ChartPengeluaran";
 import SearchIcon from "@mui/icons-material/Search";
-import TimeIcon from "../../../assets/Icon/time.svg"
-import LocationIcon from "../../../assets/Icon/location.svg"
+import TimeIcon from "../../../assets/Icon/time.svg";
+import LocationIcon from "../../../assets/Icon/location.svg";
 import UserIcon from "../../../assets/Icon/user.svg";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-
-
 
 function AdminDashboard() {
   const navigate = useNavigate();
@@ -46,16 +44,16 @@ function AdminDashboard() {
             {/* User Info */}
             <div className="text-right flex">
               <div className="flex flex-col items-end mr-4">
-              <Typography level="body1" className="text-gray-800 poppins-bold">
-                Hello, Admin
-              </Typography>
-              <Typography level="body2" className="text-gray-500 poppins-bold">
-                Role: Admin
-              </Typography>
+                <Typography level="body1" className="text-gray-800 poppins-bold">
+                  Hello, Admin
+                </Typography>
+                <Typography level="body2" className="text-gray-500 poppins-bold">
+                  Role: Admin
+                </Typography>
               </div>
               <button className="hover:bg-gray-200 w-10 flex items-center justify-center" 
               onClick={() => handleNavigate("/admin/dashboard")}>
-              <img src={UserIcon} className="invert" />
+                <img src={UserIcon} className="invert" />
               </button>
             </div>
           </div>
@@ -74,50 +72,50 @@ function AdminDashboard() {
                 <img
                   src={EventIcon}
                   alt="Action Icon"
-                  className="w-10 h-10 mr-2 "
+                  className="w-8 h-8 mr-2"
                 />
-                <Typography className="text-lg font-semibold text-gray-700">
+                <Typography className="text-base font-semibold text-gray-700">
                   Kegiatan Yang Akan Datang
                 </Typography>
               </div>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-2">
                 {[...Array(2)].map((_, index) => (
                   <Card
                     key={index}
                     variant="outlined"
                     sx={{ borderRadius: "xl" }}
-                    className="flex items-center w-full bg-white shadow-lg rounded-2xl"
+                    className="flex items-center w-full  bg-white shadow-lg rounded-2xl relative"
                   >
                     {/* Side Background (Garis Hijau) */}
-                    <div className="w-10 bg-green-900 rounded-l-2xl"></div>
+                    <div className="absolute left-0 top-0 bottom-0 w-4 bg-green-900 rounded-l-2xl"></div>
 
                     {/* Card Content */}
-                    <CardContent className="flex-1 p-4">
-                      <div className="flex items-center gap-2">
+                    <CardContent className="flex-1 p-3 pl-5">
+                      <div className="flex items-center gap-1">
                         <img
                           src={ActionIcon}
                           alt="Event Icon "
-                          className="w-7 h-7 invert"
+                          className="w-6 h-6 invert"
                         />
-                        <Typography fontWeight="bold" className="text-gray-800">
+                        <Typography fontWeight="bold" className="text-sm text-gray-800">
                           Maulid Nabi Muhammad
                         </Typography>
                       </div>
-                      <Typography className="text-sm text-gray-500">
+                      <Typography className="text-xs text-gray-500">
                         12 Rabiul Awal 1445H &gt; 16 September 2024
                       </Typography>
-                      <div className="flex gap-3">
-                        <img src={LocationIcon} className="w-6" />
-                      <Typography className="mt-1 text-sm text-gray-500">
-                        Masjid Al Falah
-                      </Typography>
+                      <div className="flex gap-2">
+                        <img src={LocationIcon} className="w-5" />
+                        <Typography className="mt-1 text-xs text-gray-500">
+                          Masjid Al Falah
+                        </Typography>
                       </div>
 
-                      <div className="flex gap-3.5 ml-0.5">
-                        <img src={TimeIcon} className="w-5 " />
-                      <Typography className="text-sm text-gray-500">
-                         18:00 - Selesai
-                      </Typography>
+                      <div className="flex gap-2 ml-0.5">
+                        <img src={TimeIcon} className="w-4 " />
+                        <Typography className="text-xs text-gray-500">
+                          18:00 - Selesai
+                        </Typography>
                       </div>
                     </CardContent>
                   </Card>
@@ -163,10 +161,10 @@ function AdminDashboard() {
           {/* Right Section */}
           <div className="flex flex-col col-span-4 space-y-6">
             <div className="flex items-center space-x-2">
-            <img src={IncomeIcon} 
-            className="w-10 h-10" />
-            <Typography
-            sx={{ fontSize: "1.5rem" }}> Pemasukan </Typography>
+              <img src={IncomeIcon} 
+              className="w-10 h-10" />
+              <Typography
+              sx={{ fontSize: "1.5rem" }}> Pemasukan </Typography>
             </div>
             {/* Income Section */}
             <Card
@@ -200,10 +198,10 @@ function AdminDashboard() {
 
             {/* Expense Section */}
             <div className="flex items-center space-x-2">
-            <img src={IncomeIcon} 
-            className="w-10 h-10" />
-            <Typography
-            sx={{ fontSize: "1.5rem" }}> Pengeluaran </Typography>
+              <img src={OutcomeIcon} 
+              className="w-10 h-10" />
+              <Typography
+              sx={{ fontSize: "1.5rem" }}> Pengeluaran </Typography>
             </div>
             <Card
               sx={{ 
